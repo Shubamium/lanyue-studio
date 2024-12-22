@@ -12,8 +12,9 @@ export default function Portfolio({}: Props) {
   const params = useSearchParams();
   const startingCat = params.get("c");
   const [activeCat, setActiveCat] = useState(startingCat ?? "live-2d");
-
   const [portfolioList, setPortfolioList] = useState<any[]>([]);
+
+  const [selectedImage, setSelectedImage] = useState<any | null>(null);
   useEffect(() => {
     const loadPort = async () => {
       let portfolio = await getPortfolio(activeCat);
@@ -34,22 +35,27 @@ export default function Portfolio({}: Props) {
   return (
     <section id="portfolio-display">
       <aside id="sidebar">
-        <div className="side-action">
-          <img src="/gfx/logo-glow.png" alt="" className="logo" />
-          <Link href={"/"} className="btn back-btn">
-            <FaArrowLeftLong /> HOME
-          </Link>
+        <img src="/de/frame-edge.png" alt="" className="frame-edge ni" />
+        <img src="/de/corner-cloud.png" alt="" className="cloud-edge ni" />
+        <div className="corner-top"></div>
+        <div className="top">
+          <img src="/de/folio-moon.png" alt="" className="de-moon ni" />
+          <div className="side-action">
+            <img src="/gfx/logo-glow.png" alt="" className="logo ni" />
+            <Link href={"/"} className="btn back-btn">
+              <FaArrowLeftLong /> HOME
+            </Link>
+          </div>
+          <div className="heading">
+            <p className="sh">SUBHEADING</p>
+            <h2 className="h">PORTFOLIO</h2>
+            <p className="p">
+              Lan’Yue Studio partners with highly reputable artists chosen for
+              their artistic skills, reliability, and commitment to client
+              satisfaction.
+            </p>
+          </div>
         </div>
-        <div className="heading">
-          <p className="sh">SUBHEADING</p>
-          <h2 className="h">PORTFOLIO</h2>
-          <p className="p">
-            Lan’Yue Studio partners with highly reputable artists chosen for
-            their artistic skills, reliability, and commitment to client
-            satisfaction.
-          </p>
-        </div>
-
         <div className="categories">
           <button
             className={`btn btn-cat ${activeCat === "live-2d" ? "selected" : ""}`}
@@ -93,6 +99,9 @@ export default function Portfolio({}: Props) {
                           .url()}
                         alt=""
                         className="main-pt"
+                        onClick={() => {
+                          setSelectedImage(row[0]);
+                        }}
                       />
                     ) : (
                       <video
@@ -100,6 +109,9 @@ export default function Portfolio({}: Props) {
                         controls
                         autoPlay
                         muted
+                        onClick={() => {
+                          setSelectedImage(row[0]);
+                        }}
                         className="main-pt"
                       />
                     )}
@@ -113,6 +125,9 @@ export default function Portfolio({}: Props) {
                             .maxHeight(700)
                             .url()}
                           alt=""
+                          onClick={() => {
+                            setSelectedImage(row[0]);
+                          }}
                           className="main-pt"
                         />
                       ) : (
@@ -122,6 +137,9 @@ export default function Portfolio({}: Props) {
                           controls
                           autoPlay
                           muted
+                          onClick={() => {
+                            setSelectedImage(row[0]);
+                          }}
                         />
                       )}
                     </div>
@@ -262,6 +280,34 @@ export default function Portfolio({}: Props) {
         >
           <FaArrowRight />
         </button>
+      </div>
+
+      <div
+        id="fs-gallery"
+        onClick={() => {
+          setSelectedImage(null);
+        }}
+        className={`${selectedImage ? "view" : "close"}`}
+      >
+        {selectedImage && (
+          <div className="art-part">
+            {selectedImage._type === "image" ? (
+              <img
+                src={urlFor(selectedImage)?.auto("format").maxHeight(700).url()}
+                alt=""
+                className="main-pt"
+              />
+            ) : (
+              <video
+                src={getFileUrl(selectedImage) ?? undefined}
+                controls
+                autoPlay
+                muted
+                className="main-pt"
+              />
+            )}
+          </div>
+        )}
       </div>
     </section>
   );
