@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import "./portfolio.scss";
 
@@ -8,7 +8,9 @@ type Props = {};
 export default function PortfolioPage({}: Props) {
   return (
     <main id="page_portfolio">
-      <Portfolio />
+      <Suspense>
+        <Portfolio />
+      </Suspense>
     </main>
   );
 }
