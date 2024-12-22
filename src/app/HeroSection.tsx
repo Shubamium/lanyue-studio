@@ -15,13 +15,13 @@ export default function HeroSection({}: Props) {
 
   return (
     <section id="hero-section" ref={targetRef}>
-      <article className="title-group">
-        <div className="top-part">
-          <div className="head">
-            <p className="sh">SUBHEADING TEXT</p>
-            <h2 className="hm">MAIN CALL TO ACTION TEXT</h2>
+      <article id="title-group">
+        <div id="top-part">
+          <div id="head">
+            <p id="sh">SUBHEADING TEXT</p>
+            <h2 id="hm">MAIN CALL TO ACTION TEXT</h2>
           </div>
-          <p className="p">
+          <p id="p">
             <strong>Lan'Yue Studio</strong> is inspired by the rare and unique
             blue moon. Our goal is to curate the one-of-a-kind beauty you
             deserve for any project you can imagine, from{" "}
@@ -29,32 +29,32 @@ export default function HeroSection({}: Props) {
             <strong>graphic design</strong>.
           </p>
 
-          <div className="action">
-            <button className="btn btn-main">COMMISSIONS TEXT</button>
-            <button className="btn btn-main outline">ARTIST TEXT</button>
+          <div id="action">
+            <button id="btn btn-main">COMMISSIONS TEXT</button>
+            <button id="btn btn-main outline">ARTIST TEXT</button>
           </div>
         </div>
 
-        <div className="image-part inner-shadow-l">
+        <div id="image-part inner-shadow-l">
           <motion.img
             src="/gfx/hero_art-l.png"
             alt=""
             className="clip-border l "
             style={{ objectPosition: l }}
           />
-          <div className="clip ctr"></div>
-          <div className="clip cbr"></div>
+          <div id="clip ctr"></div>
+          <div id="clip cbr"></div>
         </div>
       </article>
-      <figure className="inner-shadow">
+      <figure id="inner-shadow">
         <motion.img
           style={{ objectPosition: r }}
           src="/gfx/hero_art-r.png"
           alt=""
           className="clip-border l "
         />
-        <div className="clip ctl"></div>
-        <div className="clip cbl"></div>
+        <div id="clip ctl"></div>
+        <div id="clip cbl"></div>
       </figure>
     </section>
   );

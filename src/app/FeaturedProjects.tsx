@@ -36,12 +36,12 @@ export default function FeaturedProjects({}: Props) {
   }, [xpos, measure]);
   return (
     <section id="featured-projects">
-      <div className="banner inner-shadow"></div>
-      <div className="heading">
-        <div className="text-part">
-          <p className="sh">FEATURED PROJECTS</p>
-          <h2 className="h">PORTFOLIO MAIN TEXT</h2>
-          <p className="p">
+      <div id="banner inner-shadow"></div>
+      <div id="heading">
+        <div id="text-part">
+          <p id="sh">FEATURED PROJECTS</p>
+          <h2 id="h">PORTFOLIO MAIN TEXT</h2>
+          <p id="p">
             Lan'Yue Studio is inspired by the rare and unique blue moon. Our
             goal is to curate the one-of-a-kind beauty you deserve for any
             project you can imagine, from illustrations to Live2D models and
@@ -50,7 +50,7 @@ export default function FeaturedProjects({}: Props) {
         </div>
       </div>
 
-      <div className="scroller">
+      <div id="scroller">
         {/* <div className="slider">
 			<img src="/gfx/port1.png" alt="" />
 			<img src="/gfx/port2.png" alt="" />
