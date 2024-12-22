@@ -1,11 +1,36 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FaArrowLeft, FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
+import { useSearchParams } from "next/navigation";
+import getPortfolio from "../db/portfolio";
+import { urlFor } from "../db/sanity";
 type Props = {};
 
 export default function Portfolio({}: Props) {
   const sliderRef = useRef<HTMLDivElement | null>(null);
+  const params = useSearchParams();
+  const startingCat = params.get("c");
+  const [activeCat, setActiveCat] = useState(startingCat ?? "live-2d");
+
+  const [portfolioList, setPortfolioList] = useState<any[]>([]);
+  useEffect(() => {
+    const loadPort = async () => {
+      let portfolio = await getPortfolio(activeCat);
+      if (portfolio) {
+        setPortfolioList(portfolio);
+      }
+    };
+
+    loadPort();
+  }, [activeCat]);
+
+  const chopped = [...portfolioList];
+  const toRender = [];
+  console.log(portfolioList);
+  while (chopped.length > 0) {
+    toRender.push(chopped.splice(0, 2));
+  }
   return (
     <section id="portfolio-display">
       <aside id="sidebar">
@@ -26,14 +51,69 @@ export default function Portfolio({}: Props) {
         </div>
 
         <div className="categories">
-          <button className="btn btn-cat selected">LIVE 2D</button>
-          <button className="btn btn-cat">ILLUSTRATIONS</button>
-          <button className="btn btn-cat">GRAPHICS</button>
+          <button
+            className={`btn btn-cat ${activeCat === "live-2d" ? "selected" : ""}`}
+            onClick={() => {
+              setActiveCat("live-2d");
+            }}
+          >
+            LIVE 2D
+          </button>
+          <button
+            className={`btn btn-cat ${activeCat === "illustrations" ? "selected" : ""}`}
+            onClick={() => {
+              setActiveCat("illustrations");
+            }}
+          >
+            ILLUSTRATIONS
+          </button>
+          <button
+            className={`btn btn-cat ${activeCat === "graphics" ? "selected" : ""}`}
+            onClick={() => {
+              setActiveCat("graphics");
+            }}
+          >
+            GRAPHICS
+          </button>
         </div>
       </aside>
       <div className="portfolio-items">
         <div className="lists" ref={sliderRef}>
-          <div className="row">
+          {toRender &&
+            toRender.map((row: any[], index) => {
+              return (
+                <div className="row" key={"pfrow" + index}>
+                  <div className="pitems inner-shadow-l">
+                    <img
+                      src={urlFor(row[0])?.auto("format").maxHeight(700).url()}
+                      alt=""
+                      className="main-pt"
+                    />
+                  </div>
+                  {row[1] && (
+                    <div className="pitems inner-shadow-l">
+                      <img
+                        src={urlFor(row[1])
+                          ?.auto("format")
+                          .maxHeight(700)
+                          .url()}
+                        alt=""
+                        className="main-pt"
+                      />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          {/* <div className="row">
+            <div className="pitems inner-shadow-l">
+              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
+            </div>
+            <div className="pitems inner-shadow-l">
+              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
+            </div>
+          </div> */}
+          {/* <div className="row">
             <div className="pitems inner-shadow-l">
               <img src="/gfx/placeholder.png" alt="" className="main-pt" />
             </div>
@@ -112,23 +192,7 @@ export default function Portfolio({}: Props) {
             <div className="pitems inner-shadow-l">
               <img src="/gfx/placeholder.png" alt="" className="main-pt" />
             </div>
-          </div>
-          <div className="row">
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-          </div>
+          </div> */}
           {/* <div className="row">
 					<div className="pitems inner-shadow-l">
 						<img src="/gfx/placeholder.png" alt="" className="main-pt" />

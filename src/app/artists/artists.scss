@@ -72,7 +72,7 @@
               .contacts {
                 // background: green;
                 left: initial;
-                right: 0%;
+                right: -15%;
               }
             }
           }
@@ -152,6 +152,12 @@
             .artist-data {
               max-width: 100%;
 
+              .sh {
+                text-transform: uppercase;
+              }
+              .h {
+                text-transform: uppercase;
+              }
               .p {
                 margin: 1em 0;
               }

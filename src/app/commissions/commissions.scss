@@ -164,6 +164,9 @@
       font-size: 1.2rem;
       position: relative;
       scale: 1;
+      font-family: var(--fontsb);
+      display: block;
+      width: max-content;
       &:hover {
         scale: 1;
         &::before {
