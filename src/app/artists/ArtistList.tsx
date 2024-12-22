@@ -6,91 +6,91 @@ type Props = {};
 export default function ArtistList({}: Props) {
   return (
     <div id="artist-list">
-      <section id="control">
-        <button id="btn btn-main">ILLUSTRATOR</button>
-        <button id="btn btn-main outline">RIGGER</button>
-        <button id="btn btn-main outline">GRAPHIC DESIGN</button>
+      <section className="control">
+        <button className="btn btn-main">ILLUSTRATOR</button>
+        <button className="btn btn-main outline">RIGGER</button>
+        <button className="btn btn-main outline">GRAPHIC DESIGN</button>
       </section>
 
       <section id="at-list">
-        <div id="artist-container">
-          <img src="/de/splat-bg-artist.svg" alt="" id="de-splat t" />
-          <img src="/de/splat-bg-artist.svg" alt="" id="de-splat b" />
-          <div id="confine">
+        <div className="artist-container">
+          <img src="/de/splat-bg-artist.svg" alt="" className="de-splat t" />
+          <img src="/de/splat-bg-artist.svg" alt="" className="de-splat b" />
+          <div className="confine">
             <figure>
-              <img src="/gfx/at1.png" alt="" id="at-img" />
-              <div id="contacts">
-                <a href="#" target="_blank" id="btn btn-contact">
+              <img src="/gfx/at1.png" alt="" className="at-img" />
+              <div className="contacts">
+                <a href="#" target="_blank" className="btn btn-contact">
                   <span>
                     <FaXTwitter />
                   </span>
                 </a>
-                <a href="#" target="_blank" id="btn btn-contact">
+                <a href="#" target="_blank" className="btn btn-contact">
                   <span>
                     <FaXTwitter />
                   </span>
                 </a>
-                <div id="line"></div>
+                <div className="line"></div>
               </div>
             </figure>
-            <div id="artist-info">
-              <div id="artist-data">
-                <p id="sh">ILLUSTRATOR TITLE</p>
-                <h2 id="h">ANHEL</h2>
-                <p id="p">
+            <div className="artist-info">
+              <div className="artist-data">
+                <p className="sh">ILLUSTRATOR TITLE</p>
+                <h2 className="h">ANHEL</h2>
+                <p className="p">
                   Huge Genshin Impact fan who spends every spare minute drawing
                   more Nilou fan art. Anhel excels in bringing expressions to
                   life with their bright compositions.
                 </p>
               </div>
 
-              <div id="portfolio">
-                <img src="/gfx/placeholder.png" alt="" id="p-img" />
-                <img src="/gfx/placeholder3.png" alt="" id="p-img" />
-                <img src="/gfx/placeholder2.png" alt="" id="p-img" />
-                <img src="/gfx/placeholder3.png" alt="" id="p-img" />
-                <img src="/gfx/placeholder.png" alt="" id="p-img" />
-                <img src="/gfx/placeholder3.png" alt="" id="p-img" />
+              <div className="portfolio">
+                <img src="/gfx/placeholder.png" alt="" className="p-img" />
+                <img src="/gfx/placeholder3.png" alt="" className="p-img" />
+                <img src="/gfx/placeholder2.png" alt="" className="p-img" />
+                <img src="/gfx/placeholder3.png" alt="" className="p-img" />
+                <img src="/gfx/placeholder.png" alt="" className="p-img" />
+                <img src="/gfx/placeholder3.png" alt="" className="p-img" />
               </div>
             </div>
           </div>
         </div>
-        <div id="artist-container l">
-          <img src="/de/splat-bg-artist.svg" alt="" id="de-splat t" />
-          <img src="/de/splat-bg-artist.svg" alt="" id="de-splat b" />
-          <div id="confine">
-            <div id="artist-info">
-              <div id="artist-data">
-                <p id="sh">ILLUSTRATOR TITLE</p>
-                <h2 id="h">ANHEL</h2>
-                <p id="p">
+        <div className="artist-container l">
+          <img src="/de/splat-bg-artist.svg" alt="" className="de-splat t" />
+          <img src="/de/splat-bg-artist.svg" alt="" className="de-splat b" />
+          <div className="confine">
+            <div className="artist-info">
+              <div className="artist-data">
+                <p className="sh">ILLUSTRATOR TITLE</p>
+                <h2 className="h">ANHEL</h2>
+                <p className="p">
                   Huge Genshin Impact fan who spends every spare minute drawing
                   more Nilou fan art. Anhel excels in bringing expressions to
                   life with their bright compositions.
                 </p>
               </div>
 
-              <div id="portfolio">
-                <img src="/gfx/placeholder.png" alt="" id="p-img" />
-                <img src="/gfx/placeholder3.png" alt="" id="p-img" />
-                <img src="/gfx/placeholder.png" alt="" id="p-img" />
-                <img src="/gfx/placeholder3.png" alt="" id="p-img" />
+              <div className="portfolio">
+                <img src="/gfx/placeholder.png" alt="" className="p-img" />
+                <img src="/gfx/placeholder3.png" alt="" className="p-img" />
+                <img src="/gfx/placeholder.png" alt="" className="p-img" />
+                <img src="/gfx/placeholder3.png" alt="" className="p-img" />
               </div>
             </div>
             <figure>
-              <img src="/gfx/at2.png" alt="" id="at-img" />
-              <div id="contacts">
-                <a href="#" target="_blank" id="btn btn-contact">
+              <img src="/gfx/at2.png" alt="" className="at-img" />
+              <div className="contacts">
+                <a href="#" target="_blank" className="btn btn-contact">
                   <span>
                     <FaXTwitter />
                   </span>
                 </a>
-                <a href="#" target="_blank" id="btn btn-contact">
+                <a href="#" target="_blank" className="btn btn-contact">
                   <span>
                     <FaXTwitter />
                   </span>
                 </a>
-                <div id="line"></div>
+                <div className="line"></div>
               </div>
             </figure>
           </div>

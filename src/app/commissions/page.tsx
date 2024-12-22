@@ -36,7 +36,7 @@ export default async function Commissions({}: Props) {
       <section id="main-service">
         <video
           src="/v/fog.webm"
-          id="smoke-bg ni"
+          className="smoke-bg ni"
           disablePictureInPicture
           disableRemotePlayback
           loop
@@ -44,13 +44,13 @@ export default async function Commissions({}: Props) {
           autoPlay
         ></video>
 
-        <div id="confine header">
-          <p id="sh">SERVICES</p>
-          <h2 id="h">COMMISSIONS MAIN TEXT</h2>
+        <div className="confine header">
+          <p className="sh">SERVICES</p>
+          <h2 className="h">COMMISSIONS MAIN TEXT</h2>
         </div>
-        <div id="steps">
-          <div id="confine">
-            <div id="step">
+        <div className="steps">
+          <div className="confine">
+            <div className="step">
               <h3>STEP 1</h3>
               <p>
                 Check out our artists and services! Review this page thoroughly
@@ -58,10 +58,10 @@ export default async function Commissions({}: Props) {
                 proceeding.
               </p>
 
-              <div id="clip cbr"></div>
-              <div id="clip ctr"></div>
+              <div className="clip cbr"></div>
+              <div className="clip ctr"></div>
             </div>
-            <div id="step">
+            <div className="step">
               <h3>STEP 2</h3>
               <p>
                 <strong>Contact us!</strong>
@@ -73,24 +73,24 @@ export default async function Commissions({}: Props) {
                 </li>
                 <li>Send us an email or DM through social media or Discord.</li>
               </ul>
-              <div id="clip cbr"></div>
-              <div id="clip ctr"></div>
+              <div className="clip cbr"></div>
+              <div className="clip ctr"></div>
             </div>
-            <div id="step">
+            <div className="step">
               <h3>STEP 3</h3>
               <p>A manager will follow up with you shortly {":)"}</p>
-              <div id="clip cbr"></div>
-              <div id="clip ctr"></div>
+              <div className="clip cbr"></div>
+              <div className="clip ctr"></div>
             </div>
           </div>
         </div>
-        <div id="confine categories">
-          <div id="category">
-            <div id="icon">
+        <div className="confine categories">
+          <div className="category">
+            <div className="icon">
               <GiPuppet />
             </div>
 
-            <h2 id="h">Main Category</h2>
+            <h2 className="h">Main Category</h2>
             <p>
               Lan'Yue Studio is inspired by the rare and unique blue moon. Our
               goal is to curate the one-of-a-kind beauty you deserve for any
@@ -98,24 +98,24 @@ export default async function Commissions({}: Props) {
               graphic design.
             </p>
 
-            <div id="list">
-              <div id="item">
+            <div className="list">
+              <div className="item">
                 <p>Cat 1</p>
               </div>
-              <div id="item">
+              <div className="item">
                 <p>Cat 2</p>
               </div>
-              <div id="item">
+              <div className="item">
                 <p>Cat 3</p>
               </div>
             </div>
           </div>
-          <div id="category">
-            <div id="icon">
+          <div className="category">
+            <div className="icon">
               <FaPaintBrush />
             </div>
 
-            <h2 id="h">Main Category</h2>
+            <h2 className="h">Main Category</h2>
             <p>
               Lan'Yue Studio is inspired by the rare and unique blue moon. Our
               goal is to curate the one-of-a-kind beauty you deserve for any
@@ -123,24 +123,24 @@ export default async function Commissions({}: Props) {
               graphic design.
             </p>
 
-            <div id="list">
-              <div id="item">
+            <div className="list">
+              <div className="item">
                 <p>Cat 1</p>
               </div>
-              <div id="item">
+              <div className="item">
                 <p>Cat 2</p>
               </div>
-              <div id="item">
+              <div className="item">
                 <p>Cat 3</p>
               </div>
             </div>
           </div>
-          <div id="category">
-            <div id="icon">
+          <div className="category">
+            <div className="icon">
               <TbMasksTheater />
             </div>
 
-            <h2 id="h">Main Category</h2>
+            <h2 className="h">Main Category</h2>
             <p>
               Lan'Yue Studio is inspired by the rare and unique blue moon. Our
               goal is to curate the one-of-a-kind beauty you deserve for any
@@ -148,23 +148,23 @@ export default async function Commissions({}: Props) {
               graphic design.
             </p>
 
-            <div id="list">
-              <div id="item">
+            <div className="list">
+              <div className="item">
                 <p>Cat 1</p>
               </div>
-              <div id="item">
+              <div className="item">
                 <p>Cat 2</p>
               </div>
-              <div id="item">
+              <div className="item">
                 <p>Cat 3</p>
               </div>
             </div>
           </div>
         </div>
-        <div id="confine terms-cta">
-          <p id="p">
+        <div className="confine terms-cta">
+          <p className="p">
             For licensing policies and fees, please see our{" "}
-            <Link href={"/terms"} id="btn">
+            <Link href={"/terms"} className="btn">
               Terms of service <FaArrowRight />
             </Link>{" "}
           </p>
@@ -173,15 +173,15 @@ export default async function Commissions({}: Props) {
 
       <section id="price-lists">
         {pinned && (
-          <div id="top-pricing">
-            <div id="confine price-heading">
-              <div id="sizing">
-                <h2 id="h">{pinned.name}</h2>
-                <p id="p">{pinned.description}</p>
+          <div className="top-pricing">
+            <div className="confine price-heading">
+              <div className="sizing">
+                <h2 className="h">{pinned.name}</h2>
+                <p className="p">{pinned.description}</p>
 
                 <Link
                   href={`/portfolio?c=${pinned.slug}`}
-                  id="btn btn-examples"
+                  className="btn btn-examples"
                 >
                   <span>
                     VIEW EXAMPLES <FaArrowRight />
@@ -190,13 +190,13 @@ export default async function Commissions({}: Props) {
               </div>
             </div>
             <div
-              id="banner"
+              className="banner"
               style={{
                 backgroundImage: `url(${urlFor(pinned.image)?.auto("format").maxHeight(1080).url()})`,
               }}
             ></div>
 
-            <div id="confine group">
+            <div className="confine group">
               <PriceList name="left" info={pinned.categories[0]}></PriceList>
               <PriceList name="right" info={pinned.categories[1]}></PriceList>
               {/* <div className="right price-list">
@@ -254,13 +254,13 @@ export default async function Commissions({}: Props) {
         {plist &&
           plist.map((p: any) => {
             return (
-              <div id="list-pricing l" key={p._id}>
-                <div id="confine">
+              <div className="list-pricing l" key={p._id}>
+                <div className="confine">
                   {/* Content */}
-                  <div id="details">
-                    <div id="confine price-heading">
-                      <h2 id="h">{p.name}</h2>
-                      <p id="p">{p.description}</p>
+                  <div className="details">
+                    <div className="confine price-heading">
+                      <h2 className="h">{p.name}</h2>
+                      <p className="p">{p.description}</p>
                     </div>
                     {p.categories &&
                       p.categories.map((p: any) => {
@@ -270,25 +270,25 @@ export default async function Commissions({}: Props) {
 
                   {/* Image */}
                   <figure>
-                    <div id="side-decor">
+                    <div className="side-decor">
                       <img src="/de/flower-gold.png" alt="" />
-                      <div id="line"></div>
+                      <div className="line"></div>
                     </div>
-                    <div id="art inner-shadow">
+                    <div className="art inner-shadow">
                       <img
                         src={urlFor(p.image)?.auto("format").height(900).url()}
-                        id="main-img"
+                        className="main-img"
                       />
-                      <div id="clip ctr"></div>
-                      <div id="clip ctl"></div>
-                      <div id="clip cbl"></div>
-                      <div id="clip cbr"></div>
+                      <div className="clip ctr"></div>
+                      <div className="clip ctl"></div>
+                      <div className="clip cbl"></div>
+                      <div className="clip cbr"></div>
                     </div>
 
-                    <div id="action">
+                    <div className="action">
                       <Link
                         href={`/portfolio?c=${p.slug}`}
-                        id="btn btn-examples"
+                        className="btn btn-examples"
                       >
                         <span>
                           VIEW EXAMPLES <FaArrowRight />
@@ -384,19 +384,19 @@ export default async function Commissions({}: Props) {
           </div>
         </div> */}
 
-        <div id="price-footer">
-          <div id="confine">
+        <div className="price-footer">
+          <div className="confine">
             <h2>NOTES:</h2>
-            <div id="text">
-              <p id="p">
+            <div className="text">
+              <p className="p">
                 Live2D and Graphics services include a streaming license with
                 the final product. Please see our{" "}
-                <Link href="/terms" id="btn">
+                <Link href="/terms" className="btn">
                   Terms of Service
                 </Link>{" "}
                 for full details. 
               </p>
-              <p id="p">
+              <p className="p">
                 Live2D Rigging are to be used with VTube Studio. We currently do
                 not create rigs for other face capture programs.
               </p>
@@ -407,19 +407,19 @@ export default async function Commissions({}: Props) {
 
       <section id="timeline">
         <div id="timeline-heading">
-          <div id="confine">
-            <figure id="inner-shadow">
+          <div className="confine">
+            <figure className="inner-shadow">
               <img src="/gfx/hero_art-l.png" alt="" />
-              <div id="clip cbr"></div>
-              <div id="clip cbl"></div>
-              <div id="clip ctl"></div>
-              <div id="clip ctr"></div>
+              <div className="clip cbr"></div>
+              <div className="clip cbl"></div>
+              <div className="clip ctl"></div>
+              <div className="clip ctr"></div>
             </figure>
 
             <article>
-              <p id="sh">SERVICES</p>
-              <h2 id="h">COMMISSIONS TIMELINE</h2>
-              <p id="p">
+              <p className="sh">SERVICES</p>
+              <h2 className="h">COMMISSIONS TIMELINE</h2>
+              <p className="p">
                 Placeholder services include a streaming license with the final
                 product. Please see our Terms of Service for full details. 
               </p>
@@ -427,80 +427,39 @@ export default async function Commissions({}: Props) {
           </div>
         </div>
         <div id="steps-timeline">
-          <div id="step">
-            <div id="confine">
-              <div id="title">
-                <h2 id="h">STEP 1</h2>
+          <div className="step">
+            <div className="confine">
+              <div className="title">
+                <h2 className="h">STEP 1</h2>
               </div>
-              <div id="details">
-                <div id="detail">
-                  <h3 id="h">Project Updates</h3>
-                  <p id="p">
+              <div className="details">
+                <div className="detail">
+                  <h3 className="h">Project Updates</h3>
+                  <p className="p">
                     Live2D and Graphics services include a streaming license
                     with the final product. Please see our Terms of Service for
                     full details. 
                   </p>
                 </div>
-                <div id="detail">
-                  <h3 id="h">Project Updates</h3>
-                  <p id="p">
+                <div className="detail">
+                  <h3 className="h">Project Updates</h3>
+                  <p className="p">
                     Live2D and Graphics services include a streaming license
                     with the final product. Please see our Terms of Service for
                     full details. 
                   </p>
                 </div>
-                <div id="detail">
-                  <h3 id="h">Project Updates</h3>
-                  <p id="p">
+                <div className="detail">
+                  <h3 className="h">Project Updates</h3>
+                  <p className="p">
                     Live2D and Graphics services include a streaming license
                     with the final product. Please see our Terms of Service for
                     full details. 
                   </p>
                 </div>
-                <div id="detail">
-                  <h3 id="h">Project Updates</h3>
-                  <p id="p">
-                    Live2D and Graphics services include a streaming license
-                    with the final product. Please see our Terms of Service for
-                    full details. 
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="step">
-            <div id="confine">
-              <div id="title">
-                <h2 id="h">STEP 2</h2>
-              </div>
-              <div id="details">
-                <div id="detail">
-                  <h3 id="h">Project Updates</h3>
-                  <p id="p">
-                    Live2D and Graphics services include a streaming license
-                    with the final product. Please see our Terms of Service for
-                    full details. 
-                  </p>
-                </div>
-                <div id="detail">
-                  <h3 id="h">Project Updates</h3>
-                  <p id="p">
-                    Live2D and Graphics services include a streaming license
-                    with the final product. Please see our Terms of Service for
-                    full details. 
-                  </p>
-                </div>
-                <div id="detail">
-                  <h3 id="h">Project Updates</h3>
-                  <p id="p">
-                    Live2D and Graphics services include a streaming license
-                    with the final product. Please see our Terms of Service for
-                    full details. 
-                  </p>
-                </div>
-                <div id="detail">
-                  <h3 id="h">Project Updates</h3>
-                  <p id="p">
+                <div className="detail">
+                  <h3 className="h">Project Updates</h3>
+                  <p className="p">
                     Live2D and Graphics services include a streaming license
                     with the final product. Please see our Terms of Service for
                     full details. 
@@ -509,23 +468,64 @@ export default async function Commissions({}: Props) {
               </div>
             </div>
           </div>
-          <div id="step">
-            <div id="confine">
-              <div id="title">
-                <h2 id="h">STEP 3</h2>
+          <div className="step">
+            <div className="confine">
+              <div className="title">
+                <h2 className="h">STEP 2</h2>
               </div>
-              <div id="details">
-                <div id="detail">
-                  <h3 id="h">Project Updates</h3>
-                  <p id="p">
+              <div className="details">
+                <div className="detail">
+                  <h3 className="h">Project Updates</h3>
+                  <p className="p">
                     Live2D and Graphics services include a streaming license
                     with the final product. Please see our Terms of Service for
                     full details. 
                   </p>
                 </div>
-                <div id="detail">
-                  <h3 id="h">Project Updates</h3>
-                  <p id="p">
+                <div className="detail">
+                  <h3 className="h">Project Updates</h3>
+                  <p className="p">
+                    Live2D and Graphics services include a streaming license
+                    with the final product. Please see our Terms of Service for
+                    full details. 
+                  </p>
+                </div>
+                <div className="detail">
+                  <h3 className="h">Project Updates</h3>
+                  <p className="p">
+                    Live2D and Graphics services include a streaming license
+                    with the final product. Please see our Terms of Service for
+                    full details. 
+                  </p>
+                </div>
+                <div className="detail">
+                  <h3 className="h">Project Updates</h3>
+                  <p className="p">
+                    Live2D and Graphics services include a streaming license
+                    with the final product. Please see our Terms of Service for
+                    full details. 
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="step">
+            <div className="confine">
+              <div className="title">
+                <h2 className="h">STEP 3</h2>
+              </div>
+              <div className="details">
+                <div className="detail">
+                  <h3 className="h">Project Updates</h3>
+                  <p className="p">
+                    Live2D and Graphics services include a streaming license
+                    with the final product. Please see our Terms of Service for
+                    full details. 
+                  </p>
+                </div>
+                <div className="detail">
+                  <h3 className="h">Project Updates</h3>
+                  <p className="p">
                     Live2D and Graphics services include a streaming license
                     with the final product. Please see our Terms of Service for
                     full details. 
