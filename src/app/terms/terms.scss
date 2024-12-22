@@ -1,0 +1,109 @@
+#page_terms {
+  min-height: 1500px;
+  padding-top: 50px;
+  // margin-top: 100px;
+  #terms-banner {
+    padding-top: 50px;
+    min-height: 340px;
+    background: url("/bg/terms-art.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 50%;
+  }
+
+  #terms-list {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 1em;
+
+    padding: 2em;
+    margin-top: 100px;
+    aside {
+      height: 100%;
+      article {
+        position: sticky;
+        top: 5%;
+        .p {
+          margin: 1em 0;
+        }
+      }
+    }
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      .terms {
+        background: #e0f1fa;
+        // padding: 2em;
+        transition: all 500ms var(--mainEase);
+        &.visible {
+          .top-part {
+            svg {
+              rotate: 0deg;
+            }
+          }
+          .content {
+            max-height: 1000px;
+            transition: all 1500ms var(--mainEase), padding 0ms;
+          }
+        }
+        &.closed {
+          background: #283f5813;
+
+          svg {
+            rotate: 90deg;
+          }
+          .content {
+            max-height: 0px;
+            opacity: 0;
+            padding: 0;
+          }
+        }
+        .top-part {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1.4em 2em;
+          h2 {
+            font-family: var(--fontb);
+            font-weight: 400;
+            color: var(--grey);
+            font-size: 1.4rem;
+          }
+          svg {
+            width: 30px;
+            height: 30px;
+            scale: 1.2;
+            color: var(--grey);
+          }
+        }
+        .content {
+          transition: all 500ms var(--mainEase);
+          padding: 1.4em 2em;
+          padding-top: 0;
+          padding-bottom: 50px;
+          // display: grid;
+          // grid-template-rows: 1fr;
+          overflow: hidden;
+
+          p {
+            color: #757e8e;
+            margin-bottom: 1em;
+          }
+          ul {
+            padding-left: 2em;
+            margin-bottom: 2em;
+            margin-top: -10px;
+            li {
+              color: #757e8e;
+              font-family: var(--fontP);
+              // font-weight: 200;
+            }
+          }
+        }
+      }
+    }
+  }
+}
