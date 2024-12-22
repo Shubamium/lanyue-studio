@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FaArrowLeft, FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
 import { useSearchParams } from "next/navigation";
 import getPortfolio from "../db/portfolio";
-import { urlFor } from "../db/sanity";
+import { getFileUrl, urlFor } from "../db/sanity";
 type Props = {};
 
 export default function Portfolio({}: Props) {
@@ -81,25 +81,49 @@ export default function Portfolio({}: Props) {
         <div className="lists" ref={sliderRef}>
           {toRender &&
             toRender.map((row: any[], index) => {
+              console.log(row);
               return (
                 <div className="row" key={"pfrow" + index}>
                   <div className="pitems inner-shadow-l">
-                    <img
-                      src={urlFor(row[0])?.auto("format").maxHeight(700).url()}
-                      alt=""
-                      className="main-pt"
-                    />
-                  </div>
-                  {row[1] && (
-                    <div className="pitems inner-shadow-l">
+                    {row[0]._type === "image" ? (
                       <img
-                        src={urlFor(row[1])
+                        src={urlFor(row[0])
                           ?.auto("format")
                           .maxHeight(700)
                           .url()}
                         alt=""
                         className="main-pt"
                       />
+                    ) : (
+                      <video
+                        src={getFileUrl(row[0]) ?? undefined}
+                        controls
+                        autoPlay
+                        muted
+                        className="main-pt"
+                      />
+                    )}
+                  </div>
+                  {row[1] && (
+                    <div className="pitems inner-shadow-l">
+                      {row[1]._type === "image" ? (
+                        <img
+                          src={urlFor(row[1])
+                            ?.auto("format")
+                            .maxHeight(700)
+                            .url()}
+                          alt=""
+                          className="main-pt"
+                        />
+                      ) : (
+                        <video
+                          src={getFileUrl(row[1]) ?? undefined}
+                          className="main-pt"
+                          controls
+                          autoPlay
+                          muted
+                        />
+                      )}
                     </div>
                   )}
                 </div>
