@@ -11,6 +11,7 @@ import { BsPlusCircle } from "react-icons/bs";
 import Link from "next/link";
 import { fetchData, urlFor } from "../db/sanity";
 import PriceList from "./PriceList";
+import ParticleFog from "./ParticleFog";
 type Props = {};
 
 export default async function Commissions({}: Props) {
@@ -168,6 +169,9 @@ export default async function Commissions({}: Props) {
               Terms of service <FaArrowRight />
             </Link>{" "}
           </p>
+        </div>
+        <div className="particle-container">
+          <ParticleFog />
         </div>
       </section>
 

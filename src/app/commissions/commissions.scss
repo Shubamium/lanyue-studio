@@ -134,11 +134,24 @@
       }
     }
     .terms-cta {
+      position: relative;
       .p {
         text-align: center;
         a {
           font-weight: bold;
         }
+      }
+    }
+    .particle-container {
+      position: absolute;
+      width: 100vw;
+      filter: brightness(100%) blur(5px);
+      height: 450px;
+      bottom: 0%;
+      user-select: none;
+      pointer-events: none;
+      canvas {
+        mask-image: linear-gradient(to bottom, transparent, white);
       }
     }
   }
