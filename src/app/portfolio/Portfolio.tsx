@@ -35,9 +35,13 @@ export default function Portfolio({}: Props) {
   return (
     <section id="portfolio-display">
       <aside id="sidebar">
+        <img src="/de/frame-edge.png" alt="" className="frame-edge ni" />
+        <img src="/de/corner-cloud.png" alt="" className="cloud-edge ni" />
+        <div className="corner-top"></div>
         <div className="top">
+          <img src="/de/folio-moon.png" alt="" className="de-moon ni" />
           <div className="side-action">
-            <img src="/gfx/logo-glow.png" alt="" className="logo" />
+            <img src="/gfx/logo-glow.png" alt="" className="logo ni" />
             <Link href={"/"} className="btn back-btn">
               <FaArrowLeftLong /> HOME
             </Link>
@@ -52,7 +56,6 @@ export default function Portfolio({}: Props) {
             </p>
           </div>
         </div>
-
         <div className="categories">
           <button
             className={`btn btn-cat ${activeCat === "live-2d" ? "selected" : ""}`}
