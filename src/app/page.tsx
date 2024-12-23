@@ -131,6 +131,8 @@ export default function Home() {
       <Testimonials />
 
       <section id="invitation">
+        <img src="/de/blue-branch.png" alt="" className="blue-branch l" />
+        <img src="/de/blue-branch.png" alt="" className="blue-branch r" />
         <div className="confine">
           <article>
             <h2 className="h">

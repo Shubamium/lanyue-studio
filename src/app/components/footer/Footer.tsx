@@ -8,6 +8,8 @@ type Props = {};
 export default function Footer({}: Props) {
   return (
     <footer id="footer">
+      <img src="/de/gold-branch.png" alt="" className="gold-branch l ni" />
+      <img src="/de/gold-branch.png" alt="" className="gold-branch r ni" />
       <img src="/de/footer-splat-top.svg" alt="" className="splat-top" />
       <div className="footer-confine">
         <div className="left">

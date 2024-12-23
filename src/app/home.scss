@@ -522,8 +522,10 @@
   #testimonials {
     padding-block: 200px;
     position: relative;
+
     .de-cloud {
       position: absolute;
+
       &.l {
         left: -80px;
         top: 0px;
@@ -641,7 +643,14 @@
         // background: red;
         .text-part {
           position: sticky;
-          top: 5%;
+          top: 15%;
+
+          .de-moon {
+            position: absolute;
+            top: -150px;
+            left: 150px;
+            scale: 0.8;
+          }
           .h {
             line-height: 1;
           }
@@ -655,6 +664,40 @@
 
   #invitation {
     position: relative;
+
+    .blue-branch {
+      position: absolute;
+      width: 350px;
+
+      &.l {
+        left: -50px;
+        animation: branch-main-l 10s alternate-reverse infinite;
+        transform-origin: left;
+        @keyframes branch-main-l {
+          from {
+            rotate: 20deg;
+          }
+          to {
+            rotate: 0deg;
+          }
+        }
+      }
+      &.r {
+        scale: -1;
+        right: -450px;
+        top: 350px;
+        animation: branch-main-l 15s alternate-reverse infinite;
+        transform-origin: left;
+        @keyframes branch-main-l {
+          from {
+            rotate: 20deg;
+          }
+          to {
+            rotate: 0deg;
+          }
+        }
+      }
+    }
     &::before {
       content: "";
       position: absolute;

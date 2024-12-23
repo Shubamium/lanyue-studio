@@ -390,6 +390,7 @@ export default function Testimonials({}: Props) {
         </div>
         <article>
           <div className="text-part">
+            <img src="/de/white-moon.png" alt="" className="de-moon" />
             <p className="sh">PAST CLIENTS</p>
             <h2 className="h">TESTIMONIALS TEXT</h2>
             <p className="p">
