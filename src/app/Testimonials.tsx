@@ -32,6 +32,8 @@ export default function Testimonials({}: Props) {
   return (
     <section id="testimonials">
       <div className="confine">
+        <img src="/de/header-cloud.png" alt="" className="de-cloud l" />
+        <img src="/de/header-cloud.png" alt="" className="de-cloud r" />
         <div className="tlist">
           <motion.div style={{ y: yPos }} className="slider" ref={sliderRef}>
             <div className="testimonial">

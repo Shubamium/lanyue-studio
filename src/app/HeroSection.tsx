@@ -51,10 +51,11 @@ export default function HeroSection({}: Props) {
           style={{ objectPosition: r }}
           src="/gfx/hero_art-r.png"
           alt=""
-          className="clip-border l "
+          className=" main-img clip-border l "
         />
         <div className="clip ctl"></div>
         <div className="clip cbl"></div>
+        <img src="/de/grey-cloud.png" alt="" className="grey-cloud" />
       </figure>
     </section>
   );

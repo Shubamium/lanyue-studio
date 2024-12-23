@@ -73,13 +73,33 @@ body {
   border: 3px solid var(--grey);
   // border-radius: 1em 0 1em 0;
   font-size: 1.2rem;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background: #757e8e;
+    scale: 0 1;
+    transition: all 500ms var(--mainEase);
+    z-index: -1;
+    transform-origin: left;
+  }
   &.outline {
-    color: var(--grey);
-    border: 3px solid var(--grey);
+    color: #757e8e;
+    border: 3px solid #757e8e;
     background: none;
+
     &:hover {
-      background: var(--grey);
+      // background: var(--grey);
       color: white;
+
+      &::before {
+        scale: 1 1;
+      }
     }
   }
 }

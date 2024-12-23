@@ -12,6 +12,7 @@
         margin-left: 200px;
         padding-right: 50px;
         padding-top: 2em;
+
         .sh {
           font-size: 3rem;
         }
@@ -64,9 +65,16 @@
       margin-left: -10px;
       position: relative;
       max-height: 500px;
-      img {
+      .main-img {
         z-index: -2;
         object-position: 0px -150px;
+      }
+
+      .grey-cloud {
+        position: absolute;
+        top: 80%;
+        right: 0%;
+        z-index: -2;
       }
       &::before {
         content: "";
@@ -113,7 +121,7 @@
       min-height: 500px;
       display: grid;
       grid-template-columns: 1fr 1100px 1fr;
-      gap: 2em;
+      gap: 100px;
       align-items: center;
       margin-top: 20px;
       padding: 1em 0;
@@ -138,6 +146,20 @@
           box-sizing: border-box;
           border-image: url("/de/frame-border-thick.png") 33%;
           // background: green;
+          user-select: none;
+          scale: 0.95;
+
+          pointer-events: none;
+        }
+
+        .de-center-splat {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          rotate: 15deg;
+          z-index: -1;
+          user-select: none;
+          pointer-events: none;
         }
         .top-art {
           display: grid;
@@ -153,7 +175,7 @@
           padding-top: 2em;
           .sh {
             // margin: 1em 0;
-            margin: 0.5em;
+            margin: 0.5em 0;
           }
           .text {
             display: grid;
@@ -191,6 +213,20 @@
     display: flex;
     align-items: center;
     position: relative;
+    overflow: hidden;
+    .de-splat {
+      position: absolute;
+      &.l {
+        left: -80px;
+        top: 0%;
+        width: 250px;
+      }
+
+      &.r {
+        right: 0%;
+        bottom: -45%;
+      }
+    }
     &::after {
       content: "";
       position: absolute;
@@ -201,6 +237,7 @@
       background: url("/gfx/placeholder3.png");
       // background-size: contain;
       background-attachment: fixed;
+      background-size: 72%;
       background-position: right;
       z-index: -2;
     }
@@ -253,6 +290,13 @@
         color: white;
         border-color: white;
         transform-origin: left;
+        // background: white;
+        &::before {
+          background: white;
+        }
+        &:hover {
+          color: var(--black);
+        }
       }
       p {
         margin: 2em 0;
@@ -265,6 +309,28 @@
   #featured-artist {
     padding-top: 200px;
     padding-bottom: 200px;
+    overflow: hidden;
+    position: relative;
+    .cloud {
+      position: absolute;
+      &.l {
+        left: -100px;
+        top: -10%;
+        width: 450px;
+      }
+      &.r {
+        right: -50px;
+        width: 450px;
+        bottom: -15%;
+        rotate: -35deg;
+      }
+    }
+    &:hover {
+      figure .art-part {
+        scale: 1.2;
+        transform: translateY(12%);
+      }
+    }
     figure {
       max-width: 1100px;
       margin: 0 auto;
@@ -275,6 +341,23 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         overflow: hidden;
+        transition: all 500ms var(--mainEase);
+
+        .splat {
+          position: absolute;
+          width: 300px;
+          object-fit: contain;
+          &.l {
+            right: -100px;
+            top: -190px;
+          }
+          &.r {
+            bottom: -180px;
+            left: -150px;
+            rotate: 10deg;
+            scale: 1.1;
+          }
+        }
         .left {
           border: 14px solid white;
           border-radius: 5em 0 5em 0;
@@ -304,6 +387,13 @@
       display: grid;
       grid-template-columns: 1fr 2fr;
       z-index: -2;
+
+      .whiteflower {
+        position: absolute;
+        bottom: 0%;
+        right: 0%;
+        width: 100px;
+      }
       .content {
         background: url("/bg/paper_dark.png"), var(--lGrey);
         background-blend-mode: multiply;
@@ -311,6 +401,7 @@
         padding-top: 50px;
         padding-right: 80px;
         border-radius: 0 0 0 5em;
+        position: relative;
 
         .sh {
           font-size: 1.5rem;
@@ -338,14 +429,28 @@
       background: url("/gfx/placeholder2.png");
       background-size: cover;
       background-position: center;
+      position: relative;
+      overflow: hidden;
     }
-
+    .de-splat {
+      position: absolute;
+      right: -10%;
+      width: 750px;
+      bottom: -250px;
+    }
     .heading {
       max-width: 1200px;
       margin: 4em auto;
+      position: relative;
+      .bg-cloud {
+        position: absolute;
+        height: 700px;
+        right: 0%;
+        top: -150px;
+      }
     }
     .text-part {
-      max-width: 80%;
+      max-width: 50%;
       .p {
         margin: 1em 0;
       }
@@ -368,6 +473,7 @@
         white 95%,
         transparent
       );
+
       .slider {
         height: 100%;
         display: flex;
@@ -387,9 +493,48 @@
         }
       }
     }
+
+    .scroller-container {
+      position: relative;
+      overflow: hidden;
+      .container-splat {
+        height: 800px;
+        width: 1200px;
+        position: absolute;
+        margin: 0 auto;
+        top: 0%;
+        left: calc(50% - 600px);
+        .splat {
+          position: absolute;
+          z-index: 1;
+          &.l {
+            left: -300px;
+            top: -150px;
+          }
+          &.r {
+            bottom: 150px;
+            right: -300px;
+          }
+        }
+      }
+    }
   }
   #testimonials {
     padding-block: 200px;
+    position: relative;
+    .de-cloud {
+      position: absolute;
+      &.l {
+        left: -80px;
+        top: 0px;
+        width: 400px;
+      }
+      &.r {
+        right: -150px;
+        rotate: -15deg;
+        top: 0%;
+      }
+    }
     .confine {
       max-width: 1100px;
       margin: 0 auto;

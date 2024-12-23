@@ -20,6 +20,11 @@ export default function Home() {
             <div className="clip cbr"></div>
           </div>
           <article className="center">
+            <img
+              src="/de/welcome-center.png"
+              alt=""
+              className="de-center-splat"
+            />
             <div className="top-art">
               <img src="/gfx/placeholder2.png" alt="" />
               <img src="/gfx/placeholder2.png" alt="" />
@@ -60,6 +65,8 @@ export default function Home() {
       </section>
 
       <section id="vision">
+        <img src="/de/vision-splat.png" alt="" className="de-splat l" />
+        <img src="/de/vision-splat.png" alt="" className="de-splat r" />
         <article>
           <div className="left">
             <img src="/gfx/icon-white.png" alt="" className="icon" />
@@ -79,11 +86,24 @@ export default function Home() {
       </section>
 
       <section id="featured-artist">
+        <img src="/de/grey-cloud.png" alt="" className="cloud l " />
+        <img src="/de/grey-cloud.png" alt="" className="cloud r" />
         <figure>
           <div className="art-part">
             <div className="left">
               <img src="/gfx/placeholder.png" alt="" className="" />
+              <img
+                src="/de/featuredartist-splat.png"
+                alt=""
+                className="splat l"
+              />
+              <img
+                src="/de/featuredartist-splat.png"
+                alt=""
+                className="splat r"
+              />
             </div>
+
             <div className="right"></div>
           </div>
         </figure>
@@ -98,6 +118,12 @@ export default function Home() {
               ever since the 1500s, when an unknown printer took a galley of
               type and scrambled
             </p>
+
+            <img
+              src="/de/white-corner-flower.png"
+              alt=""
+              className="whiteflower"
+            />
           </div>
         </article>
       </section>
