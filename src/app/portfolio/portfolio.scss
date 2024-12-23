@@ -141,6 +141,7 @@
             height: 400px;
             transition: all 450ms var(--mainEase);
 
+            cursor: pointer;
             &:hover {
               scale: 1.05;
             }

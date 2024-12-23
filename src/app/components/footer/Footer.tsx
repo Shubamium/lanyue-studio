@@ -31,6 +31,7 @@ export default function Footer({}: Props) {
         <div className="center">
           <img src="/gfx/logo-colored.png" alt="" className="logo" />
           <img src="/gfx/footer-logo-text.png" alt="" className="logo-text" />
+          <img src="/de/stroke-moon.png" alt="" className="stroke-moon" />
           <p className="attribution">
             @2024 Lan’Yue Studio ALL RIGHTS RESERVED
           </p>

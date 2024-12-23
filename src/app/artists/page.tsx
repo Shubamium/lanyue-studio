@@ -24,10 +24,13 @@ export default function Page({}: Props) {
   return (
     <main id="page_artists">
       <section id="artist-heading">
+        <img src="/de/framethick.svg" alt="" className="border l " />
+        <img src="/de/framethick.svg" alt="" className="border r" />
         <div className="confine">
           <figure>
             <img src="/gfx/placeholder.png" alt="" className="r" />
             <img src="/gfx/placeholder.png" alt="" className="l" />
+            <img src="/de/blue-splat1.png" alt="" className="splat" />
           </figure>
 
           <article>
