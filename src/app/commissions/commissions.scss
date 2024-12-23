@@ -394,6 +394,14 @@
         height: 290px;
         width: 100%;
         margin: 3em 0;
+        position: relative;
+        overflow: hidden;
+        .splat {
+          position: absolute;
+          right: 0%;
+          bottom: -290px;
+          scale: 0.9;
+        }
       }
       .group {
         display: grid;

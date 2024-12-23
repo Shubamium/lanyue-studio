@@ -9,6 +9,18 @@
     background-size: cover;
     background-attachment: fixed;
     background-position: 50%;
+
+    .splat {
+      position: absolute;
+      &.l {
+        left: -5%;
+        top: 40%;
+      }
+      &.r {
+        right: -10%;
+        top: -10%;
+      }
+    }
   }
 
   #terms-list {
@@ -25,6 +37,12 @@
       article {
         position: sticky;
         top: 5%;
+        .de-splat {
+          position: absolute;
+          z-index: -1;
+          top: -100px;
+          left: -100px;
+        }
         .p {
           margin: 1em 0;
         }
@@ -46,7 +64,9 @@
           }
           .content {
             max-height: 1000px;
-            transition: all 1500ms var(--mainEase), padding 0ms;
+            transition:
+              all 1500ms var(--mainEase),
+              padding 0ms;
           }
         }
         &.closed {

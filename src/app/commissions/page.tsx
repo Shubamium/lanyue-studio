@@ -205,9 +205,11 @@ export default async function Commissions({}: Props) {
             <div
               className="banner"
               style={{
-                backgroundImage: `url(${urlFor(pinned.image)?.auto("format").maxHeight(1080).url()})`,
+                backgroundImage: `url(${urlFor(pinned.image)?.auto("format").maxHeight(1920).url()})`,
               }}
-            ></div>
+            >
+              <img src="/de/com-splat.png" alt="" className="splat" />
+            </div>
 
             <div className="confine group">
               <PriceList name="left" info={pinned.categories[0]}></PriceList>

@@ -5,10 +5,27 @@
     display: grid;
     grid-template-columns: 300px 1fr;
     gap: 5em;
-
+    margin-bottom: 500px;
+    .de-cloud {
+      position: absolute;
+      right: -5%;
+      top: 50%;
+      rotate: -55deg;
+      scale: 1.6;
+      opacity: 0.6;
+      z-index: -2;
+    }
     article {
       .heading {
         margin: 2em 0;
+        position: relative;
+        .de-moon {
+          position: absolute;
+          left: 10%;
+          top: -150px;
+          scale: 0.9;
+          z-index: -2;
+        }
       }
       .p {
         margin: 1em 0;
@@ -33,7 +50,7 @@
             color: var(--lGrey);
           }
           p {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: bold;
           }
         }
@@ -42,7 +59,7 @@
       .contacts {
         margin-top: 100px;
         display: flex;
-        gap: 1.2em;
+        gap: 1.5em;
         .btn-contact {
           width: 40px;
           height: 40px;
@@ -53,6 +70,7 @@
           &:hover {
             background: var(--altBlue);
             color: white;
+            scale: 1.05;
           }
           span {
             display: block;
@@ -137,6 +155,14 @@
           padding-right: 1em;
         }
       }
+    }
+  }
+  .particle-container {
+    position: relative;
+    top: -600px;
+    z-index: -10;
+    canvas {
+      mask-image: linear-gradient(to top, transparent, white 40%, transparent);
     }
   }
 }

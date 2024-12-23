@@ -2,14 +2,17 @@ import React from "react";
 import "./contact.scss";
 import { FaArrowLeft, FaPaperPlane, FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
+import ParticleFog from "../commissions/ParticleFog";
 type Props = {};
 
 export default function Contacts({}: Props) {
   return (
     <main id="page_contact">
       <section id="contact">
+        <img src="/de/header-cloud.png" alt="" className="de-cloud" />
         <article>
           <div className="heading">
+            <img src="/de/white-moon.png" alt="" className="de-moon" />
             <p className="sh">SUBHEADING</p>
             <h2 className="h">READY TO BEGIN YOUR PROJECT?</h2>
           </div>
@@ -93,6 +96,9 @@ export default function Contacts({}: Props) {
           </div>
         </form>
       </section>
+      <div className="particle-container">
+        <ParticleFog />
+      </div>
     </main>
   );
 }
