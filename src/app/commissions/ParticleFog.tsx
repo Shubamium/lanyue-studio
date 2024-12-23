@@ -75,7 +75,7 @@ const opt = {
   },
   detectRetina: true,
 };
-export default function ParticleFog({}: Props) {
+function ParticleFog({}: Props) {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -209,3 +209,5 @@ export default function ParticleFog({}: Props) {
     </div>
   );
 }
+
+export default React.memo(ParticleFog);

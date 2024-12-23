@@ -1,13 +1,31 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import "./contact.scss";
-import { FaArrowLeft, FaPaperPlane, FaXTwitter } from "react-icons/fa6";
+import {
+  FaArrowLeft,
+  FaPaperPlane,
+  FaSpinner,
+  FaXTwitter,
+} from "react-icons/fa6";
 import Link from "next/link";
 import ParticleFog from "../commissions/ParticleFog";
+import { SendMail } from "../util/mail";
 type Props = {};
 
 export default function Contacts({}: Props) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [handle, setHandle] = useState("");
+  const [message, setMessage] = useState("");
+  const [messageNotice, setMessageNotice] = useState("");
+
+  const [loading, setLoading] = useState(false);
   return (
     <main id="page_contact">
+      <div className={`loader ${loading ? "loading" : "loaded"}`}>
+        <FaSpinner />
+        <p className="p">{messageNotice}</p>
+      </div>
       <section id="contact">
         <img src="/de/header-cloud.png" alt="" className="de-cloud" />
         <article>
@@ -61,26 +79,74 @@ export default function Contacts({}: Props) {
             <FaArrowLeft /> VIEW SERVICES
           </Link>
         </article>
-        <form className="message-form">
+        <form
+          className="message-form"
+          method="POST"
+          onSubmit={async (e) => {
+            e.preventDefault();
+            setMessageNotice("Sending your message . . .");
+            setLoading(true);
+            await SendMail({
+              username: name,
+              email,
+              handle,
+              message,
+            });
+            setMessageNotice("Message Submitted");
+
+            setLoading(false);
+          }}
+        >
           <div className="form-field">
             <label htmlFor="name">Name</label>
-            <input type="text" name="name" placeholder="Enter your name!" />
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              placeholder="Enter your name!"
+              required
+            />
           </div>
           <div className="form-field">
             <label htmlFor="email">E-MAIL</label>
-            <input type="email" name="email" placeholder="Enter your email!" />
+            <input
+              type="email"
+              name="email"
+              required
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              placeholder="Enter your email!"
+            />
           </div>
           <div className="form-field">
             <label htmlFor="handle">DISCORD OR TWITTER</label>
             <input
               type="text"
               name="handle"
+              required
+              value={handle}
+              onChange={(e) => {
+                setHandle(e.target.value);
+              }}
               placeholder="Your preferred contact method"
             />
           </div>
           <div className="form-field">
             <label htmlFor="message">MESSAGE</label>
-            <textarea name="message" placeholder="Write your inquiries here!" />
+            <textarea
+              name="message"
+              required
+              value={message}
+              onChange={(e) => {
+                setMessage(e.target.value);
+              }}
+              placeholder="Write your inquiries here!"
+            />
           </div>
 
           <div className="form-action">
@@ -90,7 +156,7 @@ export default function Contacts({}: Props) {
               <Link href={"/terms"}>terms and conditions</Link>.
             </p>
 
-            <button className="btn btn-main outline">
+            <button className="btn btn-main outline" type="submit">
               SUBMIT <FaPaperPlane />
             </button>
           </div>
