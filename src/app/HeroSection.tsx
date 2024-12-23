@@ -8,7 +8,7 @@ export default function HeroSection({}: Props) {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start center", "end start"],
+    offset: ["start center", "end end"],
   });
   const l = useParallax(scrollYProgress, 80);
   const r = useParallax(scrollYProgress, 350);

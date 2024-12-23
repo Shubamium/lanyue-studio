@@ -631,6 +631,20 @@
             }
           }
 
+          .de-splat {
+            position: absolute;
+            width: 300px;
+            right: 150px;
+            bottom: -50px;
+            opacity: 0.1;
+            scale: 1.5;
+          }
+          .de-flower {
+            position: absolute;
+            right: 2%;
+            bottom: 2%;
+            max-height: 80px;
+          }
           .clip {
             width: 40px;
             height: 40px;

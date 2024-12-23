@@ -12,6 +12,7 @@ import Link from "next/link";
 import { fetchData, urlFor } from "../db/sanity";
 import PriceList from "./PriceList";
 import ParticleFog from "./ParticleFog";
+import BorderLax from "./BorderLax";
 type Props = {};
 
 export default async function Commissions({}: Props) {
@@ -44,7 +45,7 @@ export default async function Commissions({}: Props) {
           muted
           autoPlay
         ></video>
-
+        <BorderLax />
         <div className="confine header">
           <p className="sh">SERVICES</p>
           <h2 className="h">COMMISSIONS MAIN TEXT</h2>
@@ -59,6 +60,7 @@ export default async function Commissions({}: Props) {
                 proceeding.
               </p>
 
+              <img src="/de/blue-flower.png" alt="" className="de-flower" />
               <div className="clip cbr"></div>
               <div className="clip ctr"></div>
             </div>
@@ -74,12 +76,15 @@ export default async function Commissions({}: Props) {
                 </li>
                 <li>Send us an email or DM through social media or Discord.</li>
               </ul>
+              <img src="/de/blue-flower.png" alt="" className="de-flower" />
               <div className="clip cbr"></div>
               <div className="clip ctr"></div>
             </div>
             <div className="step">
               <h3>STEP 3</h3>
               <p>A manager will follow up with you shortly {":)"}</p>
+              <img src="/de/blue-flower.png" alt="" className="de-flower" />
+
               <div className="clip cbr"></div>
               <div className="clip ctr"></div>
             </div>
@@ -176,6 +181,10 @@ export default async function Commissions({}: Props) {
       </section>
 
       <section id="price-lists">
+        <img src="/de/frame-edge.png" alt="" className="edge l ni " />
+        <img src="/de/frame-edge.png" alt="" className="edge r ni" />
+        <img src="/de/branch-white.png" alt="" className="branch-top ni" />
+
         {pinned && (
           <div className="top-pricing">
             <div className="confine price-heading">
@@ -259,6 +268,8 @@ export default async function Commissions({}: Props) {
           plist.map((p: any) => {
             return (
               <div className="list-pricing l" key={p._id}>
+                <img src="/de/branch-white.png" alt="" className="branch ni" />
+
                 <div className="confine">
                   {/* Content */}
                   <div className="details">
@@ -411,6 +422,8 @@ export default async function Commissions({}: Props) {
 
       <section id="timeline">
         <div id="timeline-heading">
+          <img src="/de/header-cloud.png" alt="" className="cloud l" />
+          <img src="/de/header-cloud.png" alt="" className="cloud r" />
           <div className="confine">
             <figure className="inner-shadow">
               <img src="/gfx/hero_art-l.png" alt="" />
@@ -418,9 +431,12 @@ export default async function Commissions({}: Props) {
               <div className="clip cbl"></div>
               <div className="clip ctl"></div>
               <div className="clip ctr"></div>
+
+              <img src="/de/blue-splat1.png" alt="" className="splat" />
             </figure>
 
             <article>
+              <img src="/de/white-moon.png" alt="" className="de-moon" />
               <p className="sh">SERVICES</p>
               <h2 className="h">COMMISSIONS TIMELINE</h2>
               <p className="p">
@@ -432,6 +448,7 @@ export default async function Commissions({}: Props) {
         </div>
         <div id="steps-timeline">
           <div className="step">
+            <img src="/de/blue-branch.png" alt="" className="branch" />
             <div className="confine">
               <div className="title">
                 <h2 className="h">STEP 1</h2>
@@ -473,6 +490,7 @@ export default async function Commissions({}: Props) {
             </div>
           </div>
           <div className="step">
+            <img src="/de/blue-branch.png" alt="" className="branch" />
             <div className="confine">
               <div className="title">
                 <h2 className="h">STEP 2</h2>
@@ -514,6 +532,7 @@ export default async function Commissions({}: Props) {
             </div>
           </div>
           <div className="step">
+            <img src="/de/blue-branch.png" alt="" className="branch" />
             <div className="confine">
               <div className="title">
                 <h2 className="h">STEP 3</h2>
