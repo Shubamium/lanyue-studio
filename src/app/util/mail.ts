@@ -1,7 +1,7 @@
 "use server";
 import { transformSync } from "next/dist/build/swc";
 import nodemailer from "nodemailer";
-import Email from "../components/email";
+import Email from "../components/Email";
 import { render } from "@react-email/components";
 
 const mail = process.env.SMTP_MAIL;
