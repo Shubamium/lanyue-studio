@@ -1,6 +1,6 @@
 "use server";
 import { transformSync } from "next/dist/build/swc";
-import nodemailer from "nodemailer";
+import nodemailer, { TransportOptions } from "nodemailer";
 import Email from "../components/Email";
 import { render } from "@react-email/components";
 
@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
     user: mail,
     pass: pass,
   },
-});
+} as TransportOptions);
 
 export async function SendMail(data: {
   username: string;
