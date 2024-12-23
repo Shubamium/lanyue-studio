@@ -30,9 +30,44 @@ const open_sans = Open_Sans({
   variable: "--fontP",
 });
 
+const title = "Lan'Yue Studio | Live2D | Illustrations";
+const description =
+  "Lan'Yue Studio offers Live2D VTuber Art + Rigging, Illustration, Graphic Design, and many more services for any and all of your artistic needs. Our artists are masters of their craft and your satisfaction is our utmost priority. We can't wait to work with you. Commission us today to bring your visions to life!";
+const banner = "";
+const url = "https://lanyuestudio.com";
+
 export const metadata: Metadata = {
-  title: "Lan'Yue Studio",
-  description: "",
+  title: title,
+
+  metadataBase: new URL(url),
+  openGraph: {
+    url: url,
+    title: title,
+    description: description,
+    authors: "shubamium",
+    images: [banner],
+  },
+  twitter: {
+    title: title,
+    card: "summary_large_image",
+    images: [banner],
+  },
+  keywords: [
+    "live2d",
+    "art",
+    "artist",
+    "illustrations",
+    "vtuber",
+    "vtubers",
+    "commission",
+    "commissions",
+    "rig",
+    "model",
+    "rigging",
+    "stream",
+    "design",
+  ],
+  description: description,
 };
 
 export default function RootLayout({
