@@ -29,13 +29,20 @@
         height: 380px;
         margin-top: 100px;
         position: relative;
-        img {
+        .main-img {
           position: relative;
           z-index: -5;
           object-fit: cover;
           width: 100%;
           height: 100%;
           object-position: center;
+        }
+        .overlay {
+          position: absolute;
+          top: 0%;
+          left: 0%;
+          width: 100%;
+          height: 100%;
         }
         &::before {
           content: "";
@@ -65,11 +72,20 @@
       margin-left: -10px;
       position: relative;
       max-height: 500px;
+      z-index: 1;
       .main-img {
-        z-index: -2;
+        position: relative;
+        z-index: -20;
         object-position: 0px -150px;
       }
 
+      .overlay {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+      }
       .grey-cloud {
         position: absolute;
         top: 80%;
@@ -175,7 +191,7 @@
           padding-top: 2em;
           .sh {
             // margin: 1em 0;
-            margin: 0.5em 0;
+            padding: 1em 0;
           }
           .text {
             display: grid;
@@ -325,12 +341,12 @@
         rotate: -35deg;
       }
     }
-    &:hover {
-      figure .art-part {
-        scale: 1.2;
-        transform: translateY(12%);
-      }
-    }
+    // &:hover {
+    //   figure .art-part {
+    //     scale: 1.2;
+    //     transform: translateY(12%);
+    //   }
+    // }
     figure {
       max-width: 1100px;
       margin: 0 auto;
@@ -712,7 +728,7 @@
         }
       }
     }
-    &::before {
+    .bg {
       content: "";
       position: absolute;
       top: 0%;
