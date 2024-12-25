@@ -203,6 +203,7 @@
     position: relative;
     top: -600px;
     z-index: -10;
+    filter: blur(4px);
     canvas {
       mask-image: linear-gradient(to top, transparent, white 40%, transparent);
     }
