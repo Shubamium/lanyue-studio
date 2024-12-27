@@ -13,6 +13,9 @@ import { fetchData, urlFor } from "../db/sanity";
 import PriceList from "./PriceList";
 import ParticleFog from "./ParticleFog";
 import BorderLax from "./BorderLax";
+import MainService from "./MainService";
+import ListPricing from "./ListPricing";
+import Timeline from "./Timeline";
 type Props = {};
 
 export default async function Commissions({}: Props) {
@@ -35,151 +38,7 @@ export default async function Commissions({}: Props) {
 
   return (
     <main id="page_commissions">
-      <section id="main-service">
-        <video
-          src="/v/fog.webm"
-          className="smoke-bg ni"
-          disablePictureInPicture
-          disableRemotePlayback
-          loop
-          muted
-          autoPlay
-        ></video>
-        <BorderLax />
-        <div className="confine header">
-          <p className="sh">SERVICES</p>
-          <h2 className="h">COMMISSIONS MAIN TEXT</h2>
-        </div>
-        <div className="steps">
-          <div className="confine">
-            <div className="step">
-              <h3>STEP 1</h3>
-              <p>
-                Check out our artists and services! Review this page thoroughly
-                and make sure you understand our <strong>TOS</strong> before
-                proceeding.
-              </p>
-
-              <img src="/de/blue-flower.png" alt="" className="de-flower" />
-              <div className="clip cbr"></div>
-              <div className="clip ctr"></div>
-            </div>
-            <div className="step">
-              <h3>STEP 2</h3>
-              <p>
-                <strong>Contact us!</strong>
-              </p>
-              <ul>
-                <li>
-                  Join the Discord Server for updates and quick access to the
-                  community.
-                </li>
-                <li>Send us an email or DM through social media or Discord.</li>
-              </ul>
-              <img src="/de/blue-flower.png" alt="" className="de-flower" />
-              <div className="clip cbr"></div>
-              <div className="clip ctr"></div>
-            </div>
-            <div className="step">
-              <h3>STEP 3</h3>
-              <p>A manager will follow up with you shortly {":)"}</p>
-              <img src="/de/blue-flower.png" alt="" className="de-flower" />
-
-              <div className="clip cbr"></div>
-              <div className="clip ctr"></div>
-            </div>
-          </div>
-        </div>
-        <div className="confine categories">
-          <div className="category">
-            <div className="icon">
-              <GiPuppet />
-            </div>
-
-            <h2 className="h">Main Category</h2>
-            <p>
-              Lan'Yue Studio is inspired by the rare and unique blue moon. Our
-              goal is to curate the one-of-a-kind beauty you deserve for any
-              project you can imagine, from illustrations to Live2D models and
-              graphic design.
-            </p>
-
-            <div className="list">
-              <div className="item">
-                <p>Cat 1</p>
-              </div>
-              <div className="item">
-                <p>Cat 2</p>
-              </div>
-              <div className="item">
-                <p>Cat 3</p>
-              </div>
-            </div>
-          </div>
-          <div className="category">
-            <div className="icon">
-              <FaPaintBrush />
-            </div>
-
-            <h2 className="h">Main Category</h2>
-            <p>
-              Lan'Yue Studio is inspired by the rare and unique blue moon. Our
-              goal is to curate the one-of-a-kind beauty you deserve for any
-              project you can imagine, from illustrations to Live2D models and
-              graphic design.
-            </p>
-
-            <div className="list">
-              <div className="item">
-                <p>Cat 1</p>
-              </div>
-              <div className="item">
-                <p>Cat 2</p>
-              </div>
-              <div className="item">
-                <p>Cat 3</p>
-              </div>
-            </div>
-          </div>
-          <div className="category">
-            <div className="icon">
-              <TbMasksTheater />
-            </div>
-
-            <h2 className="h">Main Category</h2>
-            <p>
-              Lan'Yue Studio is inspired by the rare and unique blue moon. Our
-              goal is to curate the one-of-a-kind beauty you deserve for any
-              project you can imagine, from illustrations to Live2D models and
-              graphic design.
-            </p>
-
-            <div className="list">
-              <div className="item">
-                <p>Cat 1</p>
-              </div>
-              <div className="item">
-                <p>Cat 2</p>
-              </div>
-              <div className="item">
-                <p>Cat 3</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="confine terms-cta">
-          <p className="p">
-            For licensing policies and fees, please see our{" "}
-            <Link href={"/terms"} className="btn">
-              Terms of service <FaArrowRight />
-            </Link>{" "}
-          </p>
-        </div>
-        <div className="particle-container">
-          <ParticleFog />
-        </div>
-      </section>
-
+      <MainService />
       <section id="price-lists">
         <img src="/de/frame-edge.png" alt="" className="edge l ni " />
         <img src="/de/frame-edge.png" alt="" className="edge r ni" />
@@ -268,56 +127,36 @@ export default async function Commissions({}: Props) {
 
         {plist &&
           plist.map((p: any) => {
-            return (
-              <div className="list-pricing l" key={p._id}>
-                <img src="/de/branch-white.png" alt="" className="branch ni" />
-
-                <div className="confine">
-                  {/* Content */}
-                  <div className="details">
-                    <div className="confine price-heading">
-                      <h2 className="h">{p.name}</h2>
-                      <p className="p">{p.description}</p>
-                    </div>
-                    {p.categories &&
-                      p.categories.map((p: any) => {
-                        return <PriceList name="plist" info={p} />;
-                      })}
-                  </div>
-
-                  {/* Image */}
-                  <figure>
-                    <div className="side-decor">
-                      <img src="/de/flower-gold.png" alt="" />
-                      <div className="line"></div>
-                    </div>
-                    <div className="art inner-shadow">
-                      <img
-                        src={urlFor(p.image)?.auto("format").height(900).url()}
-                        className="main-img"
-                      />
-                      <div className="clip ctr"></div>
-                      <div className="clip ctl"></div>
-                      <div className="clip cbl"></div>
-                      <div className="clip cbr"></div>
-                    </div>
-
-                    <div className="action">
-                      <Link
-                        href={`/portfolio?c=${p.slug}`}
-                        className="btn btn-examples"
-                      >
-                        <span>
-                          VIEW EXAMPLES <FaArrowRight />
-                        </span>
-                      </Link>
-                    </div>
-                  </figure>
-                </div>
-              </div>
-            );
+            return <ListPricing p={p} key={p._id}></ListPricing>;
           })}
-        {/* <div className="list-pricing l">
+
+        <div className="price-footer">
+          <div className="confine">
+            <h2>NOTES:</h2>
+            <div className="text">
+              <p className="p">
+                Live2D and Graphics services include a streaming license with
+                the final product. Please see our{" "}
+                <Link href="/terms" className="btn">
+                  Terms of Service
+                </Link>{" "}
+                for full details. 
+              </p>
+              <p className="p">
+                Live2D Rigging are to be used with VTube Studio. We currently do
+                not create rigs for other face capture programs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Timeline />
+    </main>
+  );
+}
+{
+  /* <div className="list-pricing l">
           <div className="confine">
             <div className="details">
               <div className="confine price-heading">
@@ -399,168 +238,5 @@ export default async function Commissions({}: Props) {
               </div>
             </figure>
           </div>
-        </div> */}
-
-        <div className="price-footer">
-          <div className="confine">
-            <h2>NOTES:</h2>
-            <div className="text">
-              <p className="p">
-                Live2D and Graphics services include a streaming license with
-                the final product. Please see our{" "}
-                <Link href="/terms" className="btn">
-                  Terms of Service
-                </Link>{" "}
-                for full details. 
-              </p>
-              <p className="p">
-                Live2D Rigging are to be used with VTube Studio. We currently do
-                not create rigs for other face capture programs.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="timeline">
-        <div id="timeline-heading">
-          <img src="/de/header-cloud.png" alt="" className="cloud l" />
-          <img src="/de/header-cloud.png" alt="" className="cloud r" />
-          <div className="confine">
-            <figure className="inner-shadow">
-              <img src="/gfx/hero_art-l.png" alt="" />
-              <div className="clip cbr"></div>
-              <div className="clip cbl"></div>
-              <div className="clip ctl"></div>
-              <div className="clip ctr"></div>
-
-              <img src="/de/blue-splat1.png" alt="" className="splat" />
-            </figure>
-
-            <article>
-              <img src="/de/white-moon.png" alt="" className="de-moon" />
-              <p className="sh">SERVICES</p>
-              <h2 className="h">COMMISSIONS TIMELINE</h2>
-              <p className="p">
-                Placeholder services include a streaming license with the final
-                product. Please see our Terms of Service for full details. 
-              </p>
-            </article>
-          </div>
-        </div>
-        <div id="steps-timeline">
-          <div className="step">
-            <img src="/de/blue-branch.png" alt="" className="branch" />
-            <div className="confine">
-              <div className="title">
-                <h2 className="h">STEP 1</h2>
-              </div>
-              <div className="details">
-                <div className="detail">
-                  <h3 className="h">Project Updates</h3>
-                  <p className="p">
-                    Live2D and Graphics services include a streaming license
-                    with the final product. Please see our Terms of Service for
-                    full details. 
-                  </p>
-                </div>
-                <div className="detail">
-                  <h3 className="h">Project Updates</h3>
-                  <p className="p">
-                    Live2D and Graphics services include a streaming license
-                    with the final product. Please see our Terms of Service for
-                    full details. 
-                  </p>
-                </div>
-                <div className="detail">
-                  <h3 className="h">Project Updates</h3>
-                  <p className="p">
-                    Live2D and Graphics services include a streaming license
-                    with the final product. Please see our Terms of Service for
-                    full details. 
-                  </p>
-                </div>
-                <div className="detail">
-                  <h3 className="h">Project Updates</h3>
-                  <p className="p">
-                    Live2D and Graphics services include a streaming license
-                    with the final product. Please see our Terms of Service for
-                    full details. 
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="step">
-            <img src="/de/blue-branch.png" alt="" className="branch" />
-            <div className="confine">
-              <div className="title">
-                <h2 className="h">STEP 2</h2>
-              </div>
-              <div className="details">
-                <div className="detail">
-                  <h3 className="h">Project Updates</h3>
-                  <p className="p">
-                    Live2D and Graphics services include a streaming license
-                    with the final product. Please see our Terms of Service for
-                    full details. 
-                  </p>
-                </div>
-                <div className="detail">
-                  <h3 className="h">Project Updates</h3>
-                  <p className="p">
-                    Live2D and Graphics services include a streaming license
-                    with the final product. Please see our Terms of Service for
-                    full details. 
-                  </p>
-                </div>
-                <div className="detail">
-                  <h3 className="h">Project Updates</h3>
-                  <p className="p">
-                    Live2D and Graphics services include a streaming license
-                    with the final product. Please see our Terms of Service for
-                    full details. 
-                  </p>
-                </div>
-                <div className="detail">
-                  <h3 className="h">Project Updates</h3>
-                  <p className="p">
-                    Live2D and Graphics services include a streaming license
-                    with the final product. Please see our Terms of Service for
-                    full details. 
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="step">
-            <img src="/de/blue-branch.png" alt="" className="branch" />
-            <div className="confine">
-              <div className="title">
-                <h2 className="h">STEP 3</h2>
-              </div>
-              <div className="details">
-                <div className="detail">
-                  <h3 className="h">Project Updates</h3>
-                  <p className="p">
-                    Live2D and Graphics services include a streaming license
-                    with the final product. Please see our Terms of Service for
-                    full details. 
-                  </p>
-                </div>
-                <div className="detail">
-                  <h3 className="h">Project Updates</h3>
-                  <p className="p">
-                    Live2D and Graphics services include a streaming license
-                    with the final product. Please see our Terms of Service for
-                    full details. 
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  );
+        </div> */
 }
