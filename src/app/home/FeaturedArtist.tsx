@@ -7,7 +7,9 @@ type Props = {};
 
 export default function FeaturedArtist({}: Props) {
   const [scope, animate] = useAnimate();
-  const iv = useInView(scope);
+  const iv = useInView(scope, {
+    once: true,
+  });
 
   const animateArtist = async () => {
     await animate([

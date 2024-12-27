@@ -1,5 +1,12 @@
 "use client";
-import { motion, animate, useMotionValue } from "motion/react";
+import { stagger } from "motion";
+import {
+  motion,
+  animate,
+  useMotionValue,
+  useAnimate,
+  useInView,
+} from "motion/react";
 import React, { useEffect } from "react";
 import useMeasure from "react-use-measure";
 
@@ -10,6 +17,11 @@ type Props = {};
 // then transforming it along the x axis 1/3 of the width amount
 // then reseting insntantly so that it appears looping
 export default function FeaturedProjects({}: Props) {
+  const [scope, animate] = useAnimate();
+  const iv = useInView(scope, {
+    once: true,
+  });
+
   // Measure of the slider
   const [sliderRef, measure] = useMeasure();
 
@@ -34,17 +46,72 @@ export default function FeaturedProjects({}: Props) {
 
     return controls.stop;
   }, [xpos, measure]);
+
+  const animateProject = async () => {
+    animate([
+      [
+        ".banner",
+        {
+          clipPath: "inset(100% 0% 100% 0%)",
+          opacity: 0,
+        },
+        {
+          duration: 0,
+        },
+      ],
+      [
+        ".banner",
+        {
+          opacity: 1,
+          clipPath: "inset(0% 0% 0% 0%)",
+        },
+        {
+          duration: 2,
+          ease: "easeInOut",
+        },
+      ],
+    ]);
+
+    animate([
+      [
+        ".stagger",
+        {
+          clipPath: "inset(0 100% 0 0)",
+          opacity: 0,
+        },
+        {
+          duration: 0,
+        },
+      ],
+      [
+        ".stagger",
+        {
+          clipPath: "inset(0 0% 0 0)",
+          opacity: 1,
+        },
+        {
+          duration: 1.1,
+          delay: stagger(0.2),
+        },
+      ],
+    ]);
+  };
+  useEffect(() => {
+    if (iv) {
+      animateProject();
+    }
+  }, [iv]);
   return (
-    <section id="featured-projects">
+    <section id="featured-projects" ref={scope}>
       <div className="banner inner-shadow">
         <img src="/de/featuredartist-splat.png" alt="" className="de-splat" />
       </div>
       <div className="heading">
-        <img src="/de/bg-logo.png" alt="" className="bg-cloud ni" />
+        <img src="/de/bg-logo.png" alt="" className="bg-cloud ni stagger" />
         <div className="text-part">
-          <p className="sh">FEATURED PROJECTS</p>
-          <h2 className="h">PORTFOLIO MAIN TEXT</h2>
-          <p className="p">
+          <p className="sh stagger">FEATURED PROJECTS</p>
+          <h2 className="h stagger">PORTFOLIO MAIN TEXT</h2>
+          <p className="p stagger">
             Lan'Yue Studio is inspired by the rare and unique blue moon. Our
             goal is to curate the one-of-a-kind beauty you deserve for any
             project you can imagine, from illustrations to Live2D models and
@@ -66,26 +133,26 @@ export default function FeaturedProjects({}: Props) {
 
           <motion.div ref={sliderRef} className="slider" style={{ x: xpos }}>
             {/* Make duplicate three times */}
-            <img src="/gfx/port1.png" alt="" />
-            <img src="/gfx/port2.png" alt="" />
-            <img src="/gfx/port1.png" alt="" />
-            <img src="/gfx/port2.png" alt="" />
-            <img src="/gfx/port1.png" alt="" />
-            <img src="/gfx/port2.png" alt="" />
+            <img src="/gfx/port1.png" alt="" className="stagger" />
+            <img src="/gfx/port2.png" alt="" className="stagger" />
+            <img src="/gfx/port1.png" alt="" className="stagger" />
+            <img src="/gfx/port2.png" alt="" className="stagger" />
+            <img src="/gfx/port1.png" alt="" className="stagger" />
+            <img src="/gfx/port2.png" alt="" className="stagger" />
 
-            <img src="/gfx/port1.png" alt="" />
-            <img src="/gfx/port2.png" alt="" />
-            <img src="/gfx/port1.png" alt="" />
-            <img src="/gfx/port2.png" alt="" />
-            <img src="/gfx/port1.png" alt="" />
-            <img src="/gfx/port2.png" alt="" />
+            <img src="/gfx/port1.png" alt="" className="stagger" />
+            <img src="/gfx/port2.png" alt="" className="stagger" />
+            <img src="/gfx/port1.png" alt="" className="stagger" />
+            <img src="/gfx/port2.png" alt="" className="stagger" />
+            <img src="/gfx/port1.png" alt="" className="stagger" />
+            <img src="/gfx/port2.png" alt="" className="stagger" />
 
-            <img src="/gfx/port1.png" alt="" />
-            <img src="/gfx/port2.png" alt="" />
-            <img src="/gfx/port1.png" alt="" />
-            <img src="/gfx/port2.png" alt="" />
-            <img src="/gfx/port1.png" alt="" />
-            <img src="/gfx/port2.png" alt="" />
+            <img src="/gfx/port1.png" alt="" className="stagger" />
+            <img src="/gfx/port2.png" alt="" className="stagger" />
+            <img src="/gfx/port1.png" alt="" className="stagger" />
+            <img src="/gfx/port2.png" alt="" className="stagger" />
+            <img src="/gfx/port1.png" alt="" className="stagger" />
+            <img src="/gfx/port2.png" alt="" className="stagger" />
           </motion.div>
         </div>
 

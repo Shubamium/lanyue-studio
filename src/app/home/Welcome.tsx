@@ -132,7 +132,7 @@ export default function Welcome({}: Props) {
             <img
               src="/de/welcome-center.png"
               alt=""
-              className="de-center-splat"
+              className="de-center-splat stagger"
             />
             <div className="top-art">
               <img src="/gfx/placeholder2.png" alt="" className="stagger" />

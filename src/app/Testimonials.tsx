@@ -2,6 +2,8 @@
 import { motion, animate, useMotionValue } from "motion/react";
 import React, { useEffect } from "react";
 import useMeasure from "react-use-measure";
+import { useIV } from "./util/useIV";
+import { stagger } from "motion";
 type Props = {};
 
 export default function Testimonials({}: Props) {
@@ -29,8 +31,91 @@ export default function Testimonials({}: Props) {
 
     return controls.stop;
   }, [yPos, measure]);
+
+  const [scope, uAnimate] = useIV(async () => {
+    await uAnimate(
+      ".de-cloud.l",
+      {
+        x: -300,
+      },
+      {
+        duration: 0,
+      }
+    );
+    await uAnimate(
+      ".de-cloud.r",
+      {
+        x: 300,
+      },
+      {
+        duration: 0,
+      }
+    );
+
+    await uAnimate(
+      ".stagger",
+      {
+        clipPath: "inset(0% 100% 0% 0%)",
+      },
+      {
+        duration: 0,
+      }
+    );
+    await uAnimate(
+      ".testimonial",
+      {
+        x: 500,
+        opacity: 0,
+      },
+      {
+        duration: 0,
+      }
+    );
+
+    uAnimate(
+      ".stagger",
+      {
+        clipPath: "inset(0% 0% 0% 0%)",
+      },
+      {
+        duration: 1,
+        ease: "easeInOut",
+        delay: stagger(0.5),
+      }
+    );
+    uAnimate(
+      ".testimonial",
+      {
+        x: 0,
+        opacity: 1,
+      },
+      {
+        duration: 1,
+        ease: "easeInOut",
+        delay: stagger(1),
+      }
+    );
+    uAnimate(
+      ".de-cloud.l",
+      {
+        x: 0,
+      },
+      {
+        duration: 1.1,
+      }
+    );
+    uAnimate(
+      ".de-cloud.r",
+      {
+        x: 0,
+      },
+      {
+        duration: 1.1,
+      }
+    );
+  });
   return (
-    <section id="testimonials">
+    <section id="testimonials" ref={scope}>
       <div className="confine">
         <img src="/de/header-cloud.png" alt="" className="de-cloud l" />
         <img src="/de/header-cloud.png" alt="" className="de-cloud r" />
@@ -613,10 +698,10 @@ export default function Testimonials({}: Props) {
         </div>
         <article>
           <div className="text-part">
-            <img src="/de/white-moon.png" alt="" className="de-moon" />
-            <p className="sh">PAST CLIENTS</p>
-            <h2 className="h">TESTIMONIALS TEXT</h2>
-            <p className="p">
+            <img src="/de/white-moon.png" alt="" className="de-moon stagger" />
+            <p className="sh stagger">PAST CLIENTS</p>
+            <h2 className="h stagger">TESTIMONIALS TEXT</h2>
+            <p className="p stagger">
               Lan'Yue Studio is inspired by the rare and unique blue moon. Our
               goal is to curate the one-of-a-kind beauty you deserve for any
               project you can imagine, from illustrations to Live2D models and
