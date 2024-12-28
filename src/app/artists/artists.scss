@@ -83,7 +83,7 @@
           }
         }
         &:nth-of-type(even) {
-          &::before {
+          .splash-bg {
             rotate: -3deg;
           }
           .confine {
@@ -101,7 +101,7 @@
           }
         }
         position: relative;
-        &::before {
+        .splash-bg {
           content: "";
           position: absolute;
           top: 0%;
