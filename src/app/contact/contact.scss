@@ -102,6 +102,8 @@
         margin-top: 100px;
         display: flex;
         gap: 1.5em;
+        padding: 1em;
+        margin-left: -1em;
         .btn-contact {
           width: 40px;
           height: 40px;
@@ -144,7 +146,8 @@
       .form-field {
         display: flex;
         flex-direction: column;
-        margin: 1em 0;
+        // margin: 1em 0;
+        padding: 1em 0.3em;
         label {
           font-family: var(--fontsb);
           text-transform: uppercase;

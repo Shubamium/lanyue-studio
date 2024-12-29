@@ -2,12 +2,42 @@
 import React, { useEffect, useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 import useMeasure from "react-use-measure";
+import { useIV } from "../util/useIV";
+import { stagger } from "motion/react";
 
 type Props = {};
 
 export default function TermsList({}: Props) {
+  const [scope, animate] = useIV(async () => {
+    await animate([
+      [
+        ".terms",
+        {
+          x: 500,
+          opacity: 0,
+        },
+        {
+          duration: 0,
+        },
+      ],
+      [
+        ".terms",
+        {
+          x: 0,
+          opacity: 1,
+        },
+        {
+          duration: 0.9,
+          ease: "easeInOut",
+          delay: stagger(0.4, {
+            startDelay: 1.5,
+          }),
+        },
+      ],
+    ]);
+  });
   return (
-    <div className="list">
+    <div className="list" ref={scope}>
       <TermsDropdown title={"Content Guidelines"}>
         <p>
           <strong>Accepted:</strong> Original designs, feminine, masculine, and
