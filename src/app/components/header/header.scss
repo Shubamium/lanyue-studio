@@ -3,11 +3,17 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  max-width: 100%;
+  max-width: 100vw;
   margin-bottom: 100px;
   gap: 0.45em;
-  position: relative;
   z-index: 2;
+  overflow-x: clip;
+  position: relative;
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   .header-cloud {
     position: absolute;
     left: -5%;
@@ -19,6 +25,19 @@
       left: initial;
       right: -2%;
     }
+
+    @media screen and (max-width: 1280px) {
+      left: -200px;
+      top: -100px;
+      scale: 0.8;
+
+      &.r {
+        scale: -0.8;
+        left: initial;
+        right: -100px;
+        top: -100px;
+      }
+    }
   }
   .header-branch {
     position: absolute;
@@ -28,6 +47,7 @@
     width: 250px;
     animation: rotate-branch 11s alternate-reverse infinite ease-in-out;
     transform-origin: left;
+
     @keyframes rotate-branch {
       from {
         rotate: 20deg;
@@ -53,6 +73,15 @@
         }
       }
     }
+
+    @media screen and (max-width: 1280px) {
+      width: 150px;
+      top: -25%;
+
+      &.r {
+        top: -40%;
+      }
+    }
   }
   .header-splat {
     position: absolute;
@@ -64,9 +93,48 @@
     object-position: 50%;
     opacity: 0.3;
   }
+
+  @media screen and (max-width: 768px) {
+    .header-branch {
+      opacity: 0.05;
+    }
+    .header-cloud {
+      opacity: 0.3;
+    }
+    .logo {
+      margin: -10px -30px;
+    }
+  }
+
+  @media screen and (max-width: 420px) {
+    .logo {
+      max-width: 70%;
+      margin: 0px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
   nav {
     display: flex;
     gap: 1em;
+
+    @media screen and (max-width: 1024px) {
+      gap: 0.5em;
+    }
+
+    @media screen and (min-width: 768px) {
+      .btn-menu {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .btn-headernav:not(.btn-menu) {
+        display: none;
+      }
+    }
 
     .btn-headernav {
       text-transform: uppercase;
@@ -80,6 +148,10 @@
       transform-origin: bottom;
       text-align: center;
       margin: 0 1em;
+
+      @media screen and (max-width: 1024px) {
+        font-size: 1rem;
+      }
       &::before {
         width: 100%;
         height: 100%;
@@ -105,5 +177,52 @@
         }
       }
     }
+
+    .btn-menu {
+      transform: translateY(15%);
+      &:hover {
+        scale: 1;
+      }
+      svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+}
+#fs-nav {
+  position: fixed;
+  height: 100dvh;
+  width: 100dvw;
+  top: 0%;
+  left: 0%;
+  background: rgba(11, 58, 82, 0.822);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5000;
+  flex-direction: column;
+  overflow: clip;
+  gap: 0.2em;
+  transition: opacity 500ms ease;
+  &.visible {
+    opacity: 1;
+  }
+  &.hidden {
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+  }
+  .btn-headernav {
+    background: var(--black);
+    color: var(--blue);
+    width: 100%;
+    font-family: var(--fontsb);
+    padding: 0.2em 1em;
+    font-size: 2.3rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
   }
 }

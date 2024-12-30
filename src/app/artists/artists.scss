@@ -188,16 +188,17 @@
 
             .portfolio {
               display: flex;
-              flex: 1;
+              // flex: 1;
               gap: 0.5em;
               margin: 1em 0;
               height: 450px;
-
+              width: 100%;
               img {
-                width: 50%;
+                // max-width: 50%;
                 transition: all 3000ms var(--mainEase);
                 height: 100%;
-
+                min-width: 0%;
+                width: 100%;
                 object-fit: cover;
               }
 

@@ -2,6 +2,7 @@
 import { motion, useInView, useScroll } from "motion/react";
 import { useRef } from "react";
 import { useParallax } from "./util/util";
+import { useMediaQuery } from "react-responsive";
 type Props = {};
 
 export default function HeroSection({}: Props) {
@@ -10,10 +11,14 @@ export default function HeroSection({}: Props) {
     target: targetRef,
     offset: ["start center", "end start"],
   });
-  const l = useParallax(scrollYProgress, 80);
-  const r = useParallax(scrollYProgress, 350);
 
-  const iv = useInView(targetRef, {});
+  const medium = useMediaQuery({
+    query: "(max-width:1440px)",
+  });
+  const l = useParallax(scrollYProgress, medium ? 30 : 200);
+  const r = useParallax(scrollYProgress, medium ? 50 : 400);
+
+  const iv = useInView(targetRef);
 
   return (
     <section id="hero-section" ref={targetRef}>

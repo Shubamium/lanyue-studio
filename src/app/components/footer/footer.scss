@@ -5,6 +5,7 @@
   border-radius: 4em 4em 0 0;
   position: relative;
 
+  overflow-x: clip;
   .gold-branch {
     position: absolute;
     &.l {

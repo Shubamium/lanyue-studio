@@ -9,7 +9,7 @@ import Invitation from "./home/Invitation";
 
 export default function Home() {
   return (
-    <div id={"page_home"}>
+    <main id={"page_home"}>
       <HeroSection />
       <Welcome />
       <Vision />
@@ -19,6 +19,6 @@ export default function Home() {
       <Testimonials />
 
       <Invitation />
-    </div>
+    </main>
   );
 }
