@@ -8,14 +8,57 @@
     min-height: 100vh;
     display: grid;
     grid-template-columns: 410px 1fr;
+    @media screen and (max-width: 768px) {
+      // display: flex;
+      grid-template-columns: 1fr;
+    }
     #sidebar {
       background: linear-gradient(to top, #0e81a5, #283f58);
       padding: 1em;
       box-shadow: 0px 10px 20px rgba(84, 153, 222, 0.562);
       padding: 4em;
+      @media screen and (max-width: 420px) {
+        padding: 1em;
+        max-width: 100%;
+        width: 100vw;
+        overflow: clip;
+      }
       position: relative;
-      z-index: 1;
+      z-index: 100;
 
+      .close-btn {
+        background: var(--black);
+        color: white;
+        width: 50px;
+        height: 50px;
+        padding: 0.5em;
+        position: absolute;
+        left: 100%;
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+        .close {
+          display: block;
+        }
+        .open {
+          display: none;
+        }
+        &.closed {
+          .close {
+            display: none;
+          }
+          .open {
+            display: block;
+          }
+        }
+      }
+
+      @media screen and (min-width: 768px) {
+        .close-btn {
+          display: none;
+        }
+      }
       .frame-edge {
         position: absolute;
         top: 0%;
@@ -35,6 +78,9 @@
         object-fit: contain;
         object-position: bottom;
         z-index: -1;
+        @media screen and (max-width: 420px) {
+          bottom: -10%;
+        }
       }
       .corner-top {
         position: absolute;
@@ -126,12 +172,22 @@
     }
 
     .portfolio-items {
+      @media screen and (max-width: 768px) {
+        min-height: 900px;
+      }
       .lists {
         // height: 90vh;
         height: 100%;
         padding: 2em;
         // background: green;
-        width: calc(100vw - 300px);
+        @media screen and (min-width: 768px) {
+          width: calc(100vw - 300px);
+        }
+        @media screen and (max-width: 768px) {
+          width: 100vw;
+          overflow-x: scroll;
+        }
+
         display: flex;
         white-space: nowrap;
         overflow-x: auto;
@@ -143,12 +199,19 @@
           flex-direction: column;
           width: 600px;
           gap: 1.5em;
-
+          @media screen and (max-width: 768px) {
+            width: 400px;
+          }
+          @media screen and (max-width: 420px) {
+            width: 80vw;
+          }
           .pitems {
             width: 100%;
             height: 400px;
             transition: all 450ms var(--mainEase);
-
+            @media screen and (max-width: 420px) {
+              height: 200px;
+            }
             cursor: pointer;
             &:hover {
               scale: 1.05;

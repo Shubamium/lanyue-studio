@@ -17,6 +17,7 @@ export default function Portfolio({}: Props) {
   const [activeCat, setActiveCat] = useState(startingCat ?? "live-2d");
   const [portfolioList, setPortfolioList] = useState<any[]>([]);
 
+  const [sidebar, setSidebar] = useState(false);
   const [selectedImage, setSelectedImage] = useState<any | null>(null);
   useEffect(() => {
     const loadPort = async () => {
@@ -40,7 +41,17 @@ export default function Portfolio({}: Props) {
   });
   return (
     <section id="portfolio-display">
-      <aside id="sidebar">
+      <aside
+        id="sidebar"
+        className={`${sidebar ? "show" : "closed"} `}
+        onClick={() => {
+          setSidebar(!sidebar);
+        }}
+      >
+        <button className="btn close-btn">
+          <FaArrowRight className="open" />
+          <FaArrowLeft className="close" />
+        </button>
         <img src="/de/frame-edge.png" alt="" className="frame-edge ni" />
         <img src="/de/corner-cloud.png" alt="" className="cloud-edge ni" />
         <div className="corner-top"></div>

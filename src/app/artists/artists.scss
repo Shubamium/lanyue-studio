@@ -18,10 +18,14 @@
       }
     }
     .confine {
-      max-width: 1100px;
+      max-width: min(1100px, 90%);
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
+      @media screen and (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+      }
       gap: 3em;
       align-items: center;
       article {
@@ -58,6 +62,14 @@
       margin: 1em 0;
       justify-content: center;
       gap: 1em;
+
+      @media screen and (max-width: 420px) {
+        flex-wrap: wrap;
+        padding: 0 1em;
+        .btn-main {
+          width: 100%;
+        }
+      }
     }
 
     #at-list {
@@ -89,9 +101,16 @@
           .confine {
             display: grid;
             grid-template-columns: 1fr 500px;
+
+            @media screen and (max-width: 768px) {
+              display: flex;
+              flex-direction: column-reverse;
+            }
             figure {
               margin-left: 0;
-              margin-right: 80px;
+              @media screen and (min-width: 768px) {
+                margin-right: 80px;
+              }
               .contacts {
                 // background: green;
                 left: initial;
@@ -123,30 +142,43 @@
           grid-template-columns: 500px 1fr;
           gap: 3em;
 
+          @media screen and (max-width: 768px) {
+            display: flex;
+            flex-direction: column;
+          }
           figure {
-            margin-left: 80px;
+            @media screen and (min-width: 768px) {
+              margin-left: 80px;
+            }
             .at-img {
               width: 100%;
               height: 800px;
               object-fit: contain;
+              @media screen and (max-width: 768px) {
+                height: 400px;
+              }
             }
             position: relative;
             .contacts {
-              display: flex;
-              flex-direction: column;
-              position: absolute;
-              width: 70px;
-              // background: red;
-              z-index: 1;
-              left: -20%;
-              top: 10%;
-              align-items: center;
-              gap: 2em;
+              @media screen and (min-width: 768px) {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                width: 70px;
+                // background: red;
+                z-index: 1;
+                left: -20%;
+                top: 10%;
+                align-items: center;
+                gap: 2em;
+              }
+
               .line {
                 width: 2px;
                 background: var(--black);
                 height: 150px;
               }
+
               .btn-contact {
                 width: 50px;
                 height: 50px;
@@ -168,13 +200,46 @@
                   height: 100%;
                 }
               }
+
+              @media screen and (max-width: 768px) {
+                display: flex;
+                align-items: center;
+                align-content: center;
+                justify-content: center;
+                gap: 2em;
+                .line {
+                  width: 100%;
+                  height: 5px;
+                }
+                .btn-contact {
+                  display: block;
+                  width: 50px;
+                  flex-shrink: 0;
+                  height: 50px;
+                  // rotate: 0deg;
+                }
+
+                @media screen and (min-width: 768px) {
+                  .line.s {
+                    display: none;
+                  }
+                }
+              }
             }
           }
           .artist-info {
             padding-top: 100px;
+
+            @media screen and (max-width: 768px) {
+              padding-top: 0px;
+            }
             .artist-data {
               max-width: 100%;
-
+              @media screen and (max-width: 768px) {
+                max-width: 90%;
+                margin: 0 auto;
+                text-align: center;
+              }
               .sh {
                 text-transform: uppercase;
               }
@@ -187,31 +252,52 @@
             }
 
             .portfolio {
-              display: flex;
-              // flex: 1;
-              gap: 0.5em;
-              margin: 1em 0;
-              height: 450px;
-              width: 100%;
-              img {
-                // max-width: 50%;
-                transition: all 3000ms var(--mainEase);
-                height: 100%;
-                min-width: 0%;
+              @media screen and (min-width: 768px) {
+                display: flex;
+                // flex: 1;
+                gap: 0.5em;
+                margin: 1em 0;
+                height: 450px;
                 width: 100%;
-                object-fit: cover;
+
+                img {
+                  // max-width: 50%;
+                  transition: all 3000ms var(--mainEase);
+                  height: 100%;
+                  min-width: 0%;
+                  width: 100%;
+                  object-fit: cover;
+                }
+
+                &:hover,
+                &:active,
+                &:focus-within {
+                  img:not(:hover) {
+                    width: 7%;
+                    transition: all 1000ms var(--mainEase);
+                    filter: brightness(50%);
+                  }
+                  img:hover,
+                  img:active,
+                  img:active,
+                  img:focus-within {
+                    transition: all 1000ms var(--mainEase);
+                    width: 100%;
+                  }
+                }
+              }
+              @media screen and (max-width: 768px) {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                img {
+                  width: 100%;
+                  object-fit: cover;
+                  height: 200px;
+                }
               }
 
-              &:hover {
-                img:not(:hover) {
-                  width: 7%;
-                  transition: all 1000ms var(--mainEase);
-                  filter: brightness(50%);
-                }
-                img:hover {
-                  transition: all 1000ms var(--mainEase);
-                  width: 100%;
-                }
+              @media screen and (max-width: 420px) {
+                grid-template-columns: 1fr;
               }
             }
           }

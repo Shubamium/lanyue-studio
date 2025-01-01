@@ -265,6 +265,7 @@ function MemberDisplayer({
               <img
                 src={urlFor(p)?.url()}
                 alt=""
+                onTouchStart={() => {}}
                 key={memberData.id + "pf" + index}
                 className="p-img"
               />
@@ -281,6 +282,7 @@ function MemberDisplayer({
         className="at-img"
       />
       <div className="contacts">
+        <div className="line s"></div>
         <a href={memberData.x} target="_blank" className="btn btn-contact">
           <span>
             <FaXTwitter />

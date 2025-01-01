@@ -42,10 +42,14 @@
     }
   }
   #contact {
-    max-width: 1000px;
+    max-width: min(1000px, 90%);
     margin: 0 auto;
     display: grid;
     grid-template-columns: 300px 1fr;
+    @media screen and (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+    }
     gap: 5em;
     margin-bottom: 500px;
     .de-cloud {
@@ -184,6 +188,10 @@
         display: flex;
         justify-content: space-between;
         gap: 1em;
+
+        @media screen and (max-width: 550px) {
+          flex-direction: column;
+        }
         .p {
           font-size: 0.8rem;
           a {
