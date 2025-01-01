@@ -157,7 +157,7 @@ export default function Welcome({}: Props) {
                     <strong>masters of their craft</strong> and you will be well
                     taken care of from start to finish.
                   </p>
-                  <p>
+                  <p className="p">
                     We aim to set a <strong>higher quality</strong> and service
                     standard in this industry.{" "}
                   </p>

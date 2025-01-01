@@ -21,17 +21,40 @@
         padding-right: 50px;
         padding-top: 2em;
 
+        @media screen and (max-width: 420px) {
+          text-align: center;
+          justify-content: center;
+          .sh,
+          .p,
+          .hm {
+            width: 100%;
+            max-width: 100%;
+          }
+          margin-left: 0;
+          padding-right: 0;
+          padding-inline: 1em;
+        }
         @media screen and (max-width: 1440px) {
           margin-left: 5%;
         }
+
         .sh {
           font-size: 3rem;
         }
-        .h {
-          font-size: 3.5rem;
-        }
+
         .p {
           margin: 1em 0;
+        }
+
+        @media screen and (max-width: 550px) {
+          .sh {
+            font-size: 2rem;
+          }
+
+          .hm {
+            font-size: 2.5rem;
+            line-height: 0.8;
+          }
         }
       }
       .image-part {
@@ -129,6 +152,10 @@
     .action {
       display: flex;
       gap: 1em;
+      @media screen and (max-width: 420px) {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
     }
     padding-bottom: 250px;
   }
@@ -141,6 +168,30 @@
         font-family: var(--fontr);
         font-weight: 400;
         color: var(--grey);
+
+        @media screen and (max-width: 768px) {
+          font-size: 3rem;
+          // margin: 0;
+          line-height: 0.8;
+        }
+
+        @media screen and (max-width: 550px) {
+          font-size: 2rem;
+          text-align: left;
+          padding: 0.5em;
+          font-weight: bold;
+          font-family: var(--fontb);
+          margin: 0;
+          span {
+            font-size: 3rem;
+            display: block;
+            font-weight: normal;
+
+            color: transparent;
+            background-clip: text;
+            -webkit-text-stroke: 2px #062e48;
+          }
+        }
         span {
           font-family: var(--fontb);
         }
@@ -157,6 +208,25 @@
       margin-top: 20px;
       padding: 1em 0;
       padding-top: 1em;
+
+      @media screen and (max-width: 550px) {
+        margin-top: 0px;
+        padding-top: 0;
+        min-height: unset;
+      }
+
+      @media screen and (max-width: 1440px) {
+        grid-template-columns: 1fr 900px 1fr;
+        gap: 20px;
+      }
+      @media screen and (max-width: 1024px) {
+        gap: 0px;
+      }
+
+      @media screen and (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+      }
       .center {
         // background: red;
         height: 100%;
@@ -166,6 +236,12 @@
         padding: 100px;
         padding-bottom: 20px;
         padding-inline: 120px;
+
+        @media screen and (max-width: 550px) {
+          padding: 100px;
+          padding-inline: 50px;
+          margin: 0.2em;
+        }
         &::before {
           content: "";
           position: absolute;
@@ -181,6 +257,10 @@
           scale: 0.95;
 
           pointer-events: none;
+
+          @media screen and (max-width: 550px) {
+            border-image-slice: 49%;
+          }
         }
 
         .de-center-splat {
@@ -196,14 +276,24 @@
           display: grid;
           grid-template-columns: 1.4fr 1fr;
           gap: 2em;
+          @media screen and (max-width: 1024px) {
+            grid-template-columns: 1fr;
+          }
           img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+
+            @media screen and (max-width: 1024px) {
+              &:nth-of-type(1) {
+                display: none;
+              }
+            }
           }
         }
         .about-text {
           padding-top: 2em;
+
           .sh {
             // margin: 1em 0;
             padding: 1em 0;
@@ -213,6 +303,10 @@
             grid-template-columns: 1fr 1fr;
             gap: 150px;
 
+            @media screen and (max-width: 1024px) {
+              display: block;
+              margin-bottom: 5em;
+            }
             p {
               color: var(--white);
               margin: 1em 0;
@@ -224,6 +318,18 @@
         height: 80%;
         max-width: 100%;
         position: relative;
+
+        @media screen and (max-width: 768px) {
+          height: 150px;
+          object-fit: cover;
+          width: 100%;
+          img {
+            object-position: 90% 30%;
+          }
+          .clip {
+            display: none;
+          }
+        }
         img {
           width: 100%;
           height: 100%;
@@ -233,24 +339,40 @@
           background: var(--black);
         }
         overflow: hidden;
-        &.art-l {
-          // border-radius: 0 1em 1em 0;
+        @media screen and (max-width: 768px) {
+          &.art-l {
+            // border-radius: 0 1em 1em 0;
+            display: none;
+          }
         }
       }
     }
   }
   #vision {
     min-height: 500px;
+
     display: flex;
     align-items: center;
     position: relative;
     overflow: hidden;
+
     .de-splat {
       position: absolute;
+      @media screen and (max-width: 550px) {
+        scale: 0.7;
+        opacity: 0.3;
+      }
       &.l {
         left: -80px;
         top: 0%;
         width: 250px;
+
+        @media screen and (max-width: 768px) {
+          left: initial;
+          right: -90px;
+          top: -20%;
+          scale: -1;
+        }
       }
 
       &.r {
@@ -270,6 +392,15 @@
       background-attachment: fixed;
       background-size: 72%;
       background-position: right;
+      @media screen and (max-width: 1024px) {
+        background-size: 90%;
+      }
+      @media screen and (max-width: 550px) {
+        left: 0%;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+      }
       z-index: -2;
     }
     &::before {
@@ -282,9 +413,13 @@
       background: linear-gradient(to top, #0e81a5, #283f58);
 
       mask-image: linear-gradient(to right, white 35%, transparent 200%);
+
+      @media screen and (max-width: 420px) {
+        mask-image: linear-gradient(220deg, white 35%, transparent 200%);
+      }
     }
     article {
-      max-width: 1200px;
+      max-width: min(1200px, 90%);
       margin: 0 auto;
       display: grid;
       position: relative;
@@ -292,6 +427,13 @@
       grid-template-columns: 1fr 100px;
       filter: drop-shadow(0px 0px 2px var(--black));
       align-items: center;
+
+      @media screen and (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+      @media screen and (max-width: 550px) {
+        padding: 3em 0;
+      }
       .icon {
         height: 80px;
       }
@@ -301,6 +443,14 @@
         font-style: italic;
         font-weight: 200;
         font-size: 4.2rem;
+
+        @media screen and (max-width: 550px) {
+          font-size: 3rem;
+        }
+        @media screen and (max-width: 420px) {
+          padding: 0.25em;
+          font-size: 2.5rem;
+        }
         strong {
           font-family: var(--fontb);
           display: inline-block;
@@ -333,6 +483,10 @@
         margin: 2em 0;
         color: white;
         max-width: 60%;
+
+        @media screen and (max-width: 420px) {
+          max-width: 100%;
+        }
       }
     }
   }
@@ -368,12 +522,19 @@
       margin-bottom: -350px;
       position: relative;
       z-index: 10;
+
+      @media screen and (max-width: 768px) {
+        margin-bottom: auto;
+      }
       .art-part {
         display: grid;
         grid-template-columns: 1fr 1fr;
         overflow: hidden;
         transition: all 500ms var(--mainEase);
 
+        @media screen and (max-width: 768px) {
+          display: block;
+        }
         .splat {
           position: absolute;
           width: 300px;
@@ -419,6 +580,9 @@
       grid-template-columns: 1fr 2fr;
       z-index: -2;
 
+      @media screen and (max-width: 768px) {
+        display: block;
+      }
       .whiteflower {
         position: absolute;
         bottom: 0%;
@@ -433,6 +597,16 @@
         padding-right: 80px;
         border-radius: 0 0 0 5em;
         position: relative;
+
+        @media screen and (max-width: 1024px) {
+          padding-left: 180px;
+        }
+
+        @media screen and (max-width: 768px) {
+          padding: 2em;
+          padding-bottom: 100px;
+          border-radius: 0;
+        }
 
         .sh {
           font-size: 1.5rem;
@@ -462,12 +636,20 @@
       background-position: center;
       position: relative;
       overflow: hidden;
+
+      @media screen and (max-width: 768px) {
+        height: 250px;
+      }
     }
     .de-splat {
       position: absolute;
       right: -10%;
       width: 750px;
       bottom: -250px;
+
+      @media screen and (max-width: 768px) {
+        scale: 0.8;
+      }
     }
     .heading {
       max-width: 1200px;
@@ -482,6 +664,12 @@
     }
     .text-part {
       max-width: 50%;
+
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        max-width: unset;
+        padding: 0 1em;
+      }
       .p {
         margin: 1em 0;
       }
@@ -505,6 +693,9 @@
         transparent
       );
 
+      @media screen and (max-width: 550px) {
+        height: 320px;
+      }
       .slider {
         padding-top: 500px;
         height: 100%;
@@ -517,6 +708,11 @@
         img {
           height: 100%;
           width: 300px;
+
+          @media screen and (max-width: 550px) {
+            width: 200px;
+            height: 300px;
+          }
           object-fit: cover;
           transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
           &:hover {
@@ -562,12 +758,26 @@
         left: -80px;
         top: 0px;
         width: 400px;
+        @media screen and (max-width: 550px) {
+          left: -200px;
+          scale: 0.45;
+          transform-origin: top;
+        }
       }
       &.r {
         right: -150px;
         rotate: -15deg;
         top: 0%;
+        @media screen and (max-width: 550px) {
+          right: -150px;
+          scale: 0.45;
+          transform-origin: top;
+        }
       }
+    }
+
+    @media screen and (min-width: 1280px) {
+      padding-top: 300px;
     }
     .confine {
       max-width: 1100px;
@@ -575,6 +785,11 @@
       display: grid;
       grid-template-columns: 2fr 1fr;
       gap: 4em;
+
+      @media screen and (max-width: 768px) {
+        display: flex;
+        flex-direction: column-reverse;
+      }
       .tlist {
         height: 900px;
         // overflow-y: scroll;
@@ -602,6 +817,13 @@
           grid-template-columns: 1fr 200px;
           padding-bottom: 0;
 
+          @media screen and (max-width: 550px) {
+            grid-template-columns: 1fr 80px;
+          }
+          @media screen and (max-width: 420px) {
+            display: flex;
+            flex-direction: column-reverse;
+          }
           &::before {
             content: "";
             position: absolute;
@@ -618,10 +840,25 @@
           .details {
             width: 100%;
             padding: 1.5em;
+
+            @media screen and (max-width: 420px) {
+              padding: 0.25em;
+              padding-bottom: 2em;
+            }
             .text {
               display: flex;
               svg {
                 width: 150px;
+                @media screen and (max-width: 550px) {
+                  width: 50px;
+                  margin: -10px 0;
+                }
+              }
+
+              @media screen and (max-width: 420px) {
+                svg {
+                  display: none;
+                }
               }
               .word {
                 padding-top: 0.25em;
@@ -655,6 +892,24 @@
             img {
               width: 200px;
               height: 200px;
+
+              @media screen and (max-width: 550px) {
+                width: 90px;
+                height: 90px;
+                border-width: 5px;
+                position: relative;
+                right: 35px;
+                top: -20px;
+              }
+
+              @media screen and (max-width: 420px) {
+                width: 100%;
+                height: 150px;
+                border-radius: 0;
+                right: unset;
+                top: unset;
+              }
+
               object-fit: cover;
               border: 10px solid white;
               transform: translateY(-30%);
@@ -670,12 +925,19 @@
             bottom: -50px;
             opacity: 0.1;
             scale: 1.5;
+            @media screen and (max-width: 550px) {
+              scale: 1;
+              bottom: -90px;
+            }
           }
           .de-flower {
             position: absolute;
             right: 2%;
             bottom: 2%;
             max-height: 80px;
+            @media screen and (max-width: 420px) {
+              display: none;
+            }
           }
           .clip {
             width: 40px;
@@ -687,6 +949,11 @@
       article {
         height: 100%;
         // background: red;
+
+        @media screen and (max-width: 768px) {
+          padding: 0 1em;
+          margin-top: 100px;
+        }
         .text-part {
           position: sticky;
           top: 15%;
@@ -696,6 +963,10 @@
             top: -150px;
             left: 150px;
             scale: 0.8;
+
+            @media screen and (max-width: 768px) {
+              left: 0px;
+            }
           }
           .h {
             line-height: 1;
@@ -719,6 +990,10 @@
         left: -50px;
         animation: branch-main-l 10s alternate-reverse infinite;
         transform-origin: left;
+
+        @media screen and (max-width: 768px) {
+          top: -200px;
+        }
         @keyframes branch-main-l {
           from {
             rotate: 20deg;
@@ -734,6 +1009,11 @@
         top: 350px;
         animation: branch-main-l 15s alternate-reverse infinite;
         transform-origin: left;
+
+        @media screen and (max-width: 768px) {
+          top: unset;
+          bottom: -20%;
+        }
         @keyframes branch-main-l {
           from {
             rotate: 20deg;
@@ -764,6 +1044,14 @@
       margin: 0 auto;
       align-items: center;
       padding: 200px 0;
+
+      @media screen and (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1em;
+        padding-block: 100px;
+      }
 
       article {
         width: 100%;

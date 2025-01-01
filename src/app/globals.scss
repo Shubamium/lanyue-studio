@@ -79,6 +79,13 @@ main {
   color: white;
   padding: 0.05em 0.5em;
   padding-right: 100px;
+
+  @media screen and (max-width: 550px) {
+    padding-right: 20px;
+  }
+  @media screen and (max-width: 420px) {
+    width: 100%;
+  }
   border: 3px solid var(--grey);
   // border-radius: 1em 0 1em 0;
   font-size: 1.2rem;
@@ -119,6 +126,10 @@ main {
   font-family: var(--fontsb);
   line-height: 0.7;
   padding: 0.25em 0;
+
+  @media screen and (max-width: 420px) {
+    line-height: 0.9;
+  }
 }
 .h {
   font-family: var(--fontsb);
@@ -126,6 +137,9 @@ main {
   line-height: 0.9;
   letter-spacing: -1px;
   color: var(--grey);
+  @media screen and (max-width: 420px) {
+    font-size: 2.5rem;
+  }
 }
 .hm {
   font-family: var(--fontb);
@@ -142,6 +156,10 @@ p {
 .p {
   font-family: var(--fontP);
   line-height: 1.4;
+
+  @media screen and (max-width: 420px) {
+    font-size: 0.9rem !important;
+  }
 }
 
 .clip {

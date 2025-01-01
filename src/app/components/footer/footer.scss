@@ -11,11 +11,23 @@
     &.l {
       left: -40px;
       top: 50px;
+
+      @media screen and (max-width: 420px) {
+        left: -120px;
+      }
     }
     &.r {
       right: -60px;
       scale: -1 1;
       top: 80px;
+      @media screen and (max-width: 420px) {
+        right: -170px;
+        top: 20px;
+      }
+    }
+
+    @media screen and (max-width: 1024px) {
+      opacity: 0.2;
     }
   }
   .splat-top {
@@ -35,6 +47,27 @@
     align-items: center;
     gap: 2em;
     height: 100%;
+
+    @media screen and (max-width: 1024px) {
+      gap: 0;
+
+      grid-template-columns: 1fr 2fr 1fr;
+    }
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "c c"
+        "r l";
+
+      align-items: center;
+      padding: 0 2em;
+    }
+
+    @media screen and (max-width: 420px) {
+      grid-template-columns: 1fr;
+      grid-template-areas: "c" "l" "r";
+    }
     h3 {
       color: white;
       font-size: 1.4rem;
@@ -44,6 +77,11 @@
       width: 100%;
 
       text-align: right;
+
+      @media screen and (max-width: 768px) {
+        grid-area: l;
+        // width: 50%;
+      }
       p {
         font-size: 0.75rem;
         color: var(--white);
@@ -73,6 +111,14 @@
       align-items: center;
       margin: 100px 0;
       position: relative;
+
+      @media screen and (max-width: 420px) {
+        margin-bottom: 0px;
+      }
+      @media screen and (max-width: 768px) {
+        grid-area: c;
+      }
+
       .stroke-moon {
         position: absolute;
         width: 100%;
@@ -81,10 +127,16 @@
       }
       .logo {
         width: 180px;
+        @media screen and (max-width: 380px) {
+          width: 100%;
+        }
       }
       .logo-text {
         height: 40px;
         margin: 0.25em;
+        @media screen and (max-width: 420px) {
+          width: 100%;
+        }
       }
       .attribution {
         font-weight: bold;
@@ -123,6 +175,9 @@
     }
     .right {
       margin-bottom: 2em;
+      @media screen and (max-width: 768px) {
+        grid-area: r;
+      }
       nav {
         display: flex;
         flex-direction: column;
