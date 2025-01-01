@@ -110,7 +110,7 @@ export default function FeaturedProjects({}: Props) {
         <img src="/de/bg-logo.png" alt="" className="bg-cloud ni stagger" />
         <div className="text-part">
           <p className="sh stagger">FEATURED PROJECTS</p>
-          <h2 className="h stagger">PORTFOLIO MAIN TEXT</h2>
+          <h2 className="h stagger">PORTFOLIO WORKS</h2>
           <p className="p stagger">
             Lan'Yue Studio is inspired by the rare and unique blue moon. Our
             goal is to curate the one-of-a-kind beauty you deserve for any

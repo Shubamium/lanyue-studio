@@ -3,6 +3,7 @@ import "./footer.scss";
 import Link from "next/link";
 import { BiSolidArrowToTop } from "react-icons/bi";
 import { FaXTwitter } from "react-icons/fa6";
+import { CgMail } from "react-icons/cg";
 type Props = {};
 
 export default function Footer({}: Props) {
@@ -14,12 +15,12 @@ export default function Footer({}: Props) {
       <div className="footer-confine">
         <div className="left">
           <div className="mini-info">
-            <h3>SMALL INFO TEXT</h3>
+            <h3>ABOUT US</h3>
             <p className="p">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled
+              Lan’Yue Studio is an art studio setting the industry standard for
+              ethical commission services. All of our resources go towards
+              ensuring that our artists are taken care of legally, financially,
+              and developmentally.
             </p>
           </div>
 
@@ -33,23 +34,26 @@ export default function Footer({}: Props) {
           <img src="/gfx/footer-logo-text.png" alt="" className="logo-text" />
           <img src="/de/stroke-moon.png" alt="" className="stroke-moon" />
           <p className="attribution">
-            @2024 Lan’Yue Studio ALL RIGHTS RESERVED
+            @2024 Lan’Yue Studio All rights Reserved
           </p>
 
           <div className="contacts">
-            <a href="#" target="_blank" className="btn footer-contact">
+            <a
+              href="https://x.com/LanYue_Studio"
+              target="_blank"
+              className="btn footer-contact"
+            >
               <span>
                 <FaXTwitter />
               </span>
             </a>
-            <a href="#" target="_blank" className="btn footer-contact">
+            <a
+              href="mailto:contact@lanyue.studio"
+              target="_blank"
+              className="btn footer-contact"
+            >
               <span>
-                <FaXTwitter />
-              </span>
-            </a>
-            <a href="#" target="_blank" className="btn footer-contact">
-              <span>
-                <FaXTwitter />
+                <CgMail />
               </span>
             </a>
           </div>
@@ -60,19 +64,19 @@ export default function Footer({}: Props) {
             <Link href={"/"} className="btn btn-navfot">
               HOME
             </Link>
-            <Link href={"/"} className="btn btn-navfot">
+            <Link href={"/commissions"} className="btn btn-navfot">
               COMMISSIONS
             </Link>
-            <Link href={"/"} className="btn btn-navfot">
+            <Link href={"/artists"} className="btn btn-navfot">
               ARTISTS
             </Link>
-            <Link href={"/"} className="btn btn-navfot">
+            <Link href={"/portfolio"} className="btn btn-navfot">
               PORTFOLIO
             </Link>
-            <Link href={"/"} className="btn btn-navfot">
+            <Link href={"/contact"} className="btn btn-navfot">
               CONTACT
             </Link>
-            <Link href={"/"} className="btn btn-navfot">
+            <Link href={"/terms"} className="btn btn-navfot">
               TERMS OF SERVICE
             </Link>
           </nav>

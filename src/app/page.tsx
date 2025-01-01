@@ -16,7 +16,9 @@ export default function Home() {
 
       <FeaturedArtist />
       <FeaturedProjects />
-      <Testimonials />
+
+      {/* Hidden For Now as Per Request, WIll be shown whenever they have content */}
+      {/* <Testimonials /> */}
 
       <Invitation />
     </main>

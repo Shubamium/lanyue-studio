@@ -68,12 +68,12 @@ export default function FeaturedArtist({}: Props) {
         <div className="r"></div>
         <div className="content">
           <p className="sh">FEATURED ARTIST</p>
-          <h2 className="h">SOME TITLE HERE</h2>
+          <h2 className="h">ARTEZAHN</h2>
           <p className="p">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled
+            Artezahn is Lan’Yue Studio’s first partner and a dearly beloved
+            friend. Known for their stunning Nilou (from Genshin Impact) fan
+            arts, we are excited to begin accepting Live2D model art commissions
+            with them!
           </p>
 
           <img

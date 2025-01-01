@@ -3,6 +3,7 @@ import { motion, useInView, useScroll } from "motion/react";
 import { useRef } from "react";
 import { useParallax } from "./util/util";
 import { useMediaQuery } from "react-responsive";
+import Link from "next/link";
 type Props = {};
 
 export default function HeroSection({}: Props) {
@@ -44,20 +45,26 @@ export default function HeroSection({}: Props) {
           }}
         >
           <div className="head">
-            <p className="sh">SUBHEADING TEXT</p>
-            <h2 className="hm">MAIN CALL TO ACTION TEXT</h2>
+            <p className="sh">YOUR PASSION IS OUR PURPOSE</p>
+            <h2 className="hm">LET US MAKE YOUR DREAMS COME TRUE</h2>
           </div>
           <p className="p">
-            <strong>Lan'Yue Studio</strong> is inspired by the rare and unique
-            blue moon. Our goal is to curate the one-of-a-kind beauty you
-            deserve for any project you can imagine, from{" "}
-            <strong>illustrations</strong> to <strong>Live2D models</strong> and{" "}
-            <strong>graphic design</strong>.
+            <strong>Lan’Yue Studio</strong> is here for you. We pride ourselves
+            on our <strong>ethics and quality standards</strong> – nothing but
+            the best for our artists and clients. Whether your needs are big or
+            small, we vow to provide you the{" "}
+            <strong>highest level of service</strong> and make sure you are
+            happy!
           </p>
 
           <div className="action">
-            <button className="btn btn-main">COMMISSIONS TEXT</button>
-            <button className="btn btn-main outline">ARTIST TEXT</button>
+            <Link href={"/commissions"} className="btn btn-main">
+              {" "}
+              COMMISSIONS
+            </Link>
+            <Link href={"/contact"} className="btn btn-main outline">
+              INQUIRIES
+            </Link>
           </div>
         </motion.div>
 

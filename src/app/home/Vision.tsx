@@ -1,7 +1,10 @@
 "use client";
 import { stagger } from "motion";
 import { useAnimate, useInView } from "motion/react";
+import Link from "next/link";
 import React, { useEffect, useRef } from "react";
+import { FaPaintBrush } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa6";
 
 type Props = {};
 
@@ -67,9 +70,12 @@ export default function Vision({}: Props) {
             can expect across the board and eliminate any stress that comes with
             the business side of art.
           </p>
-          <button className="btn btn-main outline btn-commision stagger">
-            BUTTON TEXT HERE
-          </button>
+          <Link
+            href={"/commissions"}
+            className="btn btn-main outline btn-commision stagger"
+          >
+            COMMISSIONS
+          </Link>
         </div>
       </article>
     </section>

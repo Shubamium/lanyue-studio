@@ -4,6 +4,7 @@ import { useAnimate, useInView } from "motion/react";
 import React, { useEffect, useState } from "react";
 import { animateStagger } from "../util/useIV";
 import { stagger } from "motion";
+import Link from "next/link";
 
 type Props = {};
 
@@ -50,9 +51,19 @@ export default function Invitation({}: Props) {
       <div className="confine">
         <article>
           <h2 className="h stagger">
-            SECONDARY CALL TO ACTION <span>OF SOME CONTACT TEXT</span>
+            READY TO WORK WITH US?
+            <span>REACH OUT TODAY!</span>
           </h2>
-          <button className="btn btn-main stagger"> CONTACT TEXT</button>
+          <div className="action">
+            {" "}
+            <Link href={"/contact"} className="btn btn-main stagger">
+              {" "}
+              CONTACT FORM{" "}
+            </Link>
+            <Link href={"/contact"} className="btn btn-main outline stagger">
+              ARTIST APPLICATION
+            </Link>
+          </div>
         </article>
         <figure className="figure">
           <img src="/gfx/home-glasses.png" alt="" className="home-glasses" />

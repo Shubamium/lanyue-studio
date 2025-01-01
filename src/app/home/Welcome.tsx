@@ -139,9 +139,9 @@ export default function Welcome({}: Props) {
               <img src="/gfx/placeholder2.png" alt="" className="stagger" />
             </div>
             <div className="about-text">
-              <h3 className="sh stagger">ABOUT LAN'YUE STUDIO</h3>
               <div className="text">
                 <div className="left">
+                  <h3 className="sh stagger">ABOUT LAN'YUE STUDIO</h3>
                   <p className="p stagger">
                     <strong>Lan'Yue Studio</strong> is inspired by the rare and
                     unique blue moon. Our goal is to curate the{" "}
@@ -154,8 +154,8 @@ export default function Welcome({}: Props) {
                   <p className="p">
                     Lan’Yue is committed to satisfying every client with the
                     best that the art world has to offer. Our artists are
-                    <strong>masters of their craft</strong> and you will be well
-                    taken care of from start to finish.
+                    <strong> masters of their craft</strong> and you will be
+                    well taken care of from start to finish.
                   </p>
                   <p className="p">
                     We aim to set a <strong>higher quality</strong> and service
