@@ -10,6 +10,11 @@
     background-attachment: fixed;
     background-position: 50%;
 
+    @media screen and (max-width: 420px) {
+      min-height: 200px;
+      background-size: cover;
+      background-attachment: scroll;
+    }
     .splat {
       position: absolute;
       &.l {
@@ -19,6 +24,10 @@
       &.r {
         right: -10%;
         top: -10%;
+        @media screen and (max-width: 550px) {
+          top: 100px;
+          scale: 0.5;
+        }
       }
     }
   }
@@ -29,9 +38,18 @@
     max-width: 1200px;
     margin: 0 auto;
     gap: 1em;
-
     padding: 2em;
     margin-top: 100px;
+    @media screen and (max-width: 1024px) {
+      max-width: 95%;
+      grid-template-columns: 1fr;
+    }
+    @media screen and (max-width: 550px) {
+      padding: 1em;
+    }
+    @media screen and (max-width: 420px) {
+      padding: 0;
+    }
     aside {
       height: 100%;
       article {
@@ -86,6 +104,9 @@
           justify-content: space-between;
           align-items: center;
           padding: 1.4em 2em;
+          @media screen and (max-width: 420px) {
+            padding: 1em;
+          }
           h2 {
             font-family: var(--fontb);
             font-weight: 400;
@@ -102,6 +123,9 @@
         .content {
           transition: all 500ms var(--mainEase);
           padding: 1.4em 2em;
+          @media screen and (max-width: 420px) {
+            padding: 1em;
+          }
           padding-top: 0;
           padding-bottom: 50px;
           // display: grid;
@@ -111,6 +135,9 @@
           p {
             color: #757e8e;
             margin-bottom: 1em;
+            @media screen and (max-width: 420px) {
+              font-size: 0.9rem;
+            }
           }
           ul {
             padding-left: 2em;
