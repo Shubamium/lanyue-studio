@@ -2,6 +2,7 @@
   min-height: 1500px;
   padding-top: 50px;
   // margin-top: 100px;
+  margin-bottom: 500px;
   #terms-banner {
     padding-top: 50px;
     min-height: 340px;
@@ -50,11 +51,18 @@
     @media screen and (max-width: 420px) {
       padding: 0;
     }
+
+    .de-flower {
+      position: absolute;
+      top: 120%;
+      bottom: 0%;
+      left: 0%;
+    }
     aside {
       height: 100%;
       article {
         position: sticky;
-        top: 5%;
+        top: 15%;
         .de-splat {
           position: absolute;
           z-index: -1;

@@ -9,6 +9,7 @@ import { GiPuppet } from "react-icons/gi";
 import BorderLax from "./BorderLax";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion/react";
+import { LuImages, LuRectangleEllipsis } from "react-icons/lu";
 
 type Props = {};
 
@@ -96,7 +97,7 @@ export default function MainService({}: Props) {
       <BorderLax />
       <div className="confine header">
         <p className="sh">SERVICES</p>
-        <h2 className="h">COMMISSIONS MAIN TEXT</h2>
+        <h2 className="h">HOW IT WORKS</h2>
       </div>
       <div className="steps">
         <div className="confine">
@@ -130,7 +131,10 @@ export default function MainService({}: Props) {
           </div>
           <div className="step">
             <h3>STEP 3</h3>
-            <p>A manager will follow up with you shortly {":)"}</p>
+            <p>
+              A manager will follow up with you shortly! Please feel free to ask
+              further questions with any contact method you prefer
+            </p>
             <img src="/de/blue-flower.png" alt="" className="de-flower" />
 
             <div className="clip cbr"></div>
@@ -163,37 +167,57 @@ function CategoryList() {
 
   return (
     <div className="confine categories" ref={scope}>
-      <Categories icon={<GiPuppet />} />
-      <Categories icon={<FaPaintBrush />} />
-      <Categories icon={<TbMasksTheater />} />
+      <Categories
+        icon={<GiPuppet />}
+        name="LIVE 2D"
+        list={["Vtuber Model Art", "VTuber Model Rigging", "Bundles"]}
+      />
+      <Categories
+        icon={<FaPaintBrush />}
+        name="ILLUSTRATIONS"
+        list={["Character Design", "MV Art & Scenes", "Merchandise Assets"]}
+      />
+      <Categories
+        icon={<LuImages />}
+        name="GRAPHICS"
+        list={["Logo Design", "Branding", "Stream Assets & Overlays"]}
+      />
     </div>
   );
 }
 type CatProps = {
   icon: React.ReactNode;
+  name: string;
+  // description:string,
+  list: string[];
 };
-function Categories({ icon }: CatProps) {
+function Categories({ icon, name, list }: CatProps) {
   return (
     <div className="category stagger">
       <div className="icon">{icon}</div>
 
-      <h2 className="h">Main Category</h2>
-      <p>
+      <h2 className="h">{name}</h2>
+      {/* <p>
         Lan'Yue Studio is inspired by the rare and unique blue moon. Our goal is
         to curate the one-of-a-kind beauty you deserve for any project you can
         imagine, from illustrations to Live2D models and graphic design.
-      </p>
+      </p> */}
 
       <div className="list">
-        <div className="item">
-          <p>Cat 1</p>
-        </div>
-        <div className="item">
+        {list &&
+          list.map((i) => {
+            return (
+              <div className="item" key={i}>
+                <p>{i}</p>
+              </div>
+            );
+          })}
+        {/* <div className="item">
           <p>Cat 2</p>
         </div>
         <div className="item">
           <p>Cat 3</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -613,7 +613,9 @@
           color: #757e8e;
           margin: 1em 0;
           a {
+            color: #757e8e;
             font-weight: bold;
+            font-family: var(--fontP);
             display: inline-block;
             text-decoration: underline;
           }

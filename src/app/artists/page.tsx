@@ -78,8 +78,8 @@ export default function Page({}: Props) {
         <img src="/de/framethick.svg" alt="" className="border r" />
         <div className="confine">
           <figure>
-            <img src="/gfx/placeholder.png" alt="" className="r stagger" />
-            <img src="/gfx/placeholder.png" alt="" className="l stagger" />
+            <img src="/gfx/artist.png" alt="" className="r stagger" />
+            {/* <img src="/gfx/placeholder.png" alt="" className="l stagger" /> */}
             <img src="/de/blue-splat1.png" alt="" className="splat" />
           </figure>
 
@@ -119,6 +119,16 @@ export default function Page({}: Props) {
           >
             GRAPHIC DESIGN
           </button>
+
+          {/* Hidden for now might need to fix up the responsivity */}
+          {/* <button
+            className={`btn btn-main ${activeCat === "music" ? "" : "outline"}`}
+            onClick={() => {
+              setActiveCat("music");
+            }}
+          >
+            MUSIC
+          </button> */}
         </section>
 
         <section id="at-list">

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./contact.scss";
 import {
   FaArrowLeft,
+  FaDiscord,
   FaPaperPlane,
   FaSpinner,
   FaXTwitter,
@@ -12,6 +13,7 @@ import ParticleFog from "../commissions/ParticleFog";
 import { SendMail } from "../util/mail";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion";
+import { CgMail } from "react-icons/cg";
 type Props = {};
 
 export default function Contacts({}: Props) {
@@ -38,7 +40,7 @@ export default function Contacts({}: Props) {
         <article>
           <div className="heading">
             <img src="/de/white-moon.png" alt="" className="de-moon stagger" />
-            <p className="sh stagger">SUBHEADING</p>
+            <p className="sh stagger">CONTACT</p>
             <h2 className="h stagger">READY TO BEGIN YOUR PROJECT?</h2>
           </div>
           <p className="p stagger">
@@ -61,19 +63,23 @@ export default function Contacts({}: Props) {
           </div>
 
           <div className="contacts stagger">
-            <a href="#" target="_blank" className="btn btn-contact">
+            <a
+              href="https://x.com/LanYue_Studio"
+              target="_blank"
+              className="btn btn-contact"
+            >
               <span>
                 <FaXTwitter />
               </span>
             </a>
             <a href="#" target="_blank" className="btn btn-contact">
               <span>
-                <FaXTwitter />
+                <FaDiscord />
               </span>
             </a>
-            <a href="#" target="_blank" className="btn btn-contact">
+            <a href="mailto:contact@lanyue.studio" className="btn btn-contact">
               <span>
-                <FaXTwitter />
+                <CgMail />
               </span>
             </a>
           </div>
@@ -113,7 +119,7 @@ export default function Contacts({}: Props) {
               onChange={(e) => {
                 setName(e.target.value);
               }}
-              placeholder="Enter your name!"
+              placeholder="Enter your name"
               required
             />
           </div>
@@ -127,7 +133,7 @@ export default function Contacts({}: Props) {
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
-              placeholder="Enter your email!"
+              placeholder="Enter your email"
             />
           </div>
           <div className="form-field stagger">
@@ -152,7 +158,7 @@ export default function Contacts({}: Props) {
               onChange={(e) => {
                 setMessage(e.target.value);
               }}
-              placeholder="Write your inquiries here!"
+              placeholder="Write your message here"
             />
           </div>
 

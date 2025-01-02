@@ -42,12 +42,14 @@ export default function TermsPage({}: Props) {
         <aside>
           <article>
             <img src="/de/tos-splat.png" alt="" className="de-splat" />
-            <p className="sh stagger">SUBHEADER</p>
+            <p className="sh stagger">TOS</p>
             <h2 className="h stagger">TERMS OF SERVICE</h2>
             <p className="p stagger">
               By commissioning our services, you formally accept these terms and
               conditions.
             </p>
+
+            <img src="/de/flower-tos.png" alt="" className="de-flower" />
           </article>
         </aside>
         <TermsList />
