@@ -81,6 +81,8 @@
           left: 0%;
           width: 100%;
           height: 100%;
+          user-select: none;
+          pointer-events: none;
         }
         &::before {
           content: "";
@@ -92,6 +94,8 @@
           outline: 5px solid var(--gold);
           outline-offset: -20px;
           z-index: 2;
+          user-select: none;
+          pointer-events: none;
         }
       }
       .sh {
@@ -140,6 +144,8 @@
         outline: 5px solid var(--gold);
         outline-offset: -20px;
         z-index: 2;
+        user-select: none;
+        pointer-events: none;
       }
 
       outline-offset: -15px;

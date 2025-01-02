@@ -4,6 +4,7 @@ import { Open_Sans } from "next/font/google";
 import "./globals.scss";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import Tooltip from "./Tooltip";
 
 const osc_sb = localFont({
   src: "./fonts/OSCSemibold.ttf",
@@ -86,6 +87,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
+        <Tooltip />
         <Footer />
       </body>
     </html>

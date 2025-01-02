@@ -1,0 +1,25 @@
+#tip {
+  position: fixed;
+  top: 0%;
+  z-index: 15;
+  left: 0%;
+  user-select: none;
+  pointer-events: none;
+  background: var(--black);
+  color: white;
+  font-size: 1rem;
+  padding: 0.5em 1em;
+  border-radius: 1em 0 1em 0;
+  p {
+    color: var(--gold);
+  }
+
+  // opacity: 1;
+  clip-path: inset(0% 0% 0% 0%);
+  transition: clip-path 500ms ease;
+  min-width: 150px;
+  &.hidden {
+    clip-path: inset(0% 100% 0% 0%);
+    // opacity: 0;
+  }
+}

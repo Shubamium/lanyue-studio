@@ -81,6 +81,7 @@ export default function HeroSection({}: Props) {
                 }
               : {}
           }
+          data-tip="RUHEE"
           transition={{
             delay: 1.3,
             duration: 1,
@@ -94,10 +95,10 @@ export default function HeroSection({}: Props) {
             className="clip-border l main-img"
             style={{ objectPosition: l }}
           />
-          <div className="overlay inner-shadow"></div>
+          <div className="overlay inner-shadow ni"></div>
 
-          <div className="clip ctr"></div>
-          <div className="clip cbr"></div>
+          <div className="clip ctr ni"></div>
+          <div className="clip cbr ni"></div>
         </motion.div>
       </article>
       <motion.figure
@@ -123,12 +124,13 @@ export default function HeroSection({}: Props) {
           style={{ objectPosition: r }}
           src="/gfx/hero_art-r.png"
           alt=""
+          data-tip="ANHEL"
           className=" main-img clip-border l "
         />
-        <div className="overlay inner-shadow"></div>
-        <div className="clip ctl"></div>
-        <div className="clip cbl"></div>
-        <img src="/de/grey-cloud.png" alt="" className="grey-cloud" />
+        <div className="overlay inner-shadow ni"></div>
+        <div className="clip ctl ni"></div>
+        <div className="clip cbl ni"></div>
+        <img src="/de/grey-cloud.png" alt="" className="grey-cloud ni" />
       </motion.figure>
     </section>
   );
