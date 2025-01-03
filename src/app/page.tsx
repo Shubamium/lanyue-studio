@@ -6,10 +6,12 @@ import Welcome from "./home/Welcome";
 import Vision from "./home/Vision";
 import FeaturedArtist from "./home/FeaturedArtist";
 import Invitation from "./home/Invitation";
+import Chatbox from "./components/chatbox/Chatbox";
 
 export default function Home() {
   return (
     <main id={"page_home"}>
+      <Chatbox />
       <HeroSection />
       <Welcome />
       <Vision />
@@ -19,7 +21,7 @@ export default function Home() {
 
       {/* Hidden For Now as Per Request, WIll be shown whenever they have content */}
       {/* <Testimonials /> */}
-
+      {/* <script type="text/javascript"></script> */}
       <Invitation />
     </main>
   );

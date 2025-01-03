@@ -10,15 +10,13 @@ export default function Tooltip({}: Props) {
 
   const [a, setA] = useState("");
   const x = useSpring(xmouse, {
-    stiffness: 300,
-    damping: 150,
-    duration: 0.1,
+    stiffness: 100,
+    damping: 20,
   });
 
   const y = useSpring(ymouse, {
-    stiffness: 300,
-    damping: 150,
-    duration: 0.1,
+    stiffness: 100,
+    damping: 20,
   });
   useEffect(() => {
     // const allEl = document.querySelectorAll("[data-tip]");
@@ -34,8 +32,8 @@ export default function Tooltip({}: Props) {
       y.set(e.clientY);
       const target = e.target as Element;
 
-      if (e.target && target.matches("[data-tip]")) {
-        console.log("Hovered over:", e.target, target.getAttribute("data-tip"));
+      if (e.target && target.matches && target.matches("[data-tip]")) {
+        // console.log("Hovered over:", e.target, target.getAttribute("data-tip"));
         // Add your hover logic here
         const tip = target.getAttribute("data-tip");
         setA(tip ?? "");
@@ -43,8 +41,6 @@ export default function Tooltip({}: Props) {
         setA("");
       }
     });
-
-    return () => {};
   }, []);
 
   return (
