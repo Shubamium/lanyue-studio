@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FaArrowLeft, FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import getPortfolio from "../db/portfolio";
 import { getFileUrl, urlFor } from "../db/sanity";
 import { useIV } from "../util/useIV";
@@ -36,9 +36,11 @@ export default function Portfolio({}: Props) {
     toRender.push(chopped.splice(0, 2));
   }
 
-  const [scope, animate] = useIV(async () => {
-    // animate();
-  });
+  // const [scope, animate] = useIV(async () => {
+  //   // animate();
+  // });
+
+  const router = useRouter();
   return (
     <section id="portfolio-display">
       <aside
@@ -59,8 +61,15 @@ export default function Portfolio({}: Props) {
           <img src="/de/folio-moon.png" alt="" className="de-moon ni" />
           <div className="side-action">
             <img src="/gfx/logo-glow.png" alt="" className="logo ni" />
-            <Link href={"/"} className="btn back-btn">
-              <FaArrowLeftLong /> HOME
+            <Link
+              href={"/"}
+              className="btn back-btn"
+              onClick={(e) => {
+                e.preventDefault();
+                router.back();
+              }}
+            >
+              <FaArrowLeftLong /> BACK
             </Link>
           </div>
           <div className="heading">
