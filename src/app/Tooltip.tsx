@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "./tooltip.scss";
 import { useMotionValue, motion, useSpring } from "motion/react";
+import { FaPaintbrush } from "react-icons/fa6";
 type Props = {};
 
 export default function Tooltip({}: Props) {
@@ -52,7 +53,10 @@ export default function Tooltip({}: Props) {
         y,
       }}
     >
-      <p>{a}</p>
+      <p>
+        {" "}
+        <FaPaintbrush /> {a}
+      </p>
     </motion.div>
   );
 }

@@ -1,11 +1,14 @@
 "use client";
 import { stagger, useAnimate, useInView } from "motion/react";
 import React, { useEffect, useRef } from "react";
+import { urlFor } from "../db/sanity";
+import { PortableText } from "next-sanity";
 
-type Props = {};
+type Props = { welcome: any };
 
-export default function Welcome({}: Props) {
+export default function Welcome({ welcome: w }: Props) {
   const head = useRef(null);
+
   const iv = useInView(head, {
     once: true,
   });
@@ -119,12 +122,19 @@ export default function Welcome({}: Props) {
       <div className="iv" ref={head}>
         <div id="intro-text">
           <h2>
-            WELCOME, <span>HONORED PATRONS.</span>
+            {w.hn} <span>{w.hb}</span>
           </h2>
         </div>
         <div id="about">
           <div className="artside art-l">
-            <img src="/gfx/placeholder.png" alt="" />
+            <img
+              src={
+                urlFor(w.asa.image)?.auto("format").url() ??
+                "/gfx/placeholder.png"
+              }
+              data-tip={w.asa.artist}
+              alt=""
+            />
             <div className="clip ctr"></div>
             <div className="clip cbr"></div>
           </div>
@@ -135,23 +145,36 @@ export default function Welcome({}: Props) {
               className="de-center-splat stagger"
             />
             <div className="top-art">
-              <img src="/gfx/placeholder2.png" alt="" className="stagger" />
-              <img src="/gfx/placeholder2.png" alt="" className="stagger" />
+              <img
+                src={urlFor(w.aa.image)?.auto("format").url()}
+                alt=""
+                data-tip={w.aa.artist}
+                className="stagger"
+              />
+              <img
+                src={urlFor(w.ab.image)?.auto("format").url()}
+                alt=""
+                data-tip={w.ab.artist}
+                className="stagger"
+              />
             </div>
             <div className="about-text">
               <div className="text">
                 <div className="left">
-                  <h3 className="sh stagger">ABOUT LAN'YUE STUDIO</h3>
-                  <p className="p stagger">
-                    <strong>Lan'Yue Studio</strong> is inspired by the rare and
+                  <h3 className="sh stagger">{w.sh}</h3>
+                  <div className="p stagger">
+                    <PortableText value={w.pa} />
+                    {/* <strong>Lan'Yue Studio</strong> is inspired by the rare and
                     unique blue moon. Our goal is to curate the{" "}
                     <strong>one-of-a-kind beauty </strong>
                     you deserve for any project you can imagine, from
-                    illustrations to Live2D models and graphic design.
-                  </p>
+                    illustrations to Live2D models and graphic design. */}
+                  </div>
                 </div>
                 <div className="right stagger">
-                  <p className="p">
+                  <PortableText value={w.pb} />
+
+                  {/* <p className="p">
                     Lan’Yue is committed to satisfying every client with the
                     best that the art world has to offer. Our artists are
                     <strong> masters of their craft</strong> and you will be
@@ -160,7 +183,7 @@ export default function Welcome({}: Props) {
                   <p className="p">
                     We aim to set a <strong>higher quality</strong> and service
                     standard in this industry.{" "}
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </div>
@@ -171,7 +194,11 @@ export default function Welcome({}: Props) {
               opacity: 0,
             }}
           >
-            <img src="/gfx/placeholder.png" alt="" />
+            <img
+              src={urlFor(w.asb.image)?.auto("format").url()}
+              data-tip={w.asb.artist}
+              alt=""
+            />
             <div className="clip ctl"></div>
             <div className="clip cbl"></div>
           </div>

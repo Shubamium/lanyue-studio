@@ -1,18 +1,9 @@
 import React from "react";
 import "./commissions.scss";
 import { FaArrowRight, FaMask } from "react-icons/fa6";
-import { GiPuppet } from "react-icons/gi";
-import { SiCanvas, SiPuppeteer } from "react-icons/si";
-import { MdMasks } from "react-icons/md";
-import { TbMasksTheater } from "react-icons/tb";
-import { BiBrush, BiPlus } from "react-icons/bi";
-import { FaPaintBrush } from "react-icons/fa";
-import { BsPlusCircle } from "react-icons/bs";
 import Link from "next/link";
 import { fetchData, urlFor } from "../db/sanity";
 import PriceList from "./PriceList";
-import ParticleFog from "./ParticleFog";
-import BorderLax from "./BorderLax";
 import MainService from "./MainService";
 import ListPricing from "./ListPricing";
 import Timeline from "./Timeline";
@@ -46,7 +37,7 @@ export default async function Commissions({}: Props) {
 
         {pinned && (
           <div className="top-pricing">
-            <div className="confine price-heading">
+            <div className="confine price-heading top">
               <div className="sizing">
                 <h2 className="h">{pinned.name}</h2>
                 <p className="p">{pinned.description}</p>

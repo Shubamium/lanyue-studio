@@ -5,6 +5,7 @@ import "./globals.scss";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Tooltip from "./Tooltip";
+import Chatbox from "./components/chatbox/Chatbox";
 
 const osc_sb = localFont({
   src: "./fonts/OSCSemibold.ttf",
@@ -86,6 +87,7 @@ export default function RootLayout({
         className={`${open_sans.variable} ${osc_b.variable} ${osc_r.variable} ${osc_sb.variable}`}
       >
         <Header />
+        <Chatbox />
         {children}
         <Tooltip />
         <Footer />

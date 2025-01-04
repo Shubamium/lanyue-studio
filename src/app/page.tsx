@@ -7,13 +7,20 @@ import Vision from "./home/Vision";
 import FeaturedArtist from "./home/FeaturedArtist";
 import Invitation from "./home/Invitation";
 import Chatbox from "./components/chatbox/Chatbox";
+import { fetchData } from "./db/sanity";
 
-export default function Home() {
+export default async function Home() {
+  const homeData = await fetchData<any>(`
+		*[_type == 'home' && preset == 'active'][0]{
+		...
+		}
+	`);
+
+  console.log(homeData);
   return (
     <main id={"page_home"}>
-      <Chatbox />
       <HeroSection />
-      <Welcome />
+      <Welcome welcome={homeData.welcome} />
       <Vision />
 
       <FeaturedArtist />

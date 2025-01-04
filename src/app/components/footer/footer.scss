@@ -7,9 +7,9 @@
 
   overflow-x: clip;
 
-  padding-bottom: 3em;
-  // @media screen and (max-width: 550px) {
-  // }
+  @media screen and (max-width: 550px) {
+    // padding-bottom: 3em;
+  }
   .gold-branch {
     position: absolute;
     &.l {
