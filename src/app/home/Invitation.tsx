@@ -1,14 +1,15 @@
 "use client";
 
 import { useAnimate, useInView } from "motion/react";
-import React, { useEffect, useState } from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
 import { animateStagger } from "../util/useIV";
 import { stagger } from "motion";
 import Link from "next/link";
+import { urlFor } from "../db/sanity";
 
-type Props = {};
+type Props = { is: any };
 
-export default function Invitation({}: Props) {
+export default function Invitation({ is }: Props) {
   const [scope, animate] = useAnimate();
   const iv = useInView(scope);
 
@@ -45,28 +46,68 @@ export default function Invitation({}: Props) {
   }, [iv]);
   return (
     <section id="invitation" ref={scope}>
-      <div className="bg stagger">a</div>
+      <div
+        className="bg stagger"
+        style={
+          {
+            "--bg": `url('${urlFor(is.bg)?.auto("format").url()}')`,
+          } as CSSProperties
+        }
+      >
+        a
+      </div>
       <img src="/de/blue-branch.png" alt="" className="blue-branch l stagger" />
       <img src="/de/blue-branch.png" alt="" className="blue-branch r stagger" />
       <div className="confine">
         <article>
           <h2 className="h stagger">
-            READY TO WORK WITH US?
-            <span>REACH OUT TODAY!</span>
+            {is.hb}
+            <span>{is.hn}</span>
           </h2>
           <div className="action">
             {" "}
-            <Link href={"/contact"} className="btn btn-main stagger">
-              {" "}
-              CONTACT FORM{" "}
+            <Link href={is.ba.path} className="btn btn-main stagger">
+              {/* {" "} */}
+              {/* CONTACT FORM{" "} */}
+              {is.ba.text}
             </Link>
-            <Link href={"/contact"} className="btn btn-main outline stagger">
-              ARTIST APPLICATION
+            <Link href={is.bb.path} className="btn btn-main outline stagger">
+              {is.bb.text}
             </Link>
           </div>
         </article>
         <figure className="figure">
-          <img src="/gfx/home-glasses.png" alt="" className="home-glasses" />
+          {/* <img src="/gfx/home-glasses.png" alt="" className="home-glasses" /> */}
+          <div className="diamonds">
+            <div className="diamond">
+              <img
+                src={urlFor(is.ia.image)?.auto("format").url()}
+                data-tip={is.ia.artist}
+                alt=""
+              />
+            </div>
+            <div className="diamond">
+              <img
+                src={urlFor(is.ib.image)?.auto("format").url()}
+                data-tip={is.ib.artist}
+                alt=""
+              />
+            </div>
+            <div className="diamond">
+              <img
+                src={urlFor(is.ic.image)?.auto("format").url()}
+                data-tip={is.ic.artist}
+                alt=""
+              />
+            </div>
+            <div className="diamond">
+              <img
+                src={urlFor(is.id.image)?.auto("format").url()}
+                data-tip={is.id.artist}
+                alt=""
+              />
+            </div>
+          </div>
           <img src="/de/blue-splat1.png" alt="" className="de-splat" />
         </figure>
       </div>

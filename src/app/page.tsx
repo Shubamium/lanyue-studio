@@ -21,15 +21,17 @@ export default async function Home() {
     <main id={"page_home"}>
       <HeroSection hs={homeData.hero_section} />
       <Welcome welcome={homeData.welcome} />
-      <Vision />
+      <Vision vs={homeData.vision} />
 
-      <FeaturedArtist />
-      <FeaturedProjects />
+      <FeaturedArtist fas={homeData.featured_artist} />
+      <FeaturedProjects fps={homeData.featured_projects} />
 
       {/* Hidden For Now as Per Request, WIll be shown whenever they have content */}
-      {/* <Testimonials /> */}
+      {homeData.testimonials && !homeData.testimonials.hidden && (
+        <Testimonials ts={homeData.testimonials} />
+      )}
       {/* <script type="text/javascript"></script> */}
-      <Invitation />
+      <Invitation is={homeData.invitation} />
     </main>
   );
 }

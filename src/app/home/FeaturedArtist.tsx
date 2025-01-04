@@ -1,11 +1,13 @@
 "use client";
 import { stagger } from "motion";
 import { useAnimate, useInView } from "motion/react";
+import { PortableText } from "next-sanity";
 import React, { useEffect } from "react";
+import { urlFor } from "../db/sanity";
 
-type Props = {};
+type Props = { fas: any };
 
-export default function FeaturedArtist({}: Props) {
+export default function FeaturedArtist({ fas }: Props) {
   const [scope, animate] = useAnimate();
   const iv = useInView(scope, {
     once: true,
@@ -47,17 +49,21 @@ export default function FeaturedArtist({}: Props) {
       <img src="/de/grey-cloud.png" alt="" className="cloud r" />
       <figure className="stagger">
         <div className="art-part">
-          <div className="left">
-            <img src="/gfx/placeholder.png" alt="" className="" />
+          <div className="left" data-tip={fas.art.artist}>
             <img
-              src="/de/featuredartist-splat.png"
+              src={urlFor(fas.art.image)?.auto("format").url()}
               alt=""
-              className="splat l"
+              className=""
             />
             <img
               src="/de/featuredartist-splat.png"
               alt=""
-              className="splat r"
+              className="splat l ni"
+            />
+            <img
+              src="/de/featuredartist-splat.png"
+              alt=""
+              className="splat r ni"
             />
           </div>
 
@@ -67,14 +73,15 @@ export default function FeaturedArtist({}: Props) {
       <article className="stagger">
         <div className="r"></div>
         <div className="content">
-          <p className="sh">FEATURED ARTIST</p>
-          <h2 className="h">ARTEZAHN</h2>
-          <p className="p">
-            Artezahn is Lan’Yue Studio’s first partner and a dearly beloved
-            friend. Known for their stunning Nilou (from Genshin Impact) fan
+          <p className="sh">{fas.sh}</p>
+          <h2 className="h">{fas.heading}</h2>
+          <div className="p">
+            {/* Artezahn is Lan’Yue Studio’s first partner and a dearly beloved */}
+            {/* friend. Known for their stunning Nilou (from Genshin Impact) fan
             arts, we are excited to begin accepting Live2D model art commissions
-            with them!
-          </p>
+            with them! */}
+            <PortableText value={fas.paragraph} />
+          </div>
 
           <img
             src="/de/white-corner-flower.png"

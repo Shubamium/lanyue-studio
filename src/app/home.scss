@@ -364,6 +364,7 @@
     position: relative;
     overflow: hidden;
 
+    --bg: url("/gfx/placeholder3.png");
     .de-splat {
       position: absolute;
       @media screen and (max-width: 550px) {
@@ -395,7 +396,7 @@
       left: 35%;
       width: 65%;
       height: 100%;
-      background: url("/gfx/placeholder3.png");
+      background: var(--bg);
       // background-size: contain;
       background-attachment: fixed;
       background-size: 72%;
@@ -615,7 +616,6 @@
           padding-bottom: 100px;
           border-radius: 0;
         }
-
         .sh {
           font-size: 1.5rem;
         }
@@ -625,7 +625,7 @@
           margin: 0.2em 0;
           font-size: 2.5rem;
         }
-        .p {
+        .p p {
           color: white;
           margin: 2em 0;
           font-size: 1rem;
@@ -700,7 +700,8 @@
         white 95%,
         transparent
       );
-
+      white-space: nowrap;
+      display: flex;
       @media screen and (max-width: 550px) {
         height: 320px;
       }
@@ -708,12 +709,16 @@
         padding-top: 500px;
         height: 100%;
         display: flex;
-        gap: 2em;
+        // width: 100%;
+        @media screen and (min-width: 550px) {
+          gap: 2em;
+        }
         transform: translateX(-120%);
-        // overflow-x: auto;
+        overflow-x: visible;
         white-space: nowrap;
         padding-block: 25px;
-        img {
+        img,
+        video {
           height: 100%;
           width: 300px;
 
@@ -725,6 +730,18 @@
           transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
           &:hover {
             scale: 1.1;
+          }
+        }
+        video {
+          width: 977.78px;
+          background: var(--white);
+          object-fit: contain;
+          &:hover {
+            scale: 1;
+          }
+          @media screen and (max-width: 550px) {
+            hegith: 300px;
+            width: 533px;
           }
         }
       }
@@ -870,6 +887,9 @@
               }
               .word {
                 padding-top: 0.25em;
+                p {
+                  color: var(--white);
+                }
               }
             }
             .infos {
@@ -1033,17 +1053,17 @@
       }
     }
     .bg {
-      content: "";
       position: absolute;
       top: 0%;
       left: 0%;
-      width: 100%;
+      width: 120%;
       height: 100%;
       z-index: -2;
-      background: url("/bg/hero-glasses-bg.png"), #f3fbff;
+      background: var(--bg), #f3fbff;
       rotate: -3deg;
       filter: blur(4deg);
-      opacity: 0.9;
+      opacity: 0.1 !important;
+      object-fit: cover;
     }
     .confine {
       display: grid;
@@ -1082,6 +1102,57 @@
       figure {
         position: relative;
 
+        .diamonds {
+          display: flex;
+          // gap: 0.5em;
+          @media screen and (max-width: 550px) {
+            margin-top: 100px;
+            padding-bottom: 200px;
+          }
+          filter: drop-shadow(0 -4px 0 var(--gold)) /* Top */
+            drop-shadow(4px 0 0 var(--gold)) /* Right */
+            drop-shadow(0 4px 0 var(--gold)) /* Bottom */
+            drop-shadow(-4px 0 0 var(--gold)); /* Left */
+          .diamond {
+            width: 180px;
+            height: 180px;
+
+            @media screen and (max-width: 550px) {
+              width: 140px;
+              height: 140px;
+            }
+            margin-inline: -20px;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            // outline-offset: -10px;
+            position: relative;
+            mask-image: none;
+            &::before {
+              content: "";
+              position: absolute;
+              z-index: -2;
+              top: 0%;
+              left: 0%;
+              width: 100%;
+              height: 100%;
+              rotate: 45deg;
+              scale: 0.6;
+              border: 3px solid var(--grey);
+              // background: red;
+            }
+            &:nth-of-type(odd) {
+              transform: translateY(80px);
+            }
+            transition: all 500ms var(--mainEase);
+            &:hover {
+              scale: 1.1;
+            }
+            img {
+              object-fit: cover;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
         .home-glasses {
           width: 100%;
           height: 300px;
