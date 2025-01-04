@@ -4,9 +4,11 @@ import { useRef } from "react";
 import { useParallax } from "./util/util";
 import { useMediaQuery } from "react-responsive";
 import Link from "next/link";
-type Props = {};
+import { PortableText } from "next-sanity";
+import { urlFor } from "./db/sanity";
+type Props = { hs: any };
 
-export default function HeroSection({}: Props) {
+export default function HeroSection({ hs }: Props) {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -45,25 +47,28 @@ export default function HeroSection({}: Props) {
           }}
         >
           <div className="head">
-            <p className="sh">YOUR PASSION IS OUR PURPOSE</p>
-            <h2 className="hm">LET US MAKE YOUR DREAMS COME TRUE</h2>
+            <p className="sh">{hs.sh}</p>
+            <h2 className="hm">{hs.h}</h2>
           </div>
-          <p className="p">
-            <strong>Lan’Yue Studio</strong> is here for you. We pride ourselves
+          <div className="p">
+            <PortableText value={hs.p} />
+            {/* <strong>Lan’Yue Studio</strong> is here for you. We pride ourselves
             on our <strong>ethics and quality standards</strong> – nothing but
             the best for our artists and clients. Whether your needs are big or
             small, we vow to provide you the{" "}
             <strong>highest level of service</strong> and make sure you are
-            happy!
-          </p>
+            happy! */}
+          </div>
 
           <div className="action">
-            <Link href={"/commissions"} className="btn btn-main">
+            <Link href={hs.ba.path} className="btn btn-main">
               {" "}
-              COMMISSIONS
+              {/* COMMISSIONS */}
+              {hs.ba.text}
             </Link>
-            <Link href={"/contact"} className="btn btn-main outline">
-              INQUIRIES
+            <Link href={hs.bb.path} className="btn btn-main outline">
+              {/* INQUIRIES */}
+              {hs.bb.text}
             </Link>
           </div>
         </motion.div>
@@ -81,7 +86,7 @@ export default function HeroSection({}: Props) {
                 }
               : {}
           }
-          data-tip="RUHEE"
+          data-tip={hs.left_art.artist}
           transition={{
             delay: 1.3,
             duration: 1,
@@ -90,7 +95,7 @@ export default function HeroSection({}: Props) {
           className="image-part inner-shadow-l"
         >
           <motion.img
-            src="/gfx/hero_art-l.png"
+            src={urlFor(hs.left_art.image)?.auto("format").url()}
             alt=""
             className="clip-border l main-img"
             style={{ objectPosition: l }}
@@ -122,9 +127,9 @@ export default function HeroSection({}: Props) {
       >
         <motion.img
           style={{ objectPosition: r }}
-          src="/gfx/hero_art-r.png"
+          src={urlFor(hs.right_art.image)?.auto("format").url()}
           alt=""
-          data-tip="ANHEL"
+          data-tip={hs.right_art.artist}
           className=" main-img clip-border l "
         />
         <div className="overlay inner-shadow ni"></div>
