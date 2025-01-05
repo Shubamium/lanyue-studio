@@ -63,10 +63,12 @@
       display: flex;
       margin: 1em 0;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 1em;
-
-      @media screen and (max-width: 420px) {
-        flex-wrap: wrap;
+      .btn-main {
+        text-transform: uppercase;
+      }
+      @media screen and (max-width: 550px) {
         padding: 0 1em;
         .btn-main {
           width: 100%;
@@ -261,7 +263,7 @@
                 height: 450px;
                 width: 100%;
 
-                img {
+                .p-img {
                   // max-width: 50%;
                   transition: all 3000ms var(--mainEase);
                   height: 100%;
@@ -273,15 +275,15 @@
                 &:hover,
                 &:active,
                 &:focus-within {
-                  img:not(:hover) {
-                    width: 7%;
+                  .p-img:not(:hover) {
+                    width: 5%;
                     transition: all 1000ms var(--mainEase);
                     filter: brightness(50%);
                   }
-                  img:hover,
-                  img:active,
-                  img:active,
-                  img:focus-within {
+                  .p-img:hover,
+                  .p-img:active,
+                  .p-img:active,
+                  .p-img:focus-within {
                     transition: all 1000ms var(--mainEase);
                     width: 100%;
                   }

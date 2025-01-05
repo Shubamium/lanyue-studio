@@ -10,10 +10,12 @@ import BorderLax from "./BorderLax";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion/react";
 import { LuImages, LuRectangleEllipsis } from "react-icons/lu";
+import { PortableText } from "next-sanity";
+import { getFileUrl } from "../db/sanity";
 
-type Props = {};
+type Props = { ss: any };
 
-export default function MainService({}: Props) {
+export default function MainService({ ss }: Props) {
   const [scope, animate] = useIV(async () => {
     await animate(
       ".header",
@@ -96,12 +98,29 @@ export default function MainService({}: Props) {
       ></video>
       <BorderLax />
       <div className="confine header">
-        <p className="sh">SERVICES</p>
-        <h2 className="h">HOW IT WORKS</h2>
+        <p className="sh">{ss.sh}</p>
+        <h2 className="h">{ss.h}</h2>
       </div>
       <div className="steps">
         <div className="confine">
-          <div className="step">
+          {ss.steps &&
+            ss.steps.map((step: any) => {
+              return (
+                <div className="step" key={step._key}>
+                  <h3>{step.title}</h3>
+                  {/* <p>
+                  Check out our artists and services! Review this page
+                  thoroughly and make sure you understand our{" "}
+                  <strong>TOS</strong> before proceeding.
+                </p> */}
+                  <PortableText value={step.p} />
+                  <img src="/de/blue-flower.png" alt="" className="de-flower" />
+                  <div className="clip cbr"></div>
+                  <div className="clip ctr"></div>
+                </div>
+              );
+            })}
+          {/* <div className="step">
             <h3>STEP 1</h3>
             <p>
               Check out our artists and services! Review this page thoroughly
@@ -139,11 +158,11 @@ export default function MainService({}: Props) {
 
             <div className="clip cbr"></div>
             <div className="clip ctr"></div>
-          </div>
+          </div> */}
         </div>
       </div>
 
-      <CategoryList />
+      <CategoryList cat={ss.cat} />
 
       <div className="confine terms-cta">
         <p className="p">
@@ -160,19 +179,34 @@ export default function MainService({}: Props) {
   );
 }
 
-function CategoryList() {
+function CategoryList({ cat }: { cat: any }) {
   const [scope, animate] = useIV(async () => {
     animateStagger(animate, stagger, 1, 0.3);
   });
 
   return (
     <div className="confine categories" ref={scope}>
-      <Categories
-        icon={<GiPuppet />}
-        name="LIVE 2D"
-        list={["Vtuber Model Art", "VTuber Model Rigging", "Bundles"]}
-      />
-      <Categories
+      {cat &&
+        cat.map((c: any) => {
+          const url = getFileUrl(c.icon);
+          return (
+            <Categories
+              icon={
+                c.icon && url ? (
+                  // <object data={url} type="image/svg+xml"></object>
+                  <svg data-src={url}>{/* <use href={url}></use> */}</svg>
+                ) : (
+                  <></>
+                )
+              }
+              description={c.p}
+              name={c.title}
+              list={c.subcat}
+              key={c._key}
+            />
+          );
+        })}
+      {/* <Categories
         icon={<FaPaintBrush />}
         name="ILLUSTRATIONS"
         list={["Character Design", "MV Art & Scenes", "Merchandise Assets"]}
@@ -181,17 +215,17 @@ function CategoryList() {
         icon={<LuImages />}
         name="GRAPHICS"
         list={["Logo Design", "Branding", "Stream Assets & Overlays"]}
-      />
+      /> */}
     </div>
   );
 }
 type CatProps = {
   icon: React.ReactNode;
   name: string;
-  // description:string,
-  list: string[];
+  description?: any;
+  list?: string[];
 };
-function Categories({ icon, name, list }: CatProps) {
+function Categories({ icon, description, name, list }: CatProps) {
   return (
     <div className="category stagger">
       <div className="icon">{icon}</div>
@@ -202,6 +236,7 @@ function Categories({ icon, name, list }: CatProps) {
         to curate the one-of-a-kind beauty you deserve for any project you can
         imagine, from illustrations to Live2D models and graphic design.
       </p> */}
+      {description && <PortableText value={description} />}
 
       <div className="list">
         {list &&

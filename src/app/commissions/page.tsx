@@ -7,11 +7,13 @@ import PriceList from "./PriceList";
 import MainService from "./MainService";
 import ListPricing from "./ListPricing";
 import Timeline from "./Timeline";
+import Script from "next/script";
+import { PortableText } from "next-sanity";
 type Props = {};
 
 export default async function Commissions({}: Props) {
-  const general = await fetchData<any>(`
-			*[_type == 'general' && preset == 'active']{
+  const comText = await fetchData<any>(`
+			*[_type == 'commission_text' && preset == 'active']{
 				pinned_pricing ->{
 					...,
 					'slug':view -> slug.current,
@@ -19,17 +21,27 @@ export default async function Commissions({}: Props) {
 				pricing_list[]->{
 					...,
 					'slug':view -> slug.current,
-				}
+				},
+				service,
+				nl,
+				nr,
+				timeline,
 			}[0]
 		`);
 
-  const pinned = general.pinned_pricing;
-  const plist = general.pricing_list;
-  console.log(pinned);
+  const pinned = comText.pinned_pricing;
+  const plist = comText.pricing_list;
+  console.log(comText);
 
   return (
     <main id="page_commissions">
-      <MainService />
+      <Script
+        type="text/javascript"
+        src="https://unpkg.com/external-svg-loader@latest/svg-loader.min.js"
+        async
+      />
+      {/* <script></script> */}
+      <MainService ss={comText.service} />
       <section id="price-lists">
         <img src="/de/frame-edge.png" alt="" className="edge l ni " />
         <img src="/de/frame-edge.png" alt="" className="edge r ni" />
@@ -125,7 +137,13 @@ export default async function Commissions({}: Props) {
           <div className="confine">
             <h2>NOTES:</h2>
             <div className="text">
-              <p className="p">
+              <div className="left">
+                <PortableText value={comText.nl} />
+              </div>
+              <div className="right">
+                <PortableText value={comText.nr} />
+              </div>
+              {/* <p className="p">
                 Live2D and Graphics services include a streaming license with
                 the final product. Please see our{" "}
                 <Link href="/terms" className="btn">
@@ -136,13 +154,13 @@ export default async function Commissions({}: Props) {
               <p className="p">
                 Live2D Rigging are to be used with VTube Studio. We currently do
                 not create rigs for other face capture programs.
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
       </section>
 
-      <Timeline />
+      <Timeline t={comText.timeline} />
     </main>
   );
 }

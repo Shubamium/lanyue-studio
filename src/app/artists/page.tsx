@@ -1,76 +1,98 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import "./artists.scss";
 import ArtistList from "./ArtistList";
 type Props = {};
 import { FaPaintbrush, FaXTwitter } from "react-icons/fa6";
-import getMember from "../db/artist";
+import getMember, { getCategory, getText } from "../db/artist";
 import { GoBrowser } from "react-icons/go";
-import { urlFor } from "../db/sanity";
+import { getFileUrl, urlFor } from "../db/sanity";
 import { FaInternetExplorer } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion";
+import { PortableText } from "next-sanity";
 
 export default function Page({}: Props) {
-  const [activeCat, setActiveCat] = useState("illustrator");
+  const [cat, setCat] = useState<any[]>([]);
+  const [activeCat, setActiveCat] = useState<null | string>(null);
   const [members, setMembers] = useState<any[]>([]);
+  const [text, setText] = useState<any>([]);
+  const [load, setLoad] = useState(false);
+
   useEffect(() => {
-    // loadMembers()
-    const loadMembers = async () => {
-      const loaded = await getMember(activeCat);
-      setMembers(loaded);
+    const loadData = async () => {
+      const text = await getText();
+      setText(text);
+      const category = await getCategory();
+      setCat(category);
+      setActiveCat(category[0].slug ?? null);
+      console.log(category);
     };
-    loadMembers();
+    loadData();
+  }, []);
+
+  useEffect(() => {
+    const loadData = async () => {
+      console.log(activeCat);
+      if (activeCat) {
+        const loaded = await getMember(activeCat);
+        setMembers(loaded);
+      }
+    };
+    loadData();
   }, [activeCat]);
 
   const [scope, animate] = useIV(async () => {
-    animate([
-      [
-        ".border.l",
-        {
-          x: -200,
-          opacity: 0,
-        },
-        {
-          duration: 0,
-        },
-      ],
-      [
-        ".border.r",
-        {
-          x: 200,
-          opacity: 0,
-        },
-        {
-          duration: 0,
-        },
-      ],
-      [
-        ".border.r",
-        {
-          x: 0,
-          opacity: 1,
-        },
-        {
-          duration: 0.5,
-          ease: "easeInOut",
-        },
-      ],
-      [
-        ".border.l",
-        {
-          x: 0,
-          opacity: 1,
-        },
-        {
-          ease: "easeInOut",
-          duration: 0.5,
-        },
-      ],
-    ]);
-    animateStagger(animate, stagger, 1, 0.3);
+    setTimeout(() => {
+      animate([
+        [
+          ".border.l",
+          {
+            x: -200,
+            opacity: 0,
+          },
+          {
+            duration: 0,
+          },
+        ],
+        [
+          ".border.r",
+          {
+            x: 200,
+            opacity: 0,
+          },
+          {
+            duration: 0,
+          },
+        ],
+        [
+          ".border.r",
+          {
+            x: 0,
+            opacity: 1,
+          },
+          {
+            duration: 0.5,
+            ease: "easeInOut",
+          },
+        ],
+        [
+          ".border.l",
+          {
+            x: 0,
+            opacity: 1,
+          },
+          {
+            ease: "easeInOut",
+            duration: 0.5,
+          },
+        ],
+      ]);
+      animateStagger(animate, stagger, 1, 0.3);
+    }, 600);
   });
+
   return (
     <main id="page_artists">
       <section id="artist-heading" ref={scope}>
@@ -78,32 +100,41 @@ export default function Page({}: Props) {
         <img src="/de/framethick.svg" alt="" className="border r" />
         <div className="confine">
           <figure>
-            <img src="/gfx/artist.png" alt="" className="r stagger" />
+            <img
+              src={urlFor(text.i)?.auto("format").url()}
+              alt=""
+              className="r stagger"
+            />
             {/* <img src="/gfx/placeholder.png" alt="" className="l stagger" /> */}
             <img src="/de/blue-splat1.png" alt="" className="splat" />
           </figure>
 
           <article>
-            <p className="sh stagger">ARTISTS</p>
-            <h2 className="h stagger">ABOUT US</h2>
-            <p className="p stagger">
-              Live2D and Graphics services include a streaming license with the
-              final product. Please see our Terms of Service for full details. 
-            </p>
+            <p className="sh stagger">{text.sh}</p>
+            <h2 className="h stagger">{text.h}</h2>
+            <div className="p stagger">
+              <PortableText value={text.p} />
+            </div>
           </article>
         </div>
       </section>
       <div id="artist-list">
         <section className="control">
-          <button
-            className={`btn btn-main ${activeCat === "illustrator" ? "" : "outline"}`}
-            onClick={() => {
-              setActiveCat("illustrator");
-            }}
-          >
-            ILLUSTRATOR
-          </button>
-          <button
+          {cat &&
+            cat.map((c: any) => {
+              return (
+                <button
+                  className={`btn btn-main ${activeCat === c.slug ? "" : "outline"}`}
+                  onClick={() => {
+                    setActiveCat(c.slug);
+                  }}
+                  key={c.slug}
+                >
+                  {c.title}
+                </button>
+              );
+            })}
+          {/* <button
             className={`btn btn-main ${activeCat === "rigger" ? "" : "outline"}`}
             onClick={() => {
               setActiveCat("rigger");
@@ -118,7 +149,7 @@ export default function Page({}: Props) {
             }}
           >
             GRAPHIC DESIGN
-          </button>
+          </button> */}
 
           {/* Hidden for now might need to fix up the responsivity */}
           {/* <button
@@ -271,7 +302,8 @@ function MemberDisplayer({
       <div className="portfolio">
         {memberData.portfolio &&
           memberData.portfolio.map((p: any, index: number) => {
-            return (
+            console.log(p);
+            return p._type === "art" ? (
               <img
                 src={urlFor(p)?.url()}
                 alt=""
@@ -279,6 +311,16 @@ function MemberDisplayer({
                 key={memberData.id + "pf" + index}
                 className="p-img"
               />
+            ) : (
+              <video
+                src={getFileUrl(p) ?? undefined}
+                className="p-img"
+                autoPlay
+                muted
+                key={memberData.id + "pf" + index}
+                loop
+                controls
+              ></video>
             );
           })}
       </div>

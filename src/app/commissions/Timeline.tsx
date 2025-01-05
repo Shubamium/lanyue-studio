@@ -2,10 +2,11 @@
 import React from "react";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion";
+import { PortableText } from "next-sanity";
 
-type Props = {};
+type Props = { t: any };
 
-export default function Timeline({}: Props) {
+export default function Timeline({ t }: Props) {
   const [scope, animate] = useIV(async () => {
     await animate(
       ".cloud.l",
@@ -67,31 +68,33 @@ export default function Timeline({}: Props) {
 
           <article>
             <img src="/de/white-moon.png" alt="" className="de-moon stagger" />
-            <p className="sh stagger">SERVICES</p>
-            <h2 className="h stagger">COMMISSIONS TIMELINE</h2>
-            <p className="p stagger">
-              Placeholder services include a streaming license with the final
-              product. Please see our Terms of Service for full details. 
-            </p>
+            <p className="sh stagger">{t.sh}</p>
+            <h2 className="h stagger">{t.h}</h2>
+            <div className="p stagger">
+              <PortableText value={t.p} />
+            </div>
           </article>
         </div>
       </div>
-      <StepsTimeline />
+      <StepsTimeline tm={t.steps} />
     </section>
   );
 }
 
-function StepsTimeline() {
+function StepsTimeline({ tm }: { tm: any[] }) {
   return (
     <div id="steps-timeline">
-      <StepEl />
-      <StepEl />
-      <StepEl />
+      {tm &&
+        tm.map((tms) => {
+          return <StepEl t={tms.title} st={tms.si} key={tms._key} />;
+        })}
+      {/* <StepEl /> */}
+      {/* <StepEl /> */}
     </div>
   );
 }
 
-function StepEl() {
+function StepEl({ t, st }: { t: string; st: any[] }) {
   const [scope, animated] = useIV(async () => {
     await animated(
       scope.current,
@@ -207,11 +210,22 @@ function StepEl() {
       <img src="/de/blue-branch.png" alt="" className="branch" />
       <div className="confine">
         <div className="title">
-          <h2 className="h">STEP 1</h2>
+          <h2 className="h">{t}</h2>
         </div>
         <div className="details">
           <div className="border"></div>
-          <div className="detail">
+          {st &&
+            st.map((step: any) => {
+              return (
+                <div className="detail" key={step._key}>
+                  <h3 className="h">{step.title}</h3>
+                  <div className="p">
+                    <PortableText value={step.p} />
+                  </div>
+                </div>
+              );
+            })}
+          {/* <div className="detail">
             <h3 className="h">Project Updates</h3>
             <p className="p">
               Live2D and Graphics services include a streaming license with the
@@ -231,14 +245,7 @@ function StepEl() {
               Live2D and Graphics services include a streaming license with the
               final product. Please see our Terms of Service for full details. 
             </p>
-          </div>
-          <div className="detail">
-            <h3 className="h">Project Updates</h3>
-            <p className="p">
-              Live2D and Graphics services include a streaming license with the
-              final product. Please see our Terms of Service for full details. 
-            </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -71,11 +71,16 @@ export default function ListPricing({ p }: Props) {
           </div>
 
           <div className="action">
-            <Link href={`/portfolio?c=${p.slug}`} className="btn btn-examples">
-              <span>
-                VIEW EXAMPLES <FaArrowRight />
-              </span>
-            </Link>
+            {p.slug && (
+              <Link
+                href={`/portfolio?c=${p.slug}`}
+                className="btn btn-examples"
+              >
+                <span>
+                  VIEW EXAMPLES <FaArrowRight />
+                </span>
+              </Link>
+            )}
           </div>
         </figure>
       </div>
