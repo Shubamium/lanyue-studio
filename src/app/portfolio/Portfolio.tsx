@@ -22,6 +22,7 @@ export default function Portfolio({}: Props) {
   useEffect(() => {
     const loadPort = async () => {
       let portfolio = await getPortfolio(activeCat);
+      // console.log(portfolio);
       if (portfolio) {
         setPortfolioList(portfolio);
       }
@@ -141,13 +142,14 @@ export default function Portfolio({}: Props) {
                     key={"pfrow" + activeCat + index}
                   >
                     <div className="pitems inner-shadow-l">
-                      {row[0]._type === "image" ? (
+                      {row[0]._type === "imaged" ? (
                         <img
-                          src={urlFor(row[0])
+                          src={urlFor(row[0].image)
                             ?.auto("format")
                             .maxHeight(700)
                             .url()}
                           alt=""
+                          data-tip={row[0].artist}
                           className="main-pt"
                           onClick={() => {
                             setSelectedImage(row[0]);
@@ -155,9 +157,11 @@ export default function Portfolio({}: Props) {
                         />
                       ) : (
                         <video
-                          src={getFileUrl(row[0]) ?? undefined}
+                          src={getFileUrl(row[0].file) ?? undefined}
                           controls
                           autoPlay
+                          loop
+                          data-tip={row[0].artist}
                           muted
                           onClick={() => {
                             setSelectedImage(row[0]);
@@ -170,11 +174,12 @@ export default function Portfolio({}: Props) {
                       <div className="pitems inner-shadow-l">
                         {row[1]._type === "imaged" ? (
                           <img
-                            src={urlFor(row[1])
+                            src={urlFor(row[1].image)
                               ?.auto("format")
                               .maxHeight(700)
                               .url()}
                             alt=""
+                            data-tip={row[1].artist}
                             onClick={() => {
                               setSelectedImage(row[0]);
                             }}
@@ -182,10 +187,12 @@ export default function Portfolio({}: Props) {
                           />
                         ) : (
                           <video
-                            src={getFileUrl(row[1]) ?? undefined}
+                            src={getFileUrl(row[1].file) ?? undefined}
                             className="main-pt"
                             controls
                             autoPlay
+                            data-tip={row[1].artist}
+                            loop
                             muted
                             onClick={() => {
                               setSelectedImage(row[0]);
@@ -342,15 +349,18 @@ export default function Portfolio({}: Props) {
       >
         {selectedImage && (
           <div className="art-part">
-            {selectedImage._type === "image" ? (
+            {selectedImage._type === "imaged" ? (
               <img
-                src={urlFor(selectedImage)?.auto("format").maxHeight(700).url()}
+                src={urlFor(selectedImage.image)
+                  ?.auto("format")
+                  .maxHeight(700)
+                  .url()}
                 alt=""
                 className="main-pt"
               />
             ) : (
               <video
-                src={getFileUrl(selectedImage) ?? undefined}
+                src={getFileUrl(selectedImage.file) ?? undefined}
                 controls
                 autoPlay
                 muted

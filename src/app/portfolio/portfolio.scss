@@ -198,7 +198,7 @@
           flex-shrink: 0;
           display: flex;
           flex-direction: column;
-          width: 600px;
+          width: 720px;
           gap: 1.5em;
           @media screen and (max-width: 768px) {
             width: 400px;
@@ -208,7 +208,7 @@
           }
           .pitems {
             width: 100%;
-            height: 400px;
+            height: 405px;
             transition: all 450ms var(--mainEase);
             @media screen and (max-width: 420px) {
               height: 200px;
