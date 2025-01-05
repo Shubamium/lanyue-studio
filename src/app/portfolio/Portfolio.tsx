@@ -168,7 +168,7 @@ export default function Portfolio({}: Props) {
                     </div>
                     {row[1] && (
                       <div className="pitems inner-shadow-l">
-                        {row[1]._type === "image" ? (
+                        {row[1]._type === "imaged" ? (
                           <img
                             src={urlFor(row[1])
                               ?.auto("format")
