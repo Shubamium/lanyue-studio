@@ -4,9 +4,16 @@ import Link from "next/link";
 import { BiSolidArrowToTop } from "react-icons/bi";
 import { FaXTwitter } from "react-icons/fa6";
 import { CgMail } from "react-icons/cg";
+import { fetchData } from "@/app/db/sanity";
 type Props = {};
 
-export default function Footer({}: Props) {
+export default async function Footer({}: Props) {
+  const general = await fetchData<any>(`
+		*[_type == 'general' && preset == 'active']{
+			footer,
+		}[0]
+	`);
+  console.log(general);
   return (
     <footer id="footer">
       <img src="/de/gold-branch.png" alt="" className="gold-branch l ni" />
@@ -15,13 +22,8 @@ export default function Footer({}: Props) {
       <div className="footer-confine">
         <div className="left">
           <div className="mini-info">
-            <h3>ABOUT US</h3>
-            <p className="p">
-              Lan’Yue Studio is an art studio setting the industry standard for
-              ethical commission services. All of our resources go towards
-              ensuring that our artists are taken care of legally, financially,
-              and developmentally.
-            </p>
+            <h3>{general?.footer?.h}</h3>
+            <p className="p">{general?.footer?.p}</p>
           </div>
 
           <div className="line"></div>
