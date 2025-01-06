@@ -4,10 +4,11 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import useMeasure from "react-use-measure";
 import { useIV } from "../util/useIV";
 import { stagger } from "motion/react";
+import { PortableText } from "next-sanity";
 
-type Props = {};
+type Props = { tl: any };
 
-export default function TermsList({}: Props) {
+export default function TermsList({ tl }: Props) {
   const [scope, animate] = useIV(async () => {
     await animate([
       [
@@ -38,20 +39,14 @@ export default function TermsList({}: Props) {
   });
   return (
     <div className="list" ref={scope}>
-      <TermsDropdown title={"Content Guidelines"}>
-        <p>
-          <strong>Accepted:</strong> Original designs, feminine, masculine, and
-          androgynous characters, young to mature-looking characters,
-          kemonomimis, and human-faced anthros.
-        </p>
-        <p>
-          <strong>Not Accepted:</strong> Canon characters from copyrighted media
-          (with exceptions), elderly, ferals, muzzled anthros, excessive
-          violence & gore, NSFW content (especially the sexualization of
-          minors), and offensive themes related to sex, race, and religion.
-        </p>
-      </TermsDropdown>
-      <TermsDropdown title={"Usage"}>
+      {tl.map((l: any) => {
+        return (
+          <TermsDropdown title={l.title} key={l._key}>
+            <PortableText value={l.text} />
+          </TermsDropdown>
+        );
+      })}
+      {/* <TermsDropdown title={"Usage"}>
         <p>
           You <strong>may not</strong> use any part of your commission for NFTs,
           cryptocurrency, or AI-generated derivative works. We strictly prohibit
@@ -183,7 +178,7 @@ export default function TermsList({}: Props) {
           of America. Any legal action will be conducted exclusively in the
           court of Connecticut, U.S.
         </p>
-      </TermsDropdown>
+      </TermsDropdown> */}
     </div>
   );
 }

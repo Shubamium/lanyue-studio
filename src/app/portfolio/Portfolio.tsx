@@ -3,28 +3,51 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FaArrowLeft, FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
 import { useRouter, useSearchParams } from "next/navigation";
-import getPortfolio from "../db/portfolio";
+import getPortfolio, {
+  getCategoryList,
+  getPortfolioText,
+} from "../db/portfolio";
 import { getFileUrl, urlFor } from "../db/sanity";
 import { useIV } from "../util/useIV";
 type Props = {};
 
 import { AnimatePresence, motion } from "motion/react";
 import { stagger } from "motion";
+import { PortableText } from "next-sanity";
 export default function Portfolio({}: Props) {
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const params = useSearchParams();
   const startingCat = params.get("c");
-  const [activeCat, setActiveCat] = useState(startingCat ?? "live-2d");
+
+  const [activeCat, setActiveCat] = useState(startingCat ?? null);
+  const [category, setCategory] = useState<any[]>([]);
   const [portfolioList, setPortfolioList] = useState<any[]>([]);
 
   const [sidebar, setSidebar] = useState(false);
   const [selectedImage, setSelectedImage] = useState<any | null>(null);
+
+  const [t, setT] = useState<any>(null);
+  useEffect(() => {
+    const loadCat = async () => {
+      let text = await getPortfolioText();
+      setT(text);
+      let portCat = await getCategoryList();
+      setCategory(portCat);
+
+      console.log(portCat);
+      if (!startingCat) {
+        setActiveCat(portCat[0].slug);
+      }
+    };
+    loadCat();
+  }, []);
   useEffect(() => {
     const loadPort = async () => {
-      let portfolio = await getPortfolio(activeCat);
-      // console.log(portfolio);
-      if (portfolio) {
-        setPortfolioList(portfolio);
+      if (activeCat) {
+        let portfolio = await getPortfolio(activeCat);
+        if (portfolio) {
+          setPortfolioList(portfolio);
+        }
       }
     };
 
@@ -74,25 +97,29 @@ export default function Portfolio({}: Props) {
             </Link>
           </div>
           <div className="heading">
-            <p className="sh">SUBHEADING</p>
-            <h2 className="h">PORTFOLIO</h2>
-            <p className="p">
-              Lan’Yue Studio partners with highly reputable artists chosen for
-              their artistic skills, reliability, and commitment to client
-              satisfaction.
-            </p>
+            <p className="sh">{t?.sh}</p>
+            <h2 className="h">{t?.h}</h2>
+            <div className="p">
+              <PortableText value={t?.p} />
+            </div>
           </div>
         </div>
         <div className="categories">
-          <button
-            className={`btn btn-cat ${activeCat === "live-2d" ? "selected" : ""}`}
-            onClick={() => {
-              setActiveCat("live-2d");
-            }}
-          >
-            LIVE 2D
-          </button>
-          <button
+          {category &&
+            category.map((cat) => {
+              return (
+                <button
+                  className={`btn btn-cat ${activeCat === cat.slug ? "selected" : ""}`}
+                  onClick={() => {
+                    setActiveCat(cat.slug);
+                  }}
+                  key={cat.slug}
+                >
+                  {cat.name}
+                </button>
+              );
+            })}
+          {/* <button
             className={`btn btn-cat ${activeCat === "illustrations" ? "selected" : ""}`}
             onClick={() => {
               setActiveCat("illustrations");
@@ -107,7 +134,7 @@ export default function Portfolio({}: Props) {
             }}
           >
             GRAPHICS
-          </button>
+          </button> */}
         </div>
       </aside>
       <div className="portfolio-items">
@@ -208,83 +235,7 @@ export default function Portfolio({}: Props) {
           {/* <div className="row">
             <div className="pitems inner-shadow-l">
               <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-          </div> */}
-          {/* <div className="row">
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-          </div>
+
           <div className="row">
             <div className="pitems inner-shadow-l">
               <img src="/gfx/placeholder.png" alt="" className="main-pt" />

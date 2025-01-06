@@ -32,8 +32,14 @@ h5 {
   // letter-spacing: -2px;
   font-size: 2rem;
 }
-p {
+p,
+a {
   font-family: var(--fontr);
+  a {
+    font-family: var(--fontP);
+    font-weight: 200;
+    color: var(--grey);
+  }
 }
 
 .btn {
@@ -161,6 +167,14 @@ p {
   @media screen and (max-width: 420px) {
     font-size: 0.9rem !important;
   }
+  p {
+    font-family: var(--fontP);
+    line-height: 1.4;
+
+    @media screen and (max-width: 420px) {
+      font-size: 0.9rem !important;
+    }
+  }
 }
 
 .clip {
@@ -207,4 +221,8 @@ body {
       display: none;
     }
   }
+}
+
+.stagger {
+  opacity: 0;
 }
