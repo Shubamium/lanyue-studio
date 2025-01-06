@@ -6,7 +6,7 @@ type Props = {};
 export default function Chatbox({}: Props) {
   useEffect(() => {
     window.$crisp = [];
-    window.CRISP_WEBSITE_ID = "a8883da8-793e-43e1-92d9-29bc2d12f0f0";
+    window.CRISP_WEBSITE_ID = "d513b56d-0c2d-4275-be1c-fc1a6ed8259e";
     (function () {
       let d = document;
       let s = d.createElement("script");
