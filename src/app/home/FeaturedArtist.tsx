@@ -47,7 +47,7 @@ export default function FeaturedArtist({ fas }: Props) {
   // }, [iv]);
 
   const [scope, animate] = useIV(async () => {
-    animateStagger(animate, stagger, 2, 0.1);
+    animateStagger(animate, stagger, 2, 0);
   });
   return (
     <section id="featured-artist" ref={scope}>
