@@ -12,6 +12,7 @@ import { CgWebsite } from "react-icons/cg";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion";
 import { PortableText } from "next-sanity";
+import { video } from "motion/react-client";
 
 export default function Page({}: Props) {
   const [cat, setCat] = useState<any[]>([]);
@@ -93,6 +94,13 @@ export default function Page({}: Props) {
     }, 600);
   });
 
+  // Fullscreen Image Displayer
+  const [activeSrc, setActiveSrc] = useState<any>(null);
+
+  const showFs = (isVid: boolean, src: string | undefined) => {
+    setActiveSrc({ isVid, src });
+  };
+
   return (
     <main id="page_artists">
       <section id="artist-heading" ref={scope}>
@@ -170,6 +178,7 @@ export default function Page({}: Props) {
                   memberData={memberData}
                   index={index}
                   key={memberData._id}
+                  showFs={showFs}
                 />
               );
             })}
@@ -215,6 +224,25 @@ export default function Page({}: Props) {
           </div> */}
         </section>
       </div>
+
+      <div
+        id="fs-displayer"
+        className={activeSrc ? "open" : "closed"}
+        onClick={() => {
+          setActiveSrc(null);
+        }}
+      >
+        {activeSrc && (
+          <div className="overlay">
+            {activeSrc.isVid ? (
+              <video src={activeSrc.src} className="main-display" />
+            ) : (
+              <img src={activeSrc.src} alt="" className="main-display" />
+            )}
+          </div>
+        )}
+        {/* <video src="" alt="" className="main-display" /> */}
+      </div>
       {/* <ArtistList /> */}
     </main>
   );
@@ -223,9 +251,11 @@ export default function Page({}: Props) {
 function MemberDisplayer({
   memberData,
   index,
+  showFs,
 }: {
   memberData: any;
   index: number;
+  showFs: (isVideo: boolean, src: string | undefined) => void;
 }) {
   const [scope, animate] = useIV(async () => {
     await animate(
@@ -308,6 +338,9 @@ function MemberDisplayer({
                 src={urlFor(p)?.url()}
                 alt=""
                 onTouchStart={() => {}}
+                onClick={() => {
+                  showFs(false, urlFor(p)?.url());
+                }}
                 key={memberData.id + "pf" + index}
                 className="p-img"
               />
@@ -317,6 +350,9 @@ function MemberDisplayer({
                 className="p-img"
                 autoPlay
                 muted
+                onClick={() => {
+                  showFs(true, getFileUrl(p) ?? undefined);
+                }}
                 key={memberData.id + "pf" + index}
                 loop
                 controls

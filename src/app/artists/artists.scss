@@ -262,7 +262,7 @@
                 // flex: 1;
                 gap: 0.5em;
                 margin: 1em 0;
-                height: 450px;
+                height: 380px;
                 width: 100%;
 
                 .p-img {
@@ -272,11 +272,13 @@
                   min-width: 0%;
                   width: 100%;
                   object-fit: cover;
+                  cursor: pointer;
                 }
 
                 &:hover,
                 &:active,
                 &:focus-within {
+                  gap: 0;
                   .p-img:not(:hover) {
                     width: 5%;
                     transition: all 1000ms var(--mainEase);
@@ -308,6 +310,41 @@
           }
         }
       }
+    }
+  }
+
+  #fs-displayer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.594);
+    z-index: 100;
+    top: 0%;
+    left: 0%;
+    opacity: 0.5;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .main-display {
+      width: 90vw;
+      height: 90vh;
+
+      object-fit: contain;
+    }
+    video {
+      aspect-ratio: 16/9;
+    }
+    transition: all 500ms ease-in-out;
+    &.open {
+      opacity: 1;
+      user-select: all;
+      pointer-events: all;
+    }
+    &.closed {
+      user-select: none;
+      pointer-events: none;
+      opacity: 0;
     }
   }
 }
