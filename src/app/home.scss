@@ -720,7 +720,7 @@
         img,
         video {
           height: 100%;
-          width: 300px;
+          width: 350px;
 
           @media screen and (max-width: 550px) {
             width: 200px;
@@ -733,7 +733,7 @@
           }
         }
         video {
-          width: 977.78px;
+          width: 887.78px;
           background: var(--white);
           object-fit: contain;
           &:hover {
