@@ -11,6 +11,9 @@ export default async function Footer({}: Props) {
   const general = await fetchData<any>(`
 		*[_type == 'general' && preset == 'active']{
 			footer,
+			mail,
+			x,
+			discord
 		}[0]
 	`);
   console.log(general);
@@ -40,17 +43,13 @@ export default async function Footer({}: Props) {
           </p>
 
           <div className="contacts">
-            <a
-              href="https://x.com/LanYue_Studio"
-              target="_blank"
-              className="btn footer-contact"
-            >
+            <a href={general.x} target="_blank" className="btn footer-contact">
               <span>
                 <FaXTwitter />
               </span>
             </a>
             <a
-              href="mailto:contact@lanyue.studio"
+              href={`mailto:${general.mail}`}
               target="_blank"
               className="btn footer-contact"
             >

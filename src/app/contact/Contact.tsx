@@ -81,21 +81,17 @@ export default function Contact({ c }: Props) {
           </div>
 
           <div className="contacts stagger">
-            <a
-              href="https://x.com/LanYue_Studio"
-              target="_blank"
-              className="btn btn-contact"
-            >
+            <a href={c.x} target="_blank" className="btn btn-contact">
               <span>
                 <FaXTwitter />
               </span>
             </a>
-            <a href="#" target="_blank" className="btn btn-contact">
+            <a href={c.discord} target="_blank" className="btn btn-contact">
               <span>
                 <FaDiscord />
               </span>
             </a>
-            <a href="mailto:contact@lanyue.studio" className="btn btn-contact">
+            <a href={`mailto:${c.mail}`} className="btn btn-contact">
               <span>
                 <CgMail />
               </span>
