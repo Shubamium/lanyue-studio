@@ -6,6 +6,7 @@ import { animateStagger } from "../util/useIV";
 import { stagger } from "motion";
 import Link from "next/link";
 import { urlFor } from "../db/sanity";
+import { nt } from "../util/util";
 
 type Props = { is: any };
 
@@ -66,12 +67,20 @@ export default function Invitation({ is }: Props) {
           </h2>
           <div className="action">
             {" "}
-            <Link href={is.ba.path} className="btn btn-main stagger">
+            <Link
+              href={is.ba.path}
+              target={nt(is.ba.path)}
+              className="btn btn-main stagger"
+            >
               {/* {" "} */}
               {/* CONTACT FORM{" "} */}
               {is.ba.text}
             </Link>
-            <Link href={is.bb.path} className="btn btn-main outline stagger">
+            <Link
+              href={is.bb.path}
+              target={nt(is.bb.path)}
+              className="btn btn-main outline stagger"
+            >
               {is.bb.text}
             </Link>
           </div>

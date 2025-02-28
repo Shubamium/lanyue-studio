@@ -15,6 +15,7 @@ import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion";
 import { CgMail } from "react-icons/cg";
 import { PortableText } from "next-sanity";
+import { nt } from "../util/util";
 type Props = { c: any };
 
 export default function Contact({ c }: Props) {
@@ -99,7 +100,11 @@ export default function Contact({ c }: Props) {
           </div>
           <p className="alt-text stagger">{c.m}</p>
 
-          <Link href={c.hb.path} className="btn btn-main outline stagger">
+          <Link
+            href={c.hb.path}
+            target={nt(c.hb.path)}
+            className="btn btn-main outline stagger"
+          >
             {" "}
             <FaArrowLeft /> {c.hb.text}
           </Link>

@@ -6,6 +6,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { urlFor } from "../db/sanity";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion/react";
+import { PortableText } from "next-sanity";
 
 type Props = {
   p: any;
@@ -45,7 +46,9 @@ export default function ListPricing({ p }: Props) {
         <div className="details">
           <div className="confine price-heading">
             <h2 className="h stagger">{p.name}</h2>
-            <p className="p stagger">{p.description}</p>
+            <div className="p stagger">
+              <PortableText value={p.description} />
+            </div>
           </div>
           {p.categories &&
             p.categories.map((p: any) => {

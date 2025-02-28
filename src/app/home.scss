@@ -721,7 +721,9 @@
         video {
           height: 100%;
           width: 350px;
-
+          &.landscape {
+            width: 887.78px;
+          }
           @media screen and (max-width: 550px) {
             width: 200px;
             height: 300px;
@@ -732,6 +734,7 @@
             scale: 1.1;
           }
         }
+
         video {
           width: 887.78px;
           background: var(--white);

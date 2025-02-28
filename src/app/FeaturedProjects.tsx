@@ -155,7 +155,11 @@ export default function FeaturedProjects({ fps }: Props) {
                         src={urlFor(p.artwork)?.auto("format").url()}
                         alt=""
                         data-tip={p.artist}
-                        className="stagger"
+                        className={
+                          "stagger " +
+                          " " +
+                          (p.size === "landscape" ? "landscape" : "norm")
+                        }
                         key={p._key + index}
                       />
                     );

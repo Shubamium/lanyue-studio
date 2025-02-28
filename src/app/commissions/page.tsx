@@ -52,7 +52,9 @@ export default async function Commissions({}: Props) {
             <div className="confine price-heading top">
               <div className="sizing">
                 <h2 className="h">{pinned.name}</h2>
-                <p className="p">{pinned.description}</p>
+                <div className="p">
+                  <PortableText value={pinned.description} />
+                </div>
 
                 <Link
                   href={`/portfolio?c=${pinned.slug}`}

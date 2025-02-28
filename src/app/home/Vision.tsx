@@ -7,6 +7,7 @@ import React, { CSSProperties, useEffect, useRef } from "react";
 import { FaPaintBrush } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa6";
 import { urlFor } from "../db/sanity";
+import { nt } from "../util/util";
 
 type Props = { vs: any };
 
@@ -85,6 +86,7 @@ export default function Vision({ vs }: Props) {
           </div>
           <Link
             href={vs.button.path}
+            target={nt(vs.button.path)}
             className="btn btn-main outline btn-commision stagger"
           >
             {/* COMMISSIONS */}

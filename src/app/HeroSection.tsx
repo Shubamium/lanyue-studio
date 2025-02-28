@@ -1,7 +1,7 @@
 "use client";
 import { motion, useInView, useScroll } from "motion/react";
 import { useRef } from "react";
-import { useParallax } from "./util/util";
+import { nt, useParallax } from "./util/util";
 import { useMediaQuery } from "react-responsive";
 import Link from "next/link";
 import { PortableText } from "next-sanity";
@@ -61,12 +61,20 @@ export default function HeroSection({ hs }: Props) {
           </div>
 
           <div className="action">
-            <Link href={hs.ba.path} className="btn btn-main">
+            <Link
+              href={hs.ba.path}
+              target={nt(hs.ba.path)}
+              className="btn btn-main"
+            >
               {" "}
               {/* COMMISSIONS */}
               {hs.ba.text}
             </Link>
-            <Link href={hs.bb.path} className="btn btn-main outline">
+            <Link
+              href={hs.bb.path}
+              target={nt(hs.bb.path)}
+              className="btn btn-main outline"
+            >
               {/* INQUIRIES */}
               {hs.bb.text}
             </Link>

@@ -2,7 +2,7 @@ import React from "react";
 import "./footer.scss";
 import Link from "next/link";
 import { BiSolidArrowToTop } from "react-icons/bi";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaDiscord, FaXTwitter } from "react-icons/fa6";
 import { CgMail } from "react-icons/cg";
 import { fetchData } from "@/app/db/sanity";
 type Props = {};
@@ -46,6 +46,15 @@ export default async function Footer({}: Props) {
             <a href={general.x} target="_blank" className="btn footer-contact">
               <span>
                 <FaXTwitter />
+              </span>
+            </a>
+            <a
+              href={general.discord}
+              target="_blank"
+              className="btn footer-contact"
+            >
+              <span>
+                <FaDiscord />
               </span>
             </a>
             <a
