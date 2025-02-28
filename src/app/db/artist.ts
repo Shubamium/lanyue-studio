@@ -19,11 +19,13 @@ export async function getText(): Promise<any[]> {
   return text;
 }
 export async function getCategory(): Promise<any[]> {
-  const text = await fetchData<any[]>(`
-			*[_type == 'artist_type'] {
-				title,
-				'slug':  slug.current,
+  const text = await fetchData<any>(`
+			*[_type == 'artistText' && preset == 'active'][0] {
+				'order': order[] -> {
+					title,
+					'slug':  slug.current,
+				}
 			}
 		`);
-  return text;
+  return text.order ?? [];
 }

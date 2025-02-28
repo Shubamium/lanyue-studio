@@ -11,14 +11,16 @@ export default async function getPortfolio(category: string): Promise<any[]> {
   return folio && folio.images;
 }
 export async function getCategoryList(): Promise<any[]> {
-  const folio = await fetchData<any[]>(` 
-		*[_type == 'portfolio']{
-			name,
-			'slug':slug.current,
+  const folio = await fetchData<any>(` 
+		*[_type == 'portfolio_text' && preset == 'active'][0]{
+			'order': order[] -> {
+				name,
+				'slug':slug.current,
+		}
 
 		}
 	`);
-  return folio;
+  return folio?.order ?? [];
 }
 export async function getPortfolioText(): Promise<any[]> {
   const folio = await fetchData<any[]>(` 
