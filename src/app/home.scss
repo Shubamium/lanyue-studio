@@ -711,7 +711,7 @@
         display: flex;
         // width: 100%;
         @media screen and (min-width: 550px) {
-          gap: 2em;
+          gap: 3em;
         }
         transform: translateX(-120%);
         overflow-x: visible;
@@ -720,7 +720,7 @@
         img,
         video {
           height: 100%;
-          width: 350px;
+          width: auto;
           &.landscape {
             width: 887.78px;
           }
