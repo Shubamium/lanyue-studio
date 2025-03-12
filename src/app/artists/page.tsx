@@ -350,6 +350,7 @@ function MemberDisplayer({
                 className="p-img"
                 autoPlay
                 muted
+                playsInline
                 onClick={() => {
                   showFs(true, getFileUrl(p) ?? undefined);
                 }}

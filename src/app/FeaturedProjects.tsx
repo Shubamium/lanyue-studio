@@ -43,7 +43,7 @@ export default function FeaturedProjects({ fps }: Props) {
     const itemAmount = fps.projects ? fps.projects.length : 3;
     // Move the xpos from 0 (not moving) to 1/3 (final position)
     let controls = animate(xpos, [0, finalPos], {
-      duration: small ? itemAmount * 1 : itemAmount * 3 * 1.5, // Change the speed based on the amount of item
+      duration: small ? itemAmount * 3 : itemAmount * 3 * 1.5, // Change the speed based on the amount of item
       repeat: Infinity,
       ease: "linear",
       repeatType: "loop",
@@ -174,6 +174,9 @@ export default function FeaturedProjects({ fps }: Props) {
                         autoPlay
                         controls
                         loop
+                        playsInline
+                        disablePictureInPicture
+                        // disableRemotePlayback
                       ></video>
                     );
                   }

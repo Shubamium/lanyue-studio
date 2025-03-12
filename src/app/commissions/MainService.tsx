@@ -92,6 +92,7 @@ export default function MainService({ ss }: Props) {
         className="smoke-bg ni"
         disablePictureInPicture
         disableRemotePlayback
+        playsInline
         loop
         muted
         autoPlay

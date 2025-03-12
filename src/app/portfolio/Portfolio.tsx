@@ -188,6 +188,7 @@ export default function Portfolio({}: Props) {
                           controls
                           autoPlay
                           loop
+                          playsInline
                           data-tip={row[0].artist}
                           muted
                           onClick={() => {
@@ -208,7 +209,7 @@ export default function Portfolio({}: Props) {
                             alt=""
                             data-tip={row[1].artist}
                             onClick={() => {
-                              setSelectedImage(row[0]);
+                              setSelectedImage(row[1]);
                             }}
                             className="main-pt"
                           />
@@ -218,11 +219,12 @@ export default function Portfolio({}: Props) {
                             className="main-pt"
                             controls
                             autoPlay
+                            playsInline
                             data-tip={row[1].artist}
                             loop
                             muted
                             onClick={() => {
-                              setSelectedImage(row[0]);
+                              setSelectedImage(row[1]);
                             }}
                           />
                         )}
@@ -314,6 +316,7 @@ export default function Portfolio({}: Props) {
                 src={getFileUrl(selectedImage.file) ?? undefined}
                 controls
                 autoPlay
+                playsInline
                 muted
                 className="main-pt"
               />
