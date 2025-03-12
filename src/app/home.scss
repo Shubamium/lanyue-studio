@@ -721,9 +721,9 @@
         video {
           height: 100%;
           width: auto;
-          &.landscape {
-            width: 887.78px;
-          }
+          // &.landscape {
+          //   width: 887.78px;
+          // }
           @media screen and (max-width: 550px) {
             width: 200px;
             height: 300px;
