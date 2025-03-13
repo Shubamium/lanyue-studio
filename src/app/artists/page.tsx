@@ -235,7 +235,15 @@ export default function Page({}: Props) {
         {activeSrc && (
           <div className="overlay">
             {activeSrc.isVid ? (
-              <video src={activeSrc.src} className="main-display" />
+              <video
+                src={activeSrc.src}
+                className="main-display"
+                autoPlay
+                muted
+                disablePictureInPicture
+                disableRemotePlayback
+                playsInline
+              />
             ) : (
               <img src={activeSrc.src} alt="" className="main-display" />
             )}
@@ -356,7 +364,8 @@ function MemberDisplayer({
                 }}
                 key={memberData.id + "pf" + index}
                 loop
-                controls
+                disablePictureInPicture
+                disableRemotePlayback
               ></video>
             );
           })}

@@ -6,6 +6,7 @@ import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Tooltip from "./Tooltip";
 import Chatbox from "./components/chatbox/Chatbox";
+import PreventRightClick from "./components/PreventRightClick";
 
 const osc_sb = localFont({
   src: "./fonts/OSCSemibold.ttf",
@@ -86,11 +87,13 @@ export default function RootLayout({
       <body
         className={`${open_sans.variable} ${osc_b.variable} ${osc_r.variable} ${osc_sb.variable}`}
       >
-        <Header />
-        <Chatbox />
-        {children}
-        <Tooltip />
-        <Footer />
+        <PreventRightClick>
+          <Header />
+          <Chatbox />
+          {children}
+          <Tooltip />
+          <Footer />
+        </PreventRightClick>
       </body>
     </html>
   );
