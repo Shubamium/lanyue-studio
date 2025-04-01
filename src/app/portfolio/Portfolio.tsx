@@ -8,7 +8,7 @@ import getPortfolio, {
   getPortfolioText,
 } from "../db/portfolio";
 import { getFileUrl, urlFor } from "../db/sanity";
-import { useIV } from "../util/useIV";
+import { animateStagger, useIV } from "../util/useIV";
 type Props = {};
 
 import { AnimatePresence, motion } from "motion/react";
@@ -61,9 +61,10 @@ export default function Portfolio({}: Props) {
     toRender.push(chopped.splice(0, 2));
   }
 
-  // const [scope, animate] = useIV(async () => {
-  //   // animate();
-  // });
+  const [scope, animate] = useIV(async () => {
+    // animate();
+    animateStagger(animate, stagger);
+  });
 
   const router = useRouter();
   return (
@@ -151,27 +152,27 @@ export default function Portfolio({}: Props) {
           {toRender &&
             toRender.map((row: any[], index) => {
               return (
-                <div
-                  // initial={{
-                  //   y: 200,
-                  //   opacity: 0,
-                  // }}
-                  // animate={{
-                  //   y: 0,
-                  //   opacity: 1,
-                  // }}
-                  // exit={{
-                  //   x: -500,
-                  //   opacity: 0,
-                  //   transition: {
-                  //     duration: 0.4,
-                  //   },
-                  // }}
-                  // transition={{
-                  //   delay: index * 0.5,
-                  //   duration: 1,
-                  //   ease: "easeInOut",
-                  // }}
+                <motion.div
+                  initial={{
+                    y: 200,
+                    opacity: 0,
+                  }}
+                  animate={{
+                    y: 0,
+                    opacity: 1,
+                  }}
+                  exit={{
+                    x: -500,
+                    opacity: 0,
+                    transition: {
+                      duration: 0.4,
+                    },
+                  }}
+                  transition={{
+                    delay: index * 0.5,
+                    duration: 1,
+                    ease: "easeInOut",
+                  }}
                   className="row"
                   key={"pfrow" + activeCat + index}
                 >
@@ -179,14 +180,17 @@ export default function Portfolio({}: Props) {
                     {row[0]._type === "imaged" ? (
                       <img
                         src={urlFor(row[0].image)
-                          ?.auto("format")
-                          .maxHeight(700)
+                          ?.format("webp")
+                          .crop("right")
                           .url()}
                         alt=""
                         data-tip={row[0].artist}
                         className="main-pt"
                         onClick={() => {
                           setSelectedImage(row[0]);
+                        }}
+                        style={{
+                          objectPosition: `0% ${row[0].y ?? 40}%`,
                         }}
                       />
                     ) : (
@@ -210,13 +214,16 @@ export default function Portfolio({}: Props) {
                       {row[1]._type === "imaged" ? (
                         <img
                           src={urlFor(row[1].image)
-                            ?.auto("format")
-                            .maxHeight(700)
+                            ?.format("webp")
+
                             .url()}
                           alt=""
                           data-tip={row[1].artist}
                           onClick={() => {
                             setSelectedImage(row[1]);
+                          }}
+                          style={{
+                            objectPosition: `0% ${row[1].y ?? 40}%`,
                           }}
                           className="main-pt"
                         />
@@ -237,7 +244,7 @@ export default function Portfolio({}: Props) {
                       )}
                     </div>
                   )}
-                </div>
+                </motion.div>
               );
             })}
           {/* </AnimatePresence>/ */}
@@ -284,8 +291,8 @@ export default function Portfolio({}: Props) {
             {selectedImage._type === "imaged" ? (
               <img
                 src={urlFor(selectedImage.image)
-                  ?.auto("format")
-                  .maxHeight(700)
+                  ?.format("webp")
+
                   .url()}
                 alt=""
                 className="main-pt"
