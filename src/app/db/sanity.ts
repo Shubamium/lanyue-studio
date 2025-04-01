@@ -24,7 +24,7 @@ export function getFileUrl(source: any) {
     const baseUrl = `https://cdn.sanity.io/files/o5vhscyp/production/${data[1]}.${data[2]}`;
     return baseUrl;
   }
-  return null;
+  return builder;
   // console.log(data);
 }
 

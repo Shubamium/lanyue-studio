@@ -13,9 +13,12 @@ import ParticleFog from "../commissions/ParticleFog";
 import { SendMail } from "../util/mail";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion";
-import { CgMail } from "react-icons/cg";
+import { CgEditMarkup, CgMail } from "react-icons/cg";
 import { PortableText } from "next-sanity";
 import { nt } from "../util/util";
+import { GrFormEdit } from "react-icons/gr";
+import { FaRegEdit } from "react-icons/fa";
+import { BiEdit } from "react-icons/bi";
 type Props = { c: any };
 
 export default function Contact({ c }: Props) {
@@ -100,14 +103,28 @@ export default function Contact({ c }: Props) {
           </div>
           <p className="alt-text stagger">{c.m}</p>
 
-          <Link
-            href={c.hb.path}
-            target={nt(c.hb.path)}
-            className="btn btn-main outline stagger"
-          >
-            {" "}
-            <FaArrowLeft /> {c.hb.text}
-          </Link>
+          <div className="otherl">
+            <Link
+              href={c.hb.path}
+              target={nt(c.hb.path)}
+              className="btn btn-main outline stagger"
+            >
+              {" "}
+              <FaArrowLeft />
+              <span>{c.hb.text}</span>
+            </Link>
+            <Link
+              href={"https://forms.gle/EN2dPBykT8kWQ1Lk9"}
+              target={"_blank"}
+              className="btn btn-main outline stagger"
+              style={{
+                marginTop: "1em",
+              }}
+            >
+              <BiEdit />
+              <span>ARTIST APPLICATION FORM</span>
+            </Link>
+          </div>
         </article>
         <form
           className="message-form"

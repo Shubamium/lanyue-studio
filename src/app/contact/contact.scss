@@ -140,11 +140,33 @@
         margin: 1em 0;
       }
 
+      .otherl {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+      }
       .btn-main {
         font-family: var(--fontsb);
-        display: flex;
+        // display: block;
         align-items: center;
+        width: 100%;
+        display: flex;
         gap: 1em;
+        justify-content: flex-start;
+        padding-right: 0;
+        // display: grid;
+        // grid-template-columns: 1fr 1fr;
+        white-space: initial;
+        max-width: none;
+        svg {
+          // margin-right: 1em;
+        }
+      }
+
+      .not-authorized-dialog {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
       }
     }
     .message-form {

@@ -208,6 +208,7 @@
       background: var(--black) url("/bg/paper_dark.png");
       background-repeat: no-repeat;
       background-blend-mode: multiply;
+      background-size: cover;
       min-height: 500px;
       display: grid;
       grid-template-columns: 1fr 1100px 1fr;

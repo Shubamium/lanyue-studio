@@ -226,3 +226,24 @@ body {
 .stagger {
   opacity: 0;
 }
+
+.btn-over {
+  position: fixed;
+  bottom: 0%;
+
+  background: #283f58;
+  color: white;
+  padding: 1em;
+  z-index: 100;
+  outline: 2px solid #283f58;
+  outline-offset: 3px;
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  font-size: 1rem;
+  padding: 0.25em 1em;
+  &:hover {
+    outline-offset: 10px;
+  }
+  // filter: drop-shadow(2px -4px 2px #00000099);
+}

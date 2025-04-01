@@ -7,7 +7,7 @@ import { FaPaintbrush, FaXTwitter } from "react-icons/fa6";
 import getMember, { getCategory, getText } from "../db/artist";
 import { GoBrowser } from "react-icons/go";
 import { getFileUrl, urlFor } from "../db/sanity";
-import { FaInternetExplorer } from "react-icons/fa";
+import { FaExternalLinkAlt, FaInternetExplorer } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion";
@@ -103,6 +103,13 @@ export default function Page({}: Props) {
 
   return (
     <main id="page_artists">
+      <a
+        href=" https://forms.gle/EN2dPBykT8kWQ1Lk9"
+        target="_blank"
+        className="btn btn-over"
+      >
+        ARTIST APPLICATION FORM <FaExternalLinkAlt />
+      </a>
       <section id="artist-heading" ref={scope}>
         <img src="/de/framethick.svg" alt="" className="border l " />
         <img src="/de/framethick.svg" alt="" className="border r" />

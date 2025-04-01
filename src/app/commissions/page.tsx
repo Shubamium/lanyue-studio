@@ -1,6 +1,6 @@
 import React from "react";
 import "./commissions.scss";
-import { FaArrowRight, FaMask } from "react-icons/fa6";
+import { FaArrowRight, FaLink, FaMask } from "react-icons/fa6";
 import Link from "next/link";
 import { fetchData, urlFor } from "../db/sanity";
 import PriceList from "./PriceList";
@@ -9,6 +9,7 @@ import ListPricing from "./ListPricing";
 import Timeline from "./Timeline";
 import Script from "next/script";
 import { PortableText } from "next-sanity";
+import { FaExternalLinkAlt } from "react-icons/fa";
 type Props = {};
 
 export default async function Commissions({}: Props) {
@@ -40,6 +41,13 @@ export default async function Commissions({}: Props) {
         src="https://unpkg.com/external-svg-loader@latest/svg-loader.min.js"
         async
       />
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSdDtjtKC3XnxCZvdV7Vk9bWxarPQXDt_aanWLQA0uCLU2Yivg/viewform"
+        target="_blank"
+        className="btn btn-over"
+      >
+        COMMISSIONS FORM <FaExternalLinkAlt />
+      </a>
       {/* <script></script> */}
       <MainService ss={comText.service} />
       <section id="price-lists">
