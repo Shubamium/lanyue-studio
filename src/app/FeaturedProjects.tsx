@@ -148,7 +148,7 @@ export default function FeaturedProjects({ fps }: Props) {
             {fps.projects &&
               [...fps.projects, ...fps.projects, ...fps.projects].map(
                 (p: any, index: number) => {
-                  console.log(p._type);
+                  // console.log(p._type);
                   if (p._type === "images") {
                     return (
                       <img

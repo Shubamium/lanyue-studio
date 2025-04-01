@@ -83,13 +83,13 @@ export default function RootLayout({
       <body
         className={`${open_sans.variable} ${osc_b.variable} ${osc_r.variable} ${osc_sb.variable}`}
       >
-        {/* <PreventRightClick> */}
-        <Header />
-        <Chatbox />
-        {children}
-        <Tooltip />
-        <Footer />
-        {/* </PreventRightClick> */}
+        <PreventRightClick>
+          <Header />
+          <Chatbox />
+          {children}
+          <Tooltip />
+          <Footer />
+        </PreventRightClick>
       </body>
     </html>
   );

@@ -51,8 +51,10 @@ export default function ListPricing({ p }: Props) {
             </div>
           </div>
           {p.categories &&
-            p.categories.map((p: any) => {
-              return <PriceList name="plist" info={p} />;
+            p.categories.map((p: any, index: number) => {
+              return (
+                <PriceList name="plist" info={p} key={"price-list" + index} />
+              );
             })}
         </div>
 

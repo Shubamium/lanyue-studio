@@ -90,15 +90,15 @@ export default function Portfolio({}: Props) {
               href={"/"}
               className="btn back-btn"
               onClick={(e) => {
-                e.preventDefault();
-                const refer = document.referrer;
-                const baseUrl = window.location.origin;
-                console.warn(baseUrl, refer);
-                if (refer.startsWith(baseUrl)) {
-                  router.push("/");
-                } else {
-                  router.back();
-                }
+                // e.preventDefault();
+                // const refer = document.referrer;
+                // const baseUrl = window.location.origin;
+                // console.warn(baseUrl, refer);
+                // if (refer.startsWith(baseUrl)) {
+                //   router.push("/");
+                // } else {
+                //   router.back();
+                // }
               }}
             >
               <FaArrowLeftLong /> BACK
