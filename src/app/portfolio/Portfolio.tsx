@@ -148,106 +148,107 @@ export default function Portfolio({}: Props) {
       </aside>
       <div className="portfolio-items">
         <div className="lists" ref={sliderRef}>
-          {/* <AnimatePresence> */}
-          {toRender &&
-            toRender.map((row: any[], index) => {
-              return (
-                <motion.div
-                  initial={{
-                    y: 200,
-                    opacity: 0,
-                  }}
-                  animate={{
-                    y: 0,
-                    opacity: 1,
-                  }}
-                  exit={{
-                    x: -500,
-                    opacity: 0,
-                    transition: {
-                      duration: 0.4,
-                    },
-                  }}
-                  transition={{
-                    delay: index * 0.5,
-                    duration: 1,
-                    ease: "easeInOut",
-                  }}
-                  className="row"
-                  key={"pfrow" + activeCat + index}
-                >
-                  <div className="pitems inner-shadow-l">
-                    {row[0]._type === "imaged" ? (
-                      <img
-                        src={urlFor(row[0].image)
-                          ?.format("webp")
-                          .crop("right")
-                          .url()}
-                        alt=""
-                        data-tip={row[0].artist}
-                        className="main-pt"
-                        onClick={() => {
-                          setSelectedImage(row[0]);
-                        }}
-                        style={{
-                          objectPosition: `0% ${row[0].y ?? 40}%`,
-                        }}
-                      />
-                    ) : (
-                      <video
-                        src={getFileUrl(row[0].file) ?? undefined}
-                        controls
-                        autoPlay
-                        loop
-                        playsInline
-                        data-tip={row[0].artist}
-                        muted
-                        onClick={() => {
-                          setSelectedImage(row[0]);
-                        }}
-                        className="main-pt"
-                      />
-                    )}
-                  </div>
-                  {row[1] && (
+          <AnimatePresence mode="wait">
+            {toRender &&
+              toRender.map((row: any[], index) => {
+                return (
+                  <motion.div
+                    initial={{
+                      y: 200,
+                      opacity: 0,
+                    }}
+                    animate={{
+                      y: 0,
+                      opacity: 1,
+                    }}
+                    exit={{
+                      x: -500,
+                      opacity: 0,
+                      transition: {
+                        duration: 0.4,
+                      },
+                    }}
+                    transition={{
+                      delay: index * 0.5,
+                      duration: 1,
+                      ease: "easeInOut",
+                    }}
+                    className="row"
+                    key={"pfrow" + activeCat + index}
+                  >
                     <div className="pitems inner-shadow-l">
-                      {row[1]._type === "imaged" ? (
+                      {row[0]._type === "imaged" ? (
                         <img
-                          src={urlFor(row[1].image)
+                          src={urlFor(row[0].image)
                             ?.format("webp")
-
+                            .crop("right")
                             .url()}
                           alt=""
-                          data-tip={row[1].artist}
+                          data-tip={row[0].artist}
+                          className="main-pt"
                           onClick={() => {
-                            setSelectedImage(row[1]);
+                            setSelectedImage(row[0]);
                           }}
                           style={{
-                            objectPosition: `0% ${row[1].y ?? 40}%`,
+                            objectPosition: `0% ${row[0].y ?? 40}%`,
                           }}
-                          className="main-pt"
                         />
                       ) : (
                         <video
-                          src={getFileUrl(row[1].file) ?? undefined}
-                          className="main-pt"
+                          src={getFileUrl(row[0].file) ?? undefined}
                           controls
                           autoPlay
-                          playsInline
-                          data-tip={row[1].artist}
                           loop
+                          playsInline
+                          data-tip={row[0].artist}
                           muted
                           onClick={() => {
-                            setSelectedImage(row[1]);
+                            setSelectedImage(row[0]);
                           }}
+                          className="main-pt"
                         />
                       )}
                     </div>
-                  )}
-                </motion.div>
-              );
-            })}
-          {/* </AnimatePresence>/ */}
+                    {row[1] && (
+                      <div className="pitems inner-shadow-l">
+                        {row[1]._type === "imaged" ? (
+                          <img
+                            src={urlFor(row[1].image)
+                              ?.format("webp")
+
+                              .url()}
+                            alt=""
+                            data-tip={row[1].artist}
+                            onClick={() => {
+                              setSelectedImage(row[1]);
+                            }}
+                            style={{
+                              objectPosition: `0% ${row[1].y ?? 40}%`,
+                            }}
+                            className="main-pt"
+                          />
+                        ) : (
+                          <video
+                            src={getFileUrl(row[1].file) ?? undefined}
+                            className="main-pt"
+                            controls
+                            autoPlay
+                            playsInline
+                            data-tip={row[1].artist}
+                            loop
+                            muted
+                            onClick={() => {
+                              setSelectedImage(row[1]);
+                            }}
+                          />
+                        )}
+                      </div>
+                    )}
+                  </motion.div>
+                );
+              })}
+          </AnimatePresence>
+          /
         </div>
       </div>
       <div className="controls">
