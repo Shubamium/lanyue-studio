@@ -18,6 +18,15 @@ type Props = { ss: any };
 export default function MainService({ ss }: Props) {
   const [scope, animate] = useIV(async () => {
     await animate(
+      scope.current,
+      {
+        opacity: 0,
+      },
+      {
+        duration: 0,
+      }
+    );
+    await animate(
       ".header",
       {
         x: -100,
@@ -46,6 +55,15 @@ export default function MainService({ ss }: Props) {
       },
       {
         duration: 0,
+      }
+    );
+    await animate(
+      scope.current,
+      {
+        opacity: 1,
+      },
+      {
+        duration: 0.1,
       }
     );
     await animate(
@@ -86,7 +104,7 @@ export default function MainService({ ss }: Props) {
     );
   });
   return (
-    <section id="main-service" ref={scope}>
+    <section id="main-service" ref={scope} style={{ opacity: 0 }}>
       <video
         src="/v/fog.webm"
         className="smoke-bg ni"

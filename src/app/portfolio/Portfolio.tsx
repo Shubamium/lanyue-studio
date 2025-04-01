@@ -14,6 +14,7 @@ type Props = {};
 import { AnimatePresence, motion } from "motion/react";
 import { stagger } from "motion";
 import { PortableText } from "next-sanity";
+
 export default function Portfolio({}: Props) {
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const params = useSearchParams();
@@ -90,7 +91,14 @@ export default function Portfolio({}: Props) {
               className="btn back-btn"
               onClick={(e) => {
                 e.preventDefault();
-                router.back();
+                const refer = document.referrer;
+                const baseUrl = window.location.origin;
+                console.warn(baseUrl, refer);
+                if (refer.startsWith(baseUrl)) {
+                  router.push("/");
+                } else {
+                  router.back();
+                }
               }}
             >
               <FaArrowLeftLong /> BACK
@@ -139,129 +147,100 @@ export default function Portfolio({}: Props) {
       </aside>
       <div className="portfolio-items">
         <div className="lists" ref={sliderRef}>
-          <AnimatePresence mode="wait">
-            {toRender &&
-              toRender.map((row: any[], index) => {
-                console.log(row);
-                return (
-                  <motion.div
-                    initial={{
-                      y: 200,
-                      opacity: 0,
-                    }}
-                    animate={{
-                      y: 0,
-                      opacity: 1,
-                    }}
-                    exit={{
-                      x: -500,
-                      opacity: 0,
-                      transition: {
-                        duration: 0.4,
-                      },
-                    }}
-                    transition={{
-                      delay: index * 0.5,
-                      duration: 1,
-                      ease: "easeInOut",
-                    }}
-                    className="row"
-                    key={"pfrow" + activeCat + index}
-                  >
+          {/* <AnimatePresence> */}
+          {toRender &&
+            toRender.map((row: any[], index) => {
+              return (
+                <div
+                  // initial={{
+                  //   y: 200,
+                  //   opacity: 0,
+                  // }}
+                  // animate={{
+                  //   y: 0,
+                  //   opacity: 1,
+                  // }}
+                  // exit={{
+                  //   x: -500,
+                  //   opacity: 0,
+                  //   transition: {
+                  //     duration: 0.4,
+                  //   },
+                  // }}
+                  // transition={{
+                  //   delay: index * 0.5,
+                  //   duration: 1,
+                  //   ease: "easeInOut",
+                  // }}
+                  className="row"
+                  key={"pfrow" + activeCat + index}
+                >
+                  <div className="pitems inner-shadow-l">
+                    {row[0]._type === "imaged" ? (
+                      <img
+                        src={urlFor(row[0].image)
+                          ?.auto("format")
+                          .maxHeight(700)
+                          .url()}
+                        alt=""
+                        data-tip={row[0].artist}
+                        className="main-pt"
+                        onClick={() => {
+                          setSelectedImage(row[0]);
+                        }}
+                      />
+                    ) : (
+                      <video
+                        src={getFileUrl(row[0].file) ?? undefined}
+                        controls
+                        autoPlay
+                        loop
+                        playsInline
+                        data-tip={row[0].artist}
+                        muted
+                        onClick={() => {
+                          setSelectedImage(row[0]);
+                        }}
+                        className="main-pt"
+                      />
+                    )}
+                  </div>
+                  {row[1] && (
                     <div className="pitems inner-shadow-l">
-                      {row[0]._type === "imaged" ? (
+                      {row[1]._type === "imaged" ? (
                         <img
-                          src={urlFor(row[0].image)
+                          src={urlFor(row[1].image)
                             ?.auto("format")
                             .maxHeight(700)
                             .url()}
                           alt=""
-                          data-tip={row[0].artist}
-                          className="main-pt"
+                          data-tip={row[1].artist}
                           onClick={() => {
-                            setSelectedImage(row[0]);
+                            setSelectedImage(row[1]);
                           }}
+                          className="main-pt"
                         />
                       ) : (
                         <video
-                          src={getFileUrl(row[0].file) ?? undefined}
+                          src={getFileUrl(row[1].file) ?? undefined}
+                          className="main-pt"
                           controls
                           autoPlay
-                          loop
                           playsInline
-                          data-tip={row[0].artist}
+                          data-tip={row[1].artist}
+                          loop
                           muted
                           onClick={() => {
-                            setSelectedImage(row[0]);
+                            setSelectedImage(row[1]);
                           }}
-                          className="main-pt"
                         />
                       )}
                     </div>
-                    {row[1] && (
-                      <div className="pitems inner-shadow-l">
-                        {row[1]._type === "imaged" ? (
-                          <img
-                            src={urlFor(row[1].image)
-                              ?.auto("format")
-                              .maxHeight(700)
-                              .url()}
-                            alt=""
-                            data-tip={row[1].artist}
-                            onClick={() => {
-                              setSelectedImage(row[1]);
-                            }}
-                            className="main-pt"
-                          />
-                        ) : (
-                          <video
-                            src={getFileUrl(row[1].file) ?? undefined}
-                            className="main-pt"
-                            controls
-                            autoPlay
-                            playsInline
-                            data-tip={row[1].artist}
-                            loop
-                            muted
-                            onClick={() => {
-                              setSelectedImage(row[1]);
-                            }}
-                          />
-                        )}
-                      </div>
-                    )}
-                  </motion.div>
-                );
-              })}
-          </AnimatePresence>
-          {/* <div className="row">
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-
-          <div className="row">
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-            <div className="pitems inner-shadow-l">
-              <img src="/gfx/placeholder.png" alt="" className="main-pt" />
-            </div>
-          </div> */}
-          {/* <div className="row">
-					<div className="pitems inner-shadow-l">
-						<img src="/gfx/placeholder.png" alt="" className="main-pt" />
-					</div>
-					<div className="pitems inner-shadow-l">
-						<img src="/gfx/placeholder.png" alt="" className="main-pt" />
-					</div>
-				</div>
-				<div className="row">
-					<div className="pitems inner-shadow-l">
-						<img src="/gfx/placeholder.png" alt="" className="main-pt" />
-					</div>
-					<div className="pitems inner-shadow-l">
-						<img src="/gfx/placeholder.png" alt="" className="main-pt" />
-					</div>
-				</div> */}
+                  )}
+                </div>
+              );
+            })}
+          {/* </AnimatePresence>/ */}
         </div>
       </div>
       <div className="controls">

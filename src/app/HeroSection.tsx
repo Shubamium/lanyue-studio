@@ -7,8 +7,9 @@ import Link from "next/link";
 import { PortableText } from "next-sanity";
 import { urlFor } from "./db/sanity";
 type Props = { hs: any };
+import React from "react";
 
-export default function HeroSection({ hs }: Props) {
+export function HeroSection({ hs }: Props) {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -148,3 +149,5 @@ export default function HeroSection({ hs }: Props) {
     </section>
   );
 }
+
+export default React.memo(HeroSection);

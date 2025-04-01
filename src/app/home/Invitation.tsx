@@ -10,7 +10,7 @@ import { nt } from "../util/util";
 
 type Props = { is: any };
 
-export default function Invitation({ is }: Props) {
+export function Invitation({ is }: Props) {
   const [scope, animate] = useAnimate();
   const iv = useInView(scope);
 
@@ -123,3 +123,5 @@ export default function Invitation({ is }: Props) {
     </section>
   );
 }
+
+export default React.memo(Invitation);

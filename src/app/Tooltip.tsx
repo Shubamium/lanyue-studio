@@ -5,7 +5,7 @@ import { useMotionValue, motion, useSpring } from "motion/react";
 import { FaPaintbrush } from "react-icons/fa6";
 type Props = {};
 
-export default function Tooltip({}: Props) {
+export function Tooltip({}: Props) {
   const xmouse = useMotionValue(0);
   const ymouse = useMotionValue(0);
 
@@ -60,3 +60,5 @@ export default function Tooltip({}: Props) {
     </motion.div>
   );
 }
+
+export default React.memo(Tooltip);

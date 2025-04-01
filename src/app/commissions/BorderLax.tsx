@@ -26,11 +26,11 @@ export default function BorderLax({}: Props) {
       <motion.img
         src="/de/frameborder-long.svg"
         alt=""
-        style={{ x: xSpring }}
+        style={{ x: xSpring, willChange: "transform" }}
         className="border l"
       />
       <motion.img
-        style={{ x: xlSpring }}
+        style={{ x: xlSpring, willChange: "transform" }}
         src="/de/frameborder-long.svg"
         alt=""
         className="border r"

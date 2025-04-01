@@ -10,6 +10,7 @@
   font-size: 1rem;
   padding: 0.5em 1em;
   border-radius: 1em 0 1em 0;
+  will-change: transform;
   p {
     color: var(--gold);
     display: flex;
