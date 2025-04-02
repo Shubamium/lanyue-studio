@@ -103,6 +103,7 @@ export default function MainService({ ss }: Props) {
       }
     );
   });
+  console.log(ss.cat);
   return (
     <section id="main-service" ref={scope} style={{ opacity: 0 }}>
       <video
@@ -218,6 +219,7 @@ function CategoryList({ cat }: { cat: any }) {
                   <></>
                 )
               }
+              slug={c.slug}
               description={c.p}
               name={c.title}
               list={c.subcat}
@@ -243,13 +245,19 @@ type CatProps = {
   name: string;
   description?: any;
   list?: string[];
+  slug: any;
 };
-function Categories({ icon, description, name, list }: CatProps) {
+function Categories({ icon, description, name, list, slug }: CatProps) {
   return (
     <div className="category stagger">
-      <div className="icon">{icon}</div>
+      {/* <div className="icon">{icon}</div> */}
 
-      <h2 className="h">{name}</h2>
+      <Link
+        href={"/commissions/prices" + (slug ? `#${slug.current}` : "")}
+        className="btn btn-main btn-go h"
+      >
+        {name}
+      </Link>
       {/* <p>
         Lan'Yue Studio is inspired by the rare and unique blue moon. Our goal is
         to curate the one-of-a-kind beauty you deserve for any project you can

@@ -44,7 +44,7 @@ export default function ListPricing({ p }: Props) {
       <div className="confine">
         {/* Content */}
         <div className="details">
-          <div className="confine price-heading">
+          <div className="confine price-heading" id={p.slug}>
             <h2 className="h stagger">{p.name}</h2>
             <div className="p stagger">
               <PortableText value={p.description} />
@@ -76,9 +76,9 @@ export default function ListPricing({ p }: Props) {
           </div>
 
           <div className="action">
-            {p.slug && (
+            {p.nslug && (
               <Link
-                href={`/portfolio?c=${p.slug}`}
+                href={`/portfolio?c=${p.nslug}`}
                 className="btn btn-examples"
               >
                 <span>
