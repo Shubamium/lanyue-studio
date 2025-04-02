@@ -63,12 +63,20 @@ export default function Header() {
           >
             Home
           </Link>
-          <Link
-            href={"/commissions"}
-            className={`btn-headernav btn ${false ? "active" : ""}`}
+          <div
+            // href={"/commissions"}
+            className={`btn-headernav btn ${false ? "active" : ""} hasdrop`}
           >
             Commissions
-          </Link>
+            <div className="drop-down">
+              <Link href={"/commissions"} className="btn btn-drop">
+                Services
+              </Link>
+              <Link href={"/commissions/prices"} className="btn btn-drop">
+                Prices
+              </Link>
+            </div>
+          </div>
           <Link
             href={"/artists"}
             className={`btn-headernav btn ${false ? "active" : ""}`}
@@ -121,7 +129,13 @@ export default function Header() {
           href={"/commissions"}
           className={`btn-headernav btn ${false ? "active" : ""}`}
         >
-          Commissions
+          Services
+        </Link>
+        <Link
+          href={"/commissions/prices"}
+          className={`btn-headernav btn ${false ? "active" : ""}`}
+        >
+          Prices
         </Link>
         <Link
           href={"/artists"}
