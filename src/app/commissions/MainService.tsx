@@ -210,7 +210,7 @@ function CategoryList({ cat }: { cat: any }) {
   return (
     <div className="confine categories" ref={scope}>
       {cat &&
-        [...cat, ...cat].map((c: any) => {
+        cat.map((c: any) => {
           return (
             <Categories
               art={c.art}
