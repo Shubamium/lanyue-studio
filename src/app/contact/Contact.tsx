@@ -54,7 +54,11 @@ export default function Contact({ c }: Props) {
         <img src="/de/header-cloud.png" alt="" className="de-cloud" />
         <article>
           <div className="heading">
-            <img src="/de/white-moon.png" alt="" className="de-moon stagger" />
+            <img
+              src="/de/white-moon.png"
+              alt=""
+              className="de-moon stagger hovering"
+            />
             <p className="sh stagger">{c.sh}</p>
             <h2 className="h stagger">{c.h}</h2>
           </div>

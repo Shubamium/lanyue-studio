@@ -66,13 +66,12 @@ export default function Portfolio({}: Props) {
   }
 
   const [scope, animate] = useIV(async () => {
-    // animate();
     animateStagger(animate, stagger);
   });
 
   const router = useRouter();
   return (
-    <section id="portfolio-display">
+    <section id="portfolio-display" ref={scope}>
       <aside
         id="sidebar"
         className={`${sidebar ? "show" : "closed"} `}
@@ -80,20 +79,24 @@ export default function Portfolio({}: Props) {
           setSidebar(!sidebar);
         }}
       >
-        <button className="btn close-btn">
+        <button className="btn close-btn stagger">
           <FaArrowRight className="open" />
           <FaArrowLeft className="close" />
         </button>
         <img src="/de/frame-edge.png" alt="" className="frame-edge ni" />
-        <img src="/de/corner-cloud.png" alt="" className="cloud-edge ni" />
+        <img src="/de/corner-cloud.png" alt="" className="cloud-edge ni " />
         <div className="corner-top"></div>
         <div className="top">
-          <img src="/de/folio-moon.png" alt="" className="de-moon ni" />
+          <img
+            src="/de/folio-moon.png"
+            alt=""
+            className="de-moon ni hovering  stagger"
+          />
           <div className="side-action">
-            <img src="/gfx/logo-glow.png" alt="" className="logo ni" />
+            <img src="/gfx/logo-glow.png" alt="" className="logo ni stagger" />
             <Link
               href={"/"}
-              className="btn back-btn"
+              className="btn back-btn stagger"
               onClick={(e) => {
                 // e.preventDefault();
                 // const refer = document.referrer;
@@ -109,7 +112,7 @@ export default function Portfolio({}: Props) {
               <FaArrowLeftLong /> BACK
             </Link>
           </div>
-          <div className="heading">
+          <div className="heading stagger">
             <p className="sh">{t?.sh}</p>
             <h2 className="h">{t?.h}</h2>
             <div className="p">
@@ -117,12 +120,12 @@ export default function Portfolio({}: Props) {
             </div>
           </div>
         </div>
-        <div className="categories">
+        <div className="categories stagger">
           {category &&
             category.map((cat) => {
               return (
                 <button
-                  className={`btn btn-cat ${activeCat === cat.slug ? "selected" : ""}`}
+                  className={`btn btn-cat ${activeCat === cat.slug ? "selected" : ""} `}
                   onClick={() => {
                     setActiveCat(cat.slug);
                   }}

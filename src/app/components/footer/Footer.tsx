@@ -37,7 +37,11 @@ export default async function Footer({}: Props) {
         <div className="center">
           <img src="/gfx/logo-colored.png" alt="" className="logo" />
           <img src="/gfx/footer-logo-text.png" alt="" className="logo-text" />
-          <img src="/de/stroke-moon.png" alt="" className="stroke-moon" />
+          <img
+            src="/de/stroke-moon.png"
+            alt=""
+            className="stroke-moon hovering"
+          />
           <p className="attribution">
             @2024 Lan’Yue Studio All rights Reserved
           </p>

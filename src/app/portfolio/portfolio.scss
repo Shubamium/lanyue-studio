@@ -79,6 +79,7 @@
         object-fit: contain;
         object-position: bottom;
         z-index: -1;
+
         @media screen and (max-width: 420px) {
           bottom: -10%;
         }

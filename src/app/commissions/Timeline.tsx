@@ -54,8 +54,8 @@ export default function Timeline({ t }: Props) {
   return (
     <section id="timeline" ref={scope}>
       <div id="timeline-heading">
-        <img src="/de/header-cloud.png" alt="" className="cloud l" />
-        <img src="/de/header-cloud.png" alt="" className="cloud r" />
+        <img src="/de/header-cloud.png" alt="" className="cloud l hovering" />
+        <img src="/de/header-cloud.png" alt="" className="cloud r hovering" />
         <div className="confine">
           <figure className="">
             <img src="/de/blue-splat1.png" alt="" className="splat " />
@@ -67,7 +67,11 @@ export default function Timeline({ t }: Props) {
           </figure>
 
           <article>
-            <img src="/de/white-moon.png" alt="" className="de-moon stagger" />
+            <img
+              src="/de/white-moon.png"
+              alt=""
+              className="de-moon stagger hovering"
+            />
             <p className="sh stagger">{t.sh}</p>
             <h2 className="h stagger">{t.h}</h2>
             <div className="p stagger">
