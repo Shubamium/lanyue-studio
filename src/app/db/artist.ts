@@ -51,3 +51,11 @@ export async function getFormLink(): Promise<any> {
     cf: gd.cf,
   };
 }
+
+export async function getMemberType(): Promise<any> {
+  const at = await fetchData<any>(
+    `*[_type == 'artist_type']{
+		...}`
+  );
+  return at;
+}

@@ -5,12 +5,14 @@ import Link from "next/link";
 import { BiMenu } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import { stagger, useAnimate } from "motion/react";
+import { getMemberType } from "@/app/db/artist";
 
 export default function Header() {
   const [visible, setVisible] = useState(false);
 
   const [scope, animate] = useAnimate();
 
+  const [memberType, setMemberType] = useState<any>(null);
   const animateShow = async () => {
     await animate(
       ".btn-headernav",
@@ -36,6 +38,13 @@ export default function Header() {
       animateHidden();
     }
   }, [visible]);
+
+  useEffect(() => {
+    const loadMemberType = async () => {
+      setMemberType(await getMemberType());
+    };
+    loadMemberType();
+  }, []);
   return (
     <>
       <header id="header">
@@ -68,20 +77,34 @@ export default function Header() {
             className={`btn btn-headernav  ${false ? "active" : ""} hasdrop`}
           >
             Commissions
-            <div className="drop-down">
+            <span className="drop-down">
               <Link href={"/commissions"} className="btn btn-drop">
                 Info
               </Link>
               <Link href={"/commissions/prices"} className="btn btn-drop">
                 Prices
               </Link>
-            </div>
+            </span>
           </Link>
           <Link
             href={"/artists"}
-            className={`btn-headernav btn ${false ? "active" : ""}`}
+            className={`btn-headernav btn ${false ? "active" : ""} hasdrop`}
           >
             Artists
+            <span className="drop-down">
+              {memberType &&
+                memberType.map((mt: any, i: number) => {
+                  return (
+                    <Link
+                      href={"/artists?t=" + mt.slug.current}
+                      key={"dropdown-mt-artst" + i}
+                      className="btn btn-drop"
+                    >
+                      {mt.title}
+                    </Link>
+                  );
+                })}
+            </span>
           </Link>
           <Link
             href={"/portfolio"}

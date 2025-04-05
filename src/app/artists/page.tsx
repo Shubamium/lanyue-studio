@@ -2,7 +2,6 @@
 import React, { Suspense, useEffect, useState } from "react";
 import "./artists.scss";
 import ArtistList from "./ArtistList";
-type Props = {};
 import { FaPaintbrush, FaXTwitter } from "react-icons/fa6";
 import getMember, { getAf, getCategory, getText } from "../db/artist";
 import { GoBrowser } from "react-icons/go";
@@ -14,9 +13,14 @@ import { stagger } from "motion";
 import { PortableText } from "next-sanity";
 import { video } from "motion/react-client";
 import { AnimatePresence, motion } from "motion/react";
+import { useSearchParams } from "next/navigation";
 
+type Props = {};
 export default function Page({}: Props) {
   const [cat, setCat] = useState<any[]>([]);
+
+  const sp = useSearchParams();
+  const initCat = sp.get("t");
   const [activeCat, setActiveCat] = useState<null | string>(null);
   const [members, setMembers] = useState<any[]>([]);
   const [text, setText] = useState<any>([]);
@@ -30,7 +34,7 @@ export default function Page({}: Props) {
       setText(text);
       const category = await getCategory();
       setCat(category);
-      setActiveCat(category[0].slug ?? null);
+      setActiveCat(initCat || category[0].slug);
       console.log(category);
     };
     loadData();
@@ -48,6 +52,9 @@ export default function Page({}: Props) {
     loadData();
   }, [activeCat]);
 
+  useEffect(() => {
+    setActiveCat(sp.get("t"));
+  }, [sp]);
   const [scope, animate] = useIV(async () => {
     setTimeout(() => {
       animate([

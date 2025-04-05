@@ -75,10 +75,10 @@ export default async function Footer({}: Props) {
               HOME
             </Link>
             <Link href={"/commissions"} className="btn btn-navfot">
-              COMMISSIONS - Info
+              COMMISSIONS
             </Link>
             <Link href={"/commissions/prices"} className="btn btn-navfot">
-              COMMISSIONS - Prices
+              PRICES
             </Link>
             <Link href={"/artists"} className="btn btn-navfot">
               ARTISTS

@@ -72,8 +72,9 @@ body {
   // touch-action: pan-y;
 }
 main {
-  overflow-x: clip;
   position: relative;
+  overflow-x: clip;
+  min-height: 100vh;
   // max-width: 100vw;
 }
 

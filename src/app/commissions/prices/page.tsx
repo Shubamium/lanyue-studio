@@ -37,9 +37,24 @@ export default async function Prices({}: Props) {
   const pinned = comText.pinned_pricing;
   const plist = comText.pricing_list;
   const t = comText.Prices;
+
+  const buttons = [pinned, ...plist];
   return (
-    <main id={"page_price"}>
+    <main id="page_price">
       <PriceHeading t={t} />
+      <div className="price-nav">
+        {buttons.map((b, i) => {
+          return (
+            <a
+              href={"#" + b.slug}
+              key={b.slug + i}
+              className="btn btn-main outline btn-pricenav"
+            >
+              {b.name.toUpperCase()}
+            </a>
+          );
+        })}
+      </div>
       <section id="price-lists">
         <a href={gd.cf} target="_blank" className="btn btn-over alt">
           COMMISSIONS FORM <FaExternalLinkAlt />
