@@ -4,15 +4,16 @@ import "./artists.scss";
 import ArtistList from "./ArtistList";
 type Props = {};
 import { FaPaintbrush, FaXTwitter } from "react-icons/fa6";
-import getMember, { getCategory, getText } from "../db/artist";
+import getMember, { getAf, getCategory, getText } from "../db/artist";
 import { GoBrowser } from "react-icons/go";
-import { getFileUrl, urlFor } from "../db/sanity";
+import { fetchData, getFileUrl, urlFor } from "../db/sanity";
 import { FaExternalLinkAlt, FaInternetExplorer } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion";
 import { PortableText } from "next-sanity";
 import { video } from "motion/react-client";
+import { AnimatePresence, motion } from "motion/react";
 
 export default function Page({}: Props) {
   const [cat, setCat] = useState<any[]>([]);
@@ -21,8 +22,10 @@ export default function Page({}: Props) {
   const [text, setText] = useState<any>([]);
   const [load, setLoad] = useState(false);
 
+  const [af, setAf] = useState("");
   useEffect(() => {
     const loadData = async () => {
+      setAf(await getAf());
       const text = await getText();
       setText(text);
       const category = await getCategory();
@@ -34,6 +37,7 @@ export default function Page({}: Props) {
   }, []);
 
   useEffect(() => {
+    setMembers([]);
     const loadData = async () => {
       console.log(activeCat);
       if (activeCat) {
@@ -103,13 +107,11 @@ export default function Page({}: Props) {
 
   return (
     <main id="page_artists">
-      <a
-        href=" https://forms.gle/EN2dPBykT8kWQ1Lk9"
-        target="_blank"
-        className="btn btn-over"
-      >
-        ARTIST APPLICATION FORM <FaExternalLinkAlt />
-      </a>
+      {af !== "" && (
+        <a href={af} target="_blank" className="btn btn-over">
+          ARTIST APPLICATION FORM <FaExternalLinkAlt />
+        </a>
+      )}
       <section id="artist-heading" ref={scope}>
         <img src="/de/framethick.svg" alt="" className="border l " />
         <img src="/de/framethick.svg" alt="" className="border r" />
@@ -178,17 +180,19 @@ export default function Page({}: Props) {
         </section>
 
         <section id="at-list">
-          {members &&
-            members.map((memberData, index) => {
-              return (
-                <MemberDisplayer
-                  memberData={memberData}
-                  index={index}
-                  key={memberData._id}
-                  showFs={showFs}
-                />
-              );
-            })}
+          <AnimatePresence>
+            {members &&
+              members.map((memberData, index) => {
+                return (
+                  <MemberDisplayer
+                    memberData={memberData}
+                    index={index}
+                    key={memberData._id}
+                    showFs={showFs}
+                  />
+                );
+              })}
+          </AnimatePresence>
           {/* <div className="artist-container l">
             <img src="/de/splat-bg-artist.svg" alt="" className="de-splat t" />
             <img src="/de/splat-bg-artist.svg" alt="" className="de-splat b" />
@@ -303,6 +307,15 @@ function MemberDisplayer({
         duration: 0,
       }
     );
+    await animate(
+      scope.current,
+      {
+        visibility: "visible",
+      },
+      {
+        duration: 0,
+      }
+    );
     animate(
       "figure",
       {
@@ -407,13 +420,22 @@ function MemberDisplayer({
   let bottom = index % 2 !== 0 ? info : figure;
 
   return (
-    <div className="artist-container" ref={scope}>
+    <motion.div
+      className="artist-container"
+      ref={scope}
+      style={{ visibility: "hidden" }}
+      exit={{
+        // scale: 0,
+        x: 100,
+        opacity: 0,
+      }}
+    >
       <div className="splash-bg"></div>
       <img src="/de/splat-bg-artist.svg" alt="" className="de-splat t ni" />
       <img src="/de/splat-bg-artist.svg" alt="" className="de-splat b ni" />
       <div className="confine">
         {bottom} {top}
       </div>
-    </div>
+    </motion.div>
   );
 }

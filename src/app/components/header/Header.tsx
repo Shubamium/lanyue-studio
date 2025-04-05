@@ -63,20 +63,20 @@ export default function Header() {
           >
             Home
           </Link>
-          <div
-            // href={"/commissions"}
-            className={`btn-headernav btn ${false ? "active" : ""} hasdrop`}
+          <Link
+            href={"/commissions"}
+            className={`btn btn-headernav  ${false ? "active" : ""} hasdrop`}
           >
             Commissions
             <div className="drop-down">
               <Link href={"/commissions"} className="btn btn-drop">
-                Services
+                Info
               </Link>
               <Link href={"/commissions/prices"} className="btn btn-drop">
                 Prices
               </Link>
             </div>
-          </div>
+          </Link>
           <Link
             href={"/artists"}
             className={`btn-headernav btn ${false ? "active" : ""}`}

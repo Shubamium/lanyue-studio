@@ -50,8 +50,12 @@ export default function Portfolio({}: Props) {
           setPortfolioList(portfolio);
         }
       }
+      if (sliderRef.current) {
+        sliderRef.current.scrollTo({
+          left: 0,
+        });
+      }
     };
-
     loadPort();
   }, [activeCat]);
 

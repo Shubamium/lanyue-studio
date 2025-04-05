@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import Contact from "./Contact";
 import { fetchData } from "../db/sanity";
+import { getFormLink } from "../db/artist";
 
 type Props = {};
 
@@ -17,10 +18,12 @@ export default async function ContactPage({}: Props) {
 			discord,
 		}
 	`);
+  const form = await getFormLink();
+
   return (
     <>
       <Suspense>
-        <Contact c={{ ...context, ...general }} />
+        <Contact c={{ ...context, ...general, fm: form }} />
       </Suspense>
     </>
   );

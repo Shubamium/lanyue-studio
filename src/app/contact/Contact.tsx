@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./contact.scss";
 import {
   FaArrowLeft,
@@ -19,6 +19,9 @@ import { nt } from "../util/util";
 import { GrFormEdit } from "react-icons/gr";
 import { FaRegEdit } from "react-icons/fa";
 import { BiEdit } from "react-icons/bi";
+import { getFormLink } from "../db/artist";
+import { MdRequestQuote } from "react-icons/md";
+import { BsArrowLeftCircle } from "react-icons/bs";
 type Props = { c: any };
 
 export default function Contact({ c }: Props) {
@@ -33,6 +36,13 @@ export default function Contact({ c }: Props) {
   const [scope, animate] = useIV(async () => {
     animateStagger(animate, stagger, 0.5, 0.3);
   });
+
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     setFm(form);
+  //   };
+  //   loadData();
+  // }, []);
 
   return (
     <main id="page_contact" ref={scope}>
@@ -59,11 +69,21 @@ export default function Contact({ c }: Props) {
           <div className="infos">
             {c.il &&
               c.il.map((i: any) => {
-                return (
+                return !i.isLink ? (
                   <div className="info stagger" key={i._key}>
                     <h2>{i.title}</h2>
-                    <p>{i.info}</p>
+                    <p>{i.info}a</p>
                   </div>
+                ) : (
+                  <a
+                    href={i.info}
+                    target="_blank"
+                    className="info stagger"
+                    key={i._key}
+                  >
+                    <h2>{i.title}</h2>
+                    <p>{i.info}</p>
+                  </a>
                 );
               })}
             {/* <div className="info stagger">
@@ -104,7 +124,7 @@ export default function Contact({ c }: Props) {
           <p className="alt-text stagger">{c.m}</p>
 
           <div className="otherl">
-            <Link
+            {/* <Link
               href={c.hb.path}
               target={nt(c.hb.path)}
               className="btn btn-main outline stagger"
@@ -112,18 +132,33 @@ export default function Contact({ c }: Props) {
               {" "}
               <FaArrowLeft />
               <span>{c.hb.text}</span>
-            </Link>
-            <Link
-              href={"https://forms.gle/EN2dPBykT8kWQ1Lk9"}
-              target={"_blank"}
-              className="btn btn-main outline stagger"
-              style={{
-                marginTop: "1em",
-              }}
-            >
-              <BiEdit />
-              <span>ARTIST APPLICATION FORM</span>
-            </Link>
+            </Link> */}
+            {c.fm && (
+              <>
+                <Link
+                  href={c.fm.cf}
+                  target={"_blank"}
+                  className="btn btn-main outline stagger "
+                  style={{
+                    marginTop: "1em",
+                  }}
+                >
+                  <BsArrowLeftCircle />
+                  <span>COMMISSION FORM</span>
+                </Link>
+                <Link
+                  href={c.fm.af}
+                  target={"_blank"}
+                  className="btn btn-main outline  stagger"
+                  style={{
+                    marginTop: "1em",
+                  }}
+                >
+                  <BiEdit />
+                  <span>ARTIST APPLICATION FORM</span>
+                </Link>
+              </>
+            )}
           </div>
         </article>
         <form

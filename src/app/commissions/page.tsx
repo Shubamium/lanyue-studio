@@ -19,7 +19,11 @@ export default async function Commissions({}: Props) {
 				timeline,
 			}[0]
 		`);
-
+  const gd = await fetchData<any>(
+    `*[_type == 'general' && preset == 'active'][0]{
+			cf
+		}`
+  );
   // const pinned = comText.pinned_pricing;
   // const plist = comText.pricing_list;
   console.log(comText.service.cat);
@@ -31,11 +35,7 @@ export default async function Commissions({}: Props) {
         src="https://unpkg.com/external-svg-loader@latest/svg-loader.min.js"
         async
       />
-      <a
-        href="https://docs.google.com/forms/d/e/1FAIpQLSdDtjtKC3XnxCZvdV7Vk9bWxarPQXDt_aanWLQA0uCLU2Yivg/viewform"
-        target="_blank"
-        className="btn btn-over"
-      >
+      <a href={gd.cf} target="_blank" className="btn btn-over ">
         COMMISSIONS FORM <FaExternalLinkAlt />
       </a>
       {/* <script></script> */}

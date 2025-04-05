@@ -29,3 +29,25 @@ export async function getCategory(): Promise<any[]> {
 		`);
   return text.order ?? [];
 }
+
+export async function getAf(): Promise<string> {
+  const gd = await fetchData<any>(
+    `*[_type == 'general' && preset == 'active'][0]{
+					af
+		}`
+  );
+  return gd.af ?? "";
+}
+
+export async function getFormLink(): Promise<any> {
+  const gd = await fetchData<any>(
+    `*[_type == 'general' && preset == 'active'][0]{
+					af,
+					cf
+		}`
+  );
+  return {
+    af: gd.af,
+    cf: gd.cf,
+  };
+}
