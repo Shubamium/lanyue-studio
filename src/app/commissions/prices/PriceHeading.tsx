@@ -22,11 +22,10 @@ export default function PriceHeading({ t }: Props) {
       <img src="/de/header-cloud.png" alt="" className="cloud l" />
       <img src="/de/header-cloud.png" alt="" className="cloud r" />
       <div className="confine">
-        <figure className="">
+        <figure data-tip={t.img.artist}>
           <img src="/de/blue-splat1.png" alt="" className="splat " />
           <img
-            src={urlFor(t.img.image)?.url()}
-            data-tip={t.img.artist}
+            src={urlFor(t.img.image)?.height(500).url()}
             alt=""
             className=" stagger"
           />

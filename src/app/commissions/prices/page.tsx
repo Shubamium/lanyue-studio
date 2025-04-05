@@ -25,7 +25,7 @@ export default async function Prices({}: Props) {
 					},
 					Prices,
 					nl,
-						nr,
+					nr,
 				}[0]
 			`);
 
