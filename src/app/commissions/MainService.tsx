@@ -11,7 +11,8 @@ import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion/react";
 import { LuImages, LuRectangleEllipsis } from "react-icons/lu";
 import { PortableText } from "next-sanity";
-import { getFileUrl } from "../db/sanity";
+import { getFileUrl, urlFor } from "../db/sanity";
+import { useRouter } from "next/navigation";
 
 type Props = { ss: any };
 
@@ -103,7 +104,6 @@ export default function MainService({ ss }: Props) {
       }
     );
   });
-  console.log(ss.cat);
   return (
     <section id="main-service" ref={scope} style={{ opacity: 0 }}>
       <video
@@ -210,18 +210,10 @@ function CategoryList({ cat }: { cat: any }) {
   return (
     <div className="confine categories" ref={scope}>
       {cat &&
-        cat.map((c: any) => {
-          const url = getFileUrl(c.icon);
+        [...cat, ...cat].map((c: any) => {
           return (
             <Categories
-              icon={
-                c.icon && url ? (
-                  // <object data={url} type="image/svg+xml"></object>
-                  <svg data-src={url}>{/* <use href={url}></use> */}</svg>
-                ) : (
-                  <></>
-                )
-              }
+              art={c.art}
               slug={c.slug}
               description={c.p}
               name={c.title}
@@ -244,36 +236,38 @@ function CategoryList({ cat }: { cat: any }) {
   );
 }
 type CatProps = {
-  icon: React.ReactNode;
+  art: any;
   name: string;
   description?: any;
   list?: string[];
   slug: any;
 };
-function Categories({ icon, description, name, list, slug }: CatProps) {
+function Categories({ art, description, name, list, slug }: CatProps) {
+  const router = useRouter();
   return (
-    <div className="category stagger">
-      {/* <div className="icon">{icon}</div> */}
-
-      <Link
-        href={"/commissions/prices" + (slug ? `#${slug.current}` : "")}
-        className="btn btn-main btn-go h"
-      >
-        {name}
-      </Link>
-      {/* <p>
-        Lan'Yue Studio is inspired by the rare and unique blue moon. Our goal is
-        to curate the one-of-a-kind beauty you deserve for any project you can
-        imagine, from illustrations to Live2D models and graphic design.
-      </p> */}
-      {description && <PortableText value={description} />}
-
+    <div
+      className="category "
+      onClick={() => {
+        router.push("/commissions/prices" + (slug ? `#${slug.current}` : ""));
+      }}
+    >
+      <div className="left">
+        <h2>{name}</h2>
+        <p className="view">
+          View Prices <FaArrowRight />
+        </p>
+        <div className="desc">
+          {description && <PortableText value={description} />}
+        </div>
+        <img src={urlFor(art)?.height(1080).url()} alt="" className="bg-img" />
+      </div>
       <div className="list">
         {list &&
           list.map((i) => {
             return (
               <div className="item" key={i}>
-                <p>{i}</p>
+                <p>{i} </p>
+                <p>◈</p>
               </div>
             );
           })}
