@@ -26,7 +26,8 @@ const osc_b = localFont({
 //   variable: "--font-geist-mono",
 //   weight: "100 900",
 // });
-
+import Lenis from "lenis";
+import ReactLenis from "lenis/react";
 const open_sans = Open_Sans({
   weight: ["300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],
@@ -83,13 +84,15 @@ export default function RootLayout({
       <body
         className={`${open_sans.variable} ${osc_b.variable} ${osc_r.variable} ${osc_sb.variable}`}
       >
-        {/* <PreventRightClick> */}
-        <Header />
-        <Chatbox />
-        {children}
-        <Tooltip />
-        <Footer />
-        {/* </PreventRightClick> */}
+        <ReactLenis root>
+          <PreventRightClick>
+            <Header />
+            <Chatbox />
+            <div className="minh">{children}</div>
+            <Tooltip />
+            <Footer />
+          </PreventRightClick>
+        </ReactLenis>
       </body>
     </html>
   );

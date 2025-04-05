@@ -71,6 +71,9 @@ body {
 
   // touch-action: pan-y;
 }
+.minh {
+  min-height: 100vh;
+}
 main {
   position: relative;
   overflow-x: clip;
