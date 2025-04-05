@@ -72,28 +72,27 @@ export default function Header() {
           >
             Home
           </Link>
-          <Link
-            href={"/commissions"}
-            className={`btn btn-headernav  ${false ? "active" : ""} hasdrop`}
-          >
-            Commissions
-            <span className="drop-down">
+          <div className={`hasdrop`}>
+            <Link href={"/commissions"} className="btn-headernav  btn ">
+              Commissions
+            </Link>
+            <div className="drop-down">
               <Link href={"/commissions"} className="btn btn-drop">
                 Info
               </Link>
               <Link href={"/commissions/prices"} className="btn btn-drop">
                 Prices
               </Link>
-            </span>
-          </Link>
-          <Link
-            href={"/artists"}
-            className={`btn-headernav btn ${false ? "active" : ""} hasdrop`}
-          >
-            Artists
-            <span className="drop-down">
+            </div>
+          </div>
+          <div className={` hasdrop`}>
+            <Link href={"/artists"} className=" btn-headernav  main">
+              Artists
+            </Link>
+
+            <div className="drop-down">
               {memberType &&
-                memberType.map((mt: any, i: number) => {
+                [...memberType].reverse().map((mt: any, i: number) => {
                   return (
                     <Link
                       href={"/artists?t=" + mt.slug.current}
@@ -104,8 +103,8 @@ export default function Header() {
                     </Link>
                   );
                 })}
-            </span>
-          </Link>
+            </div>
+          </div>
           <Link
             href={"/portfolio"}
             className={`btn-headernav btn ${false ? "active" : ""}`}

@@ -122,6 +122,8 @@ export default function MainService({ ss }: Props) {
         <h2 className="h">{ss.h}</h2>
       </div>
       <div className="steps">
+        <div className="step"></div>
+
         <div className="confine">
           {ss.steps &&
             ss.steps.map((step: any) => {
@@ -140,6 +142,7 @@ export default function MainService({ ss }: Props) {
                 </div>
               );
             })}
+
           {/* <div className="step">
             <h3>STEP 1</h3>
             <p>
