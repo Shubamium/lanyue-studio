@@ -76,7 +76,7 @@ export default function Contact({ c }: Props) {
                 return !i.isLink ? (
                   <div className="info stagger" key={i._key}>
                     <h2>{i.title}</h2>
-                    <p>{i.info}a</p>
+                    <p>{i.info}</p>
                   </div>
                 ) : (
                   <a

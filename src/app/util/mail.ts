@@ -25,7 +25,7 @@ export async function SendMail(data: {
   const emailHtml = await render(Email(data));
 
   const info = await transporter.sendMail({
-    from: "Lanyu Studio Website <vicnet.video@gmail.com>",
+    from: "Lanyue Studio Website <vicnet.video@gmail.com>",
     to: "contact@lanyue.studio",
     subject: "New Website Form Submission!",
     // text: `"Test Message"`,

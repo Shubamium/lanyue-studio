@@ -19,6 +19,9 @@ type Props = {
 };
 
 export default function PriceList({ name, info }: Props) {
+  if (!info) {
+    return <></>;
+  }
   return (
     <div className={`${name} price-list`}>
       <h3 className="h">{info.name}</h3>
