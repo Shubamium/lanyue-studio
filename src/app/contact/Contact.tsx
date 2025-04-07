@@ -44,6 +44,13 @@ export default function Contact({ c }: Props) {
   //   loadData();
   // }, []);
 
+  const clearForm = () => {
+    setName("");
+    setEmail("");
+    setHandle("");
+    setMessage("");
+  };
+
   return (
     <main id="page_contact" ref={scope}>
       <div className={`loader ${loading ? "loading" : "loaded"}`}>
@@ -168,6 +175,7 @@ export default function Contact({ c }: Props) {
         <form
           className="message-form"
           method="POST"
+          id="main-contact-form"
           onSubmit={async (e) => {
             e.preventDefault();
             setMessageNotice("Sending your message . . .");
@@ -179,7 +187,7 @@ export default function Contact({ c }: Props) {
               message,
             });
             setMessageNotice("Message Submitted");
-
+            clearForm();
             setLoading(false);
           }}
         >
