@@ -29,7 +29,7 @@ export function getFileUrl(source: any) {
 
 const config = {
   next: {
-    revalidate: 5,
+    revalidate: 3000,
   },
 };
 export function fetchData<T>(grocQuery: string) {

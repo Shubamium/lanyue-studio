@@ -54,7 +54,12 @@
           // background: red;
           object-fit: contain;
           @media screen and (max-width: 420px) {
-            height: 400px;
+            // height: 400px;
+            object-position: center;
+          }
+          @media screen and (max-width: 550px) {
+            height: 250px;
+            margin-bottom: 80px;
           }
         }
       }
