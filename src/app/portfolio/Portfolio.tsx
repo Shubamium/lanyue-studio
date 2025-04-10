@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FaArrowLeft, FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import getPortfolio, {
   getCategoryList,
   getPortfolioText,
@@ -69,7 +69,6 @@ export default function Portfolio({}: Props) {
     animateStagger(animate, stagger);
   });
 
-  const router = useRouter();
   return (
     <section id="portfolio-display" ref={scope}>
       <aside
@@ -257,7 +256,6 @@ export default function Portfolio({}: Props) {
                 );
               })}
           </AnimatePresence>
-          /
         </div>
       </div>
       <div className="controls">

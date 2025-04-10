@@ -274,3 +274,9 @@ p p {
   scale: 50;
   background: red;
 }
+
+@media screen and (max-width: 550px) {
+  .particle-container {
+    display: none;
+  }
+}
