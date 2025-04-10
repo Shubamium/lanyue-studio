@@ -12,7 +12,9 @@ type Props = { is: any };
 
 export function Invitation({ is }: Props) {
   const [scope, animate] = useAnimate();
-  const iv = useInView(scope);
+  const iv = useInView(scope, {
+    once: true,
+  });
 
   const animateInvitation = async () => {
     animateStagger(animate, stagger, 2, 0.5);
@@ -51,7 +53,7 @@ export function Invitation({ is }: Props) {
         className="bg stagger"
         style={
           {
-            "--bg": `url('${urlFor(is.bg)?.auto("format").url()}')`,
+            "--bg": `url('${urlFor(is.bg)?.height(800).url()}')`,
           } as CSSProperties
         }
       >
@@ -90,28 +92,28 @@ export function Invitation({ is }: Props) {
           <div className="diamonds">
             <div className="diamond">
               <img
-                src={urlFor(is.ia.image)?.auto("format").url()}
+                src={urlFor(is.ia.image)?.format("webp").height(400).url()}
                 data-tip={is.ia.artist}
                 alt=""
               />
             </div>
             <div className="diamond">
               <img
-                src={urlFor(is.ib.image)?.auto("format").url()}
+                src={urlFor(is.ib.image)?.format("webp").height(400).url()}
                 data-tip={is.ib.artist}
                 alt=""
               />
             </div>
             <div className="diamond">
               <img
-                src={urlFor(is.ic.image)?.auto("format").url()}
+                src={urlFor(is.ic.image)?.format("webp").height(400).url()}
                 data-tip={is.ic.artist}
                 alt=""
               />
             </div>
             <div className="diamond">
               <img
-                src={urlFor(is.id.image)?.auto("format").url()}
+                src={urlFor(is.id.image)?.format("webp").height(400).url()}
                 data-tip={is.id.artist}
                 alt=""
               />

@@ -16,7 +16,6 @@ export default async function Home() {
 		}
 	`);
 
-  console.log(homeData);
   return (
     <main id={"page_home"}>
       <HeroSection hs={homeData.hero_section} />

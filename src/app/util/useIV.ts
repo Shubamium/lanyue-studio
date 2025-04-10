@@ -1,5 +1,5 @@
 import { useAnimate, useInView } from "motion/react";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 export function useIV(animationFunction: () => Promise<void>) {
   const animate = useAnimate();
@@ -7,9 +7,10 @@ export function useIV(animationFunction: () => Promise<void>) {
     once: true,
   });
 
+  const memoizedAnimationFunction = useCallback(animationFunction, []);
   useEffect(() => {
     if (iv) {
-      animationFunction();
+      memoizedAnimationFunction();
     }
   }, [iv]);
   return animate;

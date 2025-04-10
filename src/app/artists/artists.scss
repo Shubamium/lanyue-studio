@@ -348,8 +348,8 @@
     transition: all 500ms ease-in-out;
     &.open {
       opacity: 1;
-      user-select: all;
-      pointer-events: all;
+      user-select: initial;
+      pointer-events: initial;
     }
     &.closed {
       user-select: none;

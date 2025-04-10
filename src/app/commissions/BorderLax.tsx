@@ -1,7 +1,6 @@
 "use client";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import React, { useRef } from "react";
-import { useParallax } from "../util/util";
 
 type Props = {};
 

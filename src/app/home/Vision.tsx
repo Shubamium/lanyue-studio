@@ -13,7 +13,9 @@ type Props = { vs: any };
 
 export default function Vision({ vs }: Props) {
   const [scope, animate] = useAnimate();
-  const vision_iv = useInView(scope);
+  const vision_iv = useInView(scope, {
+    once: true,
+  });
 
   const animateVision = async () => {
     // Initial State
@@ -64,7 +66,7 @@ export default function Vision({ vs }: Props) {
       id="vision"
       style={
         {
-          "--bg": `url('${urlFor(vs.background)?.auto("format").url()}')`,
+          "--bg": `url('${urlFor(vs.background)?.format("webp").height(900).url()}')`,
         } as CSSProperties
       }
       ref={scope}

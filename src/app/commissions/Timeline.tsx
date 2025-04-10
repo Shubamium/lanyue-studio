@@ -59,7 +59,12 @@ export default function Timeline({ t }: Props) {
         <div className="confine">
           <figure className="">
             <img src="/de/blue-splat1.png" alt="" className="splat " />
-            <img src="/gfx/hero_art-l.png" alt="" className=" stagger" />
+            <img
+              src="/gfx/hero_art-l.png"
+              alt=""
+              className=" stagger"
+              loading="lazy"
+            />
             <div className="clip cbr"></div>
             <div className="clip cbl"></div>
             <div className="clip ctl"></div>

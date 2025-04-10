@@ -2,108 +2,112 @@
 import Link from "next/link";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa6";
-import ParticleFog from "./ParticleFog";
-import { TbMasksTheater } from "react-icons/tb";
-import { FaPaintBrush } from "react-icons/fa";
-import { GiPuppet } from "react-icons/gi";
+// import ParticleFog from "./ParticleFog";
 import BorderLax from "./BorderLax";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion/react";
-import { LuImages, LuRectangleEllipsis } from "react-icons/lu";
 import { PortableText } from "next-sanity";
-import { getFileUrl, urlFor } from "../db/sanity";
+import { urlFor } from "../db/sanity";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 
 type Props = { ss: any };
 
+const ParticleFog = dynamic(() => import("./ParticleFog"));
+
+const animateService = async (animate: any, scope: any) => {
+  await animate(
+    scope.current,
+    {
+      opacity: 0,
+    },
+    {
+      duration: 0,
+    }
+  );
+  await animate(
+    ".header",
+    {
+      x: -100,
+      opacity: 0,
+    },
+    {
+      duration: 0,
+    }
+  );
+
+  await animate(
+    ".steps",
+    {
+      opacity: 0,
+      scaleY: 0,
+    },
+    {
+      duration: 0,
+    }
+  );
+  await animate(
+    ".step",
+    {
+      x: 200,
+      opacity: 0,
+    },
+    {
+      duration: 0,
+    }
+  );
+  await animate(
+    scope.current,
+    {
+      opacity: 1,
+    },
+    {
+      duration: 0.1,
+    }
+  );
+  await animate(
+    ".header",
+    {
+      x: 0,
+      opacity: 1,
+    },
+    {
+      ease: "easeInOut",
+      duration: 0.5,
+    }
+  );
+
+  await animate(
+    ".steps",
+    {
+      opacity: 1,
+      scaleY: 1,
+    },
+    {
+      ease: "easeInOut",
+      duration: 1.1,
+    }
+  );
+
+  animate(
+    ".step",
+    {
+      opacity: 1,
+      x: 0,
+    },
+    {
+      duration: 0.8,
+      ease: "easeInOut",
+      delay: stagger(0.2),
+    }
+  );
+};
+
 export default function MainService({ ss }: Props) {
   const [scope, animate] = useIV(async () => {
-    await animate(
-      scope.current,
-      {
-        opacity: 0,
-      },
-      {
-        duration: 0,
-      }
-    );
-    await animate(
-      ".header",
-      {
-        x: -100,
-        opacity: 0,
-      },
-      {
-        duration: 0,
-      }
-    );
-
-    await animate(
-      ".steps",
-      {
-        opacity: 0,
-        scaleY: 0,
-      },
-      {
-        duration: 0,
-      }
-    );
-    await animate(
-      ".step",
-      {
-        x: 200,
-        opacity: 0,
-      },
-      {
-        duration: 0,
-      }
-    );
-    await animate(
-      scope.current,
-      {
-        opacity: 1,
-      },
-      {
-        duration: 0.1,
-      }
-    );
-    await animate(
-      ".header",
-      {
-        x: 0,
-        opacity: 1,
-      },
-      {
-        ease: "easeInOut",
-        duration: 0.5,
-      }
-    );
-
-    await animate(
-      ".steps",
-      {
-        opacity: 1,
-        scaleY: 1,
-      },
-      {
-        ease: "easeInOut",
-        duration: 1.1,
-      }
-    );
-
-    animate(
-      ".step",
-      {
-        opacity: 1,
-        x: 0,
-      },
-      {
-        duration: 0.8,
-        ease: "easeInOut",
-        delay: stagger(0.2),
-      }
-    );
+    animateService(animate, scope);
   });
+
   return (
     <section id="main-service" ref={scope} style={{ opacity: 0 }}>
       <video
@@ -202,9 +206,12 @@ export default function MainService({ ss }: Props) {
   );
 }
 
+async function animateCategoryStagger(animate: any) {
+  animateStagger(animate, stagger, 1, 0.3);
+}
 function CategoryList({ cat }: { cat: any }) {
   const [scope, animate] = useIV(async () => {
-    animateStagger(animate, stagger, 1, 0.3);
+    animateCategoryStagger(animate);
   });
 
   return (
@@ -259,7 +266,7 @@ function Categories({ art, description, name, list, slug }: CatProps) {
         <div className="desc">
           {description && <PortableText value={description} />}
         </div>
-        <img src={urlFor(art)?.height(1080).url()} alt="" className="bg-img" />
+        <img src={urlFor(art)?.height(600).url()} alt="" className="bg-img" />
       </div>
       <div className="list">
         {list &&

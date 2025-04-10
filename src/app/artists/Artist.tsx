@@ -20,7 +20,6 @@ export default function Artist({}: Props) {
   const [activeCat, setActiveCat] = useState<null | string>(null);
   const [members, setMembers] = useState<any[]>([]);
   const [text, setText] = useState<any>([]);
-  const [load, setLoad] = useState(false);
 
   const [af, setAf] = useState("");
   useEffect(() => {
@@ -121,7 +120,7 @@ export default function Artist({}: Props) {
         <div className="confine">
           <figure>
             <img
-              src={urlFor(text.i)?.auto("format").url()}
+              src={urlFor(text.i)?.format("webp").height(650).url()}
               alt=""
               className="r stagger"
             />
@@ -257,6 +256,7 @@ export default function Artist({}: Props) {
                 disablePictureInPicture
                 disableRemotePlayback
                 playsInline
+                preload="none"
               />
             ) : (
               <img src={activeSrc.src} alt="" className="main-display" />
@@ -270,6 +270,79 @@ export default function Artist({}: Props) {
   );
 }
 
+async function animateMember(animate: any, scope: any) {
+  await animate(
+    ".splash-bg",
+    {
+      clipPath: "inset(0% 100% 0% 0%)",
+    },
+    {
+      duration: 0,
+    }
+  );
+  await animate(
+    ".artist-info",
+    {
+      y: 500,
+      opacity: 0,
+    },
+    {
+      duration: 0,
+    }
+  );
+
+  await animate(
+    "figure",
+    {
+      y: 500,
+      opacity: 0,
+    },
+    {
+      duration: 0,
+    }
+  );
+  await animate(
+    scope.current,
+    {
+      visibility: "visible",
+    },
+    {
+      duration: 0,
+    }
+  );
+  animate(
+    "figure",
+    {
+      y: 0,
+      opacity: 1,
+    },
+    {
+      duration: 1,
+      delay: 0.4,
+    }
+  );
+  animate(
+    ".artist-info",
+    {
+      y: 0,
+      opacity: 1,
+    },
+    {
+      duration: 1,
+    }
+  );
+
+  animate(
+    ".splash-bg",
+    {
+      clipPath: "inset(0% 0% 0% 0%)",
+    },
+    {
+      duration: 2,
+      ease: "easeInOut",
+    }
+  );
+}
 function MemberDisplayer({
   memberData,
   index,
@@ -280,77 +353,7 @@ function MemberDisplayer({
   showFs: (isVideo: boolean, src: string | undefined) => void;
 }) {
   const [scope, animate] = useIV(async () => {
-    await animate(
-      ".splash-bg",
-      {
-        clipPath: "inset(0% 100% 0% 0%)",
-      },
-      {
-        duration: 0,
-      }
-    );
-    await animate(
-      ".artist-info",
-      {
-        y: 500,
-        opacity: 0,
-      },
-      {
-        duration: 0,
-      }
-    );
-
-    await animate(
-      "figure",
-      {
-        y: 500,
-        opacity: 0,
-      },
-      {
-        duration: 0,
-      }
-    );
-    await animate(
-      scope.current,
-      {
-        visibility: "visible",
-      },
-      {
-        duration: 0,
-      }
-    );
-    animate(
-      "figure",
-      {
-        y: 0,
-        opacity: 1,
-      },
-      {
-        duration: 1,
-        delay: 0.4,
-      }
-    );
-    animate(
-      ".artist-info",
-      {
-        y: 0,
-        opacity: 1,
-      },
-      {
-        duration: 1,
-      }
-    );
-
-    animate(
-      ".splash-bg",
-      {
-        clipPath: "inset(0% 0% 0% 0%)",
-      },
-      {
-        duration: 2,
-        ease: "easeInOut",
-      }
-    );
+    animateMember(animate, scope);
   });
   const info = (
     <div className="artist-info">
@@ -366,11 +369,11 @@ function MemberDisplayer({
             console.log(p);
             return p._type === "art" ? (
               <img
-                src={urlFor(p)?.url()}
+                src={urlFor(p)?.format("webp").height(720).url()}
                 alt=""
                 onTouchStart={() => {}}
                 onClick={() => {
-                  showFs(false, urlFor(p)?.url());
+                  showFs(false, urlFor(p)?.format("webp").height(1080).url());
                 }}
                 key={memberData.id + "pf" + index}
                 className="p-img"
@@ -385,6 +388,7 @@ function MemberDisplayer({
                 onClick={() => {
                   showFs(true, getFileUrl(p) ?? undefined);
                 }}
+                controls
                 key={memberData.id + "pf" + index}
                 loop
                 disablePictureInPicture
@@ -398,7 +402,7 @@ function MemberDisplayer({
   const figure = (
     <figure>
       <img
-        src={urlFor(memberData.pfp)?.auto("format").url()}
+        src={urlFor(memberData.pfp)?.format("webp").height(1080).url()}
         alt=""
         className="at-img"
       />

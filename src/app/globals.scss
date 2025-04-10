@@ -167,7 +167,7 @@ p {
 .p {
   font-family: var(--fontP);
   line-height: 1.4;
-
+  color: var(--grey);
   @media screen and (max-width: 420px) {
     font-size: 0.9rem !important;
   }
@@ -268,4 +268,9 @@ body {
       transform: translateY(1%);
     }
   }
+}
+
+p p {
+  scale: 50;
+  background: red;
 }

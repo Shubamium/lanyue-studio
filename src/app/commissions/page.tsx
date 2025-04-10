@@ -1,14 +1,8 @@
 import React from "react";
 import "./commissions.scss";
-import { FaArrowRight, FaLink, FaMask } from "react-icons/fa6";
-import Link from "next/link";
 import { fetchData, urlFor } from "../db/sanity";
-import PriceList from "./PriceList";
 import MainService from "./MainService";
-import ListPricing from "./ListPricing";
 import Timeline from "./Timeline";
-import Script from "next/script";
-import { PortableText } from "next-sanity";
 import { FaExternalLinkAlt } from "react-icons/fa";
 type Props = {};
 
@@ -24,23 +18,13 @@ export default async function Commissions({}: Props) {
 			cf
 		}`
   );
-  // const pinned = comText.pinned_pricing;
-  // const plist = comText.pricing_list;
-  console.log(comText.service.cat);
 
   return (
     <main id="page_commissions">
-      <Script
-        type="text/javascript"
-        src="https://unpkg.com/external-svg-loader@latest/svg-loader.min.js"
-        async
-      />
       <a href={gd.cf} target="_blank" className="btn btn-over ">
         COMMISSIONS FORM <FaExternalLinkAlt />
       </a>
-      {/* <script></script> */}
       <MainService ss={comText.service} />
-
       <Timeline t={comText.timeline} />
     </main>
   );

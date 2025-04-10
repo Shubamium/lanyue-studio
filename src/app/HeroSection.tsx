@@ -22,7 +22,9 @@ export function HeroSection({ hs }: Props) {
   const l = useParallax(scrollYProgress, medium ? 30 : 200);
   const r = useParallax(scrollYProgress, medium ? 50 : 400);
 
-  const iv = useInView(targetRef);
+  const iv = useInView(targetRef, {
+    once: true,
+  });
 
   return (
     <section id="hero-section" ref={targetRef}>
@@ -104,7 +106,7 @@ export function HeroSection({ hs }: Props) {
           className="image-part inner-shadow-l"
         >
           <motion.img
-            src={urlFor(hs.left_art.image)?.auto("format").url()}
+            src={urlFor(hs.left_art.image)?.format("webp").height(600).url()}
             alt=""
             className="clip-border l main-img"
             style={{ objectPosition: l }}
@@ -136,7 +138,7 @@ export function HeroSection({ hs }: Props) {
       >
         <motion.img
           style={{ objectPosition: r }}
-          src={urlFor(hs.right_art.image)?.auto("format").url()}
+          src={urlFor(hs.right_art.image)?.format("webp").height(1500).url()}
           alt=""
           data-tip={hs.right_art.artist}
           className=" main-img clip-border l "

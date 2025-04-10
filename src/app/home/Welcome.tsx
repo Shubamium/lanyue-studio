@@ -129,7 +129,7 @@ export default function Welcome({ welcome: w }: Props) {
           <div className="artside art-l">
             <img
               src={
-                urlFor(w.asa.image)?.auto("format").url() ??
+                urlFor(w.asa.image)?.format("webp").height(900).url() ??
                 "/gfx/placeholder.png"
               }
               data-tip={w.asa.artist}
@@ -146,13 +146,13 @@ export default function Welcome({ welcome: w }: Props) {
             />
             <div className="top-art">
               <img
-                src={urlFor(w.aa.image)?.auto("format").url()}
+                src={urlFor(w.aa.image)?.format("webp").height(400).url()}
                 alt=""
                 data-tip={w.aa.artist}
                 className="stagger"
               />
               <img
-                src={urlFor(w.ab.image)?.auto("format").url()}
+                src={urlFor(w.ab.image)?.format("webp").height(400).url()}
                 alt=""
                 data-tip={w.ab.artist}
                 className="stagger"
@@ -195,7 +195,7 @@ export default function Welcome({ welcome: w }: Props) {
             }}
           >
             <img
-              src={urlFor(w.asb.image)?.auto("format").url()}
+              src={urlFor(w.asb.image)?.format("webp").height(900).url()}
               data-tip={w.asb.artist}
               alt=""
             />

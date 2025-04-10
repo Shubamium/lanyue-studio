@@ -1,29 +1,26 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./contact.scss";
 import {
-  FaArrowLeft,
   FaDiscord,
   FaPaperPlane,
   FaSpinner,
   FaXTwitter,
 } from "react-icons/fa6";
 import Link from "next/link";
-import ParticleFog from "../commissions/ParticleFog";
 import { SendMail } from "../util/mail";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion";
-import { CgEditMarkup, CgMail } from "react-icons/cg";
+import { CgMail } from "react-icons/cg";
 import { PortableText } from "next-sanity";
-import { nt } from "../util/util";
-import { GrFormEdit } from "react-icons/gr";
-import { FaRegEdit } from "react-icons/fa";
+
 import { BiEdit } from "react-icons/bi";
-import { getFormLink } from "../db/artist";
-import { MdRequestQuote } from "react-icons/md";
+
 import { BsArrowLeftCircle } from "react-icons/bs";
+import dynamic from "next/dynamic";
 type Props = { c: any };
 
+const ParticleFog = dynamic(() => import("../commissions/ParticleFog"));
 export default function Contact({ c }: Props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -36,13 +33,6 @@ export default function Contact({ c }: Props) {
   const [scope, animate] = useIV(async () => {
     animateStagger(animate, stagger, 0.5, 0.3);
   });
-
-  // useEffect(() => {
-  //   const loadData = async () => {
-  //     setFm(form);
-  //   };
-  //   loadData();
-  // }, []);
 
   const clearForm = () => {
     setName("");

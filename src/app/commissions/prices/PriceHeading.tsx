@@ -11,12 +11,10 @@ export default function PriceHeading({ t }: Props) {
   const [scope, animate] = useIV(async () => {});
 
   useEffect(() => {
-    if (t) {
-      // const runAnim = async () => {
-      animateStagger(animate, stagger);
-      // };
-    }
-  }, [t]);
+    // if () {
+    animateStagger(animate, stagger);
+    // }
+  }, []);
   return (
     <div id="prices-heading" ref={scope}>
       <img src="/de/header-cloud.png" alt="" className="cloud l" />
@@ -25,7 +23,7 @@ export default function PriceHeading({ t }: Props) {
         <figure data-tip={t.img.artist}>
           <img src="/de/blue-splat1.png" alt="" className="splat " />
           <img
-            src={urlFor(t.img.image)?.height(500).url()}
+            src={urlFor(t.img.image)?.format("webp").height(400).url()}
             alt=""
             className=" stagger"
           />

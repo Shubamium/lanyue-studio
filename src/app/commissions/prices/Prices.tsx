@@ -7,7 +7,7 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
 import { urlFor } from "@/app/db/sanity";
 import PriceList from "../PriceList";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 
 type Props = {};
@@ -143,7 +143,7 @@ export function MainPricing({ data }: any) {
         <div
           className="banner"
           style={{
-            backgroundImage: `url(${urlFor(data.image)?.auto("format").maxHeight(1920).url()})`,
+            backgroundImage: `url(${urlFor(data.image)?.format("webp").height(1400).url()})`,
           }}
         >
           <img src="/de/com-splat.png" alt="" className="splat" />

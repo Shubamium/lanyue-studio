@@ -114,7 +114,7 @@ export default function FeaturedProjects({ fps }: Props) {
         data-tip={fps.banner.artist}
         style={
           {
-            background: `url('${urlFor(fps.banner.image)?.auto("format").url()}')`,
+            backgroundImage: `url('${urlFor(fps.banner.image)?.format("webp").crop("center").height(1920).url()}')`,
           } as CSSProperties
         }
       >
@@ -125,9 +125,9 @@ export default function FeaturedProjects({ fps }: Props) {
         <div className="text-part">
           <p className="sh stagger">{fps.sh}</p>
           <h2 className="h stagger">{fps.h}</h2>
-          <p className="p stagger">
+          <div className="p stagger">
             <PortableText value={fps.paragraph} />
-          </p>
+          </div>
         </div>
       </div>
 
@@ -142,7 +142,11 @@ export default function FeaturedProjects({ fps }: Props) {
 			<img src="/gfx/port2.png" alt="" />
 		</div> */}
 
-          <motion.div ref={sliderRef} className="slider" style={{ x: xpos }}>
+          <motion.div
+            ref={sliderRef}
+            className="slider"
+            style={{ x: xpos, willChange: "transform" }}
+          >
             {/* Make duplicate three times */}
 
             {fps.projects &&
@@ -152,9 +156,13 @@ export default function FeaturedProjects({ fps }: Props) {
                   if (p._type === "images") {
                     return (
                       <img
-                        src={urlFor(p.artwork)?.auto("format").url()}
+                        src={urlFor(p.artwork)
+                          ?.format("webp")
+                          .height(650)
+                          .url()}
                         alt=""
                         data-tip={p.artist}
+                        loading="lazy"
                         className={
                           "stagger " +
                           " " +
@@ -174,6 +182,7 @@ export default function FeaturedProjects({ fps }: Props) {
                         autoPlay
                         controls
                         loop
+                        preload="none"
                         playsInline
                         disablePictureInPicture
                         // disableRemotePlayback

@@ -38,7 +38,7 @@ export default function Terms({ t }: Props) {
       <section
         id="terms-banner"
         style={{
-          backgroundImage: `url('${urlFor(t.banner.image)?.auto("format").url()}')`,
+          backgroundImage: `url('${urlFor(t.banner.image)?.format("webp").height(800).url()}')`,
         }}
         data-tip={t.banner.artist}
       >

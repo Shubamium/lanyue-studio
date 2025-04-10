@@ -1,13 +1,6 @@
 import { fetchData, urlFor } from "@/app/db/sanity";
-import { PortableText } from "next-sanity";
-import Link from "next/link";
 import React, { Suspense } from "react";
-import { FaArrowRight } from "react-icons/fa6";
-import PriceList from "../PriceList";
-import ListPricing from "../ListPricing";
 import "./prices.scss";
-import { FaExternalLinkAlt } from "react-icons/fa";
-import PriceHeading from "./PriceHeading";
 import Prices from "./Prices";
 type Props = {};
 

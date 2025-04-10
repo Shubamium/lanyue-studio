@@ -188,7 +188,8 @@ export default function Portfolio({}: Props) {
                         <img
                           src={urlFor(row[0].image)
                             ?.format("webp")
-                            .crop("right")
+                            .height(900)
+
                             .url()}
                           alt=""
                           data-tip={row[0].artist}
@@ -222,6 +223,7 @@ export default function Portfolio({}: Props) {
                           <img
                             src={urlFor(row[1].image)
                               ?.format("webp")
+                              .height(900)
 
                               .url()}
                             alt=""
@@ -300,6 +302,7 @@ export default function Portfolio({}: Props) {
               <img
                 src={urlFor(selectedImage.image)
                   ?.format("webp")
+                  .height(1080)
 
                   .url()}
                 alt=""

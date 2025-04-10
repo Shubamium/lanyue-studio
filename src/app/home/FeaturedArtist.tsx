@@ -57,17 +57,20 @@ export default function FeaturedArtist({ fas }: Props) {
         <div className="art-part">
           <div className="left" data-tip={fas.art.artist}>
             <img
-              src={urlFor(fas.art.image)?.auto("format").url()}
+              src={urlFor(fas.art.image)?.format("webp").height(1080).url()}
               alt=""
+              loading="lazy"
               className=""
             />
             <img
               src="/de/featuredartist-splat.png"
+              loading="lazy"
               alt=""
               className="splat l ni"
             />
             <img
               src="/de/featuredartist-splat.png"
+              loading="lazy"
               alt=""
               className="splat r ni"
             />
