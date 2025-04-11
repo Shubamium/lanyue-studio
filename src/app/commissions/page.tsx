@@ -25,6 +25,13 @@ export default async function Commissions({}: Props) {
         COMMISSIONS FORM <FaExternalLinkAlt />
       </a>
       <MainService ss={comText.service} />
+      <div className="vid-container">
+        <iframe
+          className="video-trailer"
+          src="https://iframe.mediadelivery.net/embed/408645/c530b0ea-32f1-4890-90bf-ceb41e113893?autoplay=true&loop=true"
+          allowFullScreen
+        ></iframe>
+      </div>
       <Timeline t={comText.timeline} />
     </main>
   );
