@@ -107,6 +107,7 @@ export default function FeaturedProjects({ fps }: Props) {
       animateProject();
     }
   }, [iv]);
+
   return (
     <section id="featured-projects" ref={scope}>
       <div
@@ -187,6 +188,17 @@ export default function FeaturedProjects({ fps }: Props) {
                         disablePictureInPicture
                         // disableRemotePlayback
                       ></video>
+                    );
+                  } else if (p._type === "embed") {
+                    return (
+                      <div className="main-pt">
+                        <iframe
+                          src={`${p.url}?autoplay=true&loop=true&muted=true&preload=true&responsive=true`}
+                          loading="lazy"
+                          allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
                     );
                   }
                 }

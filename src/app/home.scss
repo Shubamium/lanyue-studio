@@ -739,7 +739,8 @@
         white-space: nowrap;
         padding-block: 25px;
         img,
-        video {
+        video,
+        .main-pt {
           height: 100%;
           width: auto;
           // &.landscape {
@@ -756,6 +757,7 @@
           }
         }
 
+        .main-pt,
         video {
           width: 887.78px;
           background: var(--white);
@@ -766,6 +768,13 @@
           @media screen and (max-width: 550px) {
             hegith: 300px;
             width: 533px;
+          }
+        }
+
+        .main-pt {
+          iframe {
+            height: 100%;
+            width: 100%;
           }
         }
       }
