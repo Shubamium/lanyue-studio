@@ -69,6 +69,36 @@ export default function Portfolio({}: Props) {
     animateStagger(animate, stagger);
   });
 
+  const renderVideo = (src: any) => {
+    if (src.url) {
+      return (
+        <div className="main-pt">
+          <iframe
+            src={`${src.url}?autoplay=true&loop=true&muted=true&preload=true&responsive=true`}
+            loading="lazy"
+            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+            allowFullScreen
+          ></iframe>
+        </div>
+      );
+    } else {
+      return (
+        <video
+          src={src.url ? src.url : getFileUrl(src.file)}
+          controls
+          autoPlay
+          loop
+          playsInline
+          data-tip={src.artist}
+          muted
+          onClick={() => {
+            setSelectedImage(src);
+          }}
+          className="main-pt"
+        />
+      );
+    }
+  };
   return (
     <section id="portfolio-display" ref={scope}>
       <aside
@@ -201,21 +231,7 @@ export default function Portfolio({}: Props) {
                           }}
                         />
                       ) : (
-                        <video
-                          src={
-                            row[0].url ? row[0].url : getFileUrl(row[0].file)
-                          }
-                          controls
-                          autoPlay
-                          loop
-                          playsInline
-                          data-tip={row[0].artist}
-                          muted
-                          onClick={() => {
-                            setSelectedImage(row[0]);
-                          }}
-                          className="main-pt"
-                        />
+                        renderVideo(row[0])
                       )}
                     </div>
                     {row[1] && (
@@ -238,21 +254,7 @@ export default function Portfolio({}: Props) {
                             className="main-pt"
                           />
                         ) : (
-                          <video
-                            src={
-                              row[1].url ? row[1].url : getFileUrl(row[1].file)
-                            }
-                            className="main-pt"
-                            controls
-                            autoPlay
-                            playsInline
-                            data-tip={row[1].artist}
-                            loop
-                            muted
-                            onClick={() => {
-                              setSelectedImage(row[1]);
-                            }}
-                          />
+                          renderVideo(row[1])
                         )}
                       </div>
                     )}

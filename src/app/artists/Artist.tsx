@@ -407,21 +407,32 @@ function MemberDisplayer({
                 break;
               case "embed":
                 return (
-                  <video
-                    src={p.url ?? undefined}
-                    className="p-img"
-                    autoPlay
-                    muted
-                    playsInline
-                    onClick={() => {
-                      showFs(true, p.url ?? undefined);
-                    }}
-                    controls
-                    key={memberData.id + "pf" + index}
-                    loop
-                    disablePictureInPicture
-                    disableRemotePlayback
-                  ></video>
+                  // <video
+                  //   // src={p.url ?? undefined}
+                  //   src={
+                  //     "https://vz-35e9ab13-aed.b-cdn.net/61c8304a-cd92-4108-8d5a-4636af9b5647/play_720p.mp4"
+                  //   }
+                  //   className="p-img"
+                  //   autoPlay
+                  //   muted
+                  //   playsInline
+                  //   onClick={() => {
+                  //     showFs(true, p.url ?? undefined);
+                  //   }}
+                  //   controls
+                  //   key={memberData.id + "pf" + index}
+                  //   loop
+                  //   disablePictureInPicture
+                  //   disableRemotePlayback
+                  // ></video>
+                  <div className="p-img">
+                    <iframe
+                      src={`${p.url}?autoplay=true&loop=true&muted=true&preload=true&responsive=true`}
+                      loading="lazy"
+                      allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
                 );
                 break;
             }

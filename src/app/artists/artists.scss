@@ -284,9 +284,16 @@
                   object-fit: cover;
                   cursor: pointer;
 
-                  &.iframe {
-                    outline: none;
-                    border: none;
+                  // &.iframe {
+                  //   outline: none;
+                  // }
+                  iframe {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: fill;
+                  }
+                  .plyr video {
+                    object-fit: cover;
                   }
                 }
 
