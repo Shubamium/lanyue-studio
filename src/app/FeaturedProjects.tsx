@@ -191,7 +191,27 @@ export default function FeaturedProjects({ fps }: Props) {
                     );
                   } else if (p._type === "embed") {
                     return (
-                      <div className="main-pt">
+                      <div
+                        className="main-pt"
+                        onMouseOverCapture={(e) => {
+                          const tipshowEvent = new CustomEvent("tipshow", {
+                            detail: {
+                              tip: p.artist,
+                            },
+                          });
+                          console.log("dispatched");
+                          document.dispatchEvent(tipshowEvent);
+                        }}
+                        onMouseLeave={(e) => {
+                          const tipshowEvent = new CustomEvent("tipshow", {
+                            detail: {
+                              tip: "",
+                            },
+                          });
+
+                          document.dispatchEvent(tipshowEvent);
+                        }}
+                      >
                         <iframe
                           src={`${p.url}?autoplay=true&loop=true&muted=true&preload=true&responsive=true`}
                           loading="lazy"

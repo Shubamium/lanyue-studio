@@ -72,7 +72,27 @@ export default function Portfolio({}: Props) {
   const renderVideo = (src: any) => {
     if (src.url) {
       return (
-        <div className="main-pt">
+        <div
+          className="main-pt"
+          onMouseEnter={(e) => {
+            const tipshowEvent = new CustomEvent("tipshow", {
+              detail: {
+                tip: src.artist,
+              },
+            });
+            console.log("dispatched");
+            document.dispatchEvent(tipshowEvent);
+          }}
+          onMouseLeave={(e) => {
+            const tipshowEvent = new CustomEvent("tipshow", {
+              detail: {
+                tip: "",
+              },
+            });
+
+            document.dispatchEvent(tipshowEvent);
+          }}
+        >
           <iframe
             src={`${src.url}?autoplay=true&loop=true&muted=true&preload=true&responsive=true`}
             loading="lazy"
