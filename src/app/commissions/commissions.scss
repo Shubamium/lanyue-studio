@@ -418,9 +418,19 @@
     align-items: center;
     position: relative;
     margin-top: -250px;
+    flex-direction: column;
+    gap: 1em;
+    .btn-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1em;
+      padding-right: 1em;
+      font-size: 1.4rem;
+    }
     .video-trailer {
       width: 100%;
-      max-width: min(500px, 80%);
+      max-width: min(1000px, 80%);
       margin: 0 auto;
       aspect-ratio: 16/9;
       border: 4px solid var(--gold);

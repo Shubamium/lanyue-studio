@@ -4,6 +4,8 @@ import { fetchData, urlFor } from "../db/sanity";
 import MainService from "./MainService";
 import Timeline from "./Timeline";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa6";
+import Link from "next/link";
 type Props = {};
 
 export default async function Commissions({}: Props) {
@@ -31,6 +33,9 @@ export default async function Commissions({}: Props) {
           src="https://iframe.mediadelivery.net/embed/408645/c530b0ea-32f1-4890-90bf-ceb41e113893?autoplay=true&loop=true"
           allowFullScreen
         ></iframe>
+        <Link href={"/commissions/prices"} className="btn btn-main outline">
+          View Prices <FaArrowRight />
+        </Link>
       </div>
       <Timeline t={comText.timeline} />
     </main>
