@@ -202,7 +202,9 @@ export default function Portfolio({}: Props) {
                         />
                       ) : (
                         <video
-                          src={getFileUrl(row[0].file) ?? undefined}
+                          src={
+                            row[0].url ? row[0].url : getFileUrl(row[0].file)
+                          }
                           controls
                           autoPlay
                           loop
@@ -237,7 +239,9 @@ export default function Portfolio({}: Props) {
                           />
                         ) : (
                           <video
-                            src={getFileUrl(row[1].file) ?? undefined}
+                            src={
+                              row[1].url ? row[1].url : getFileUrl(row[1].file)
+                            }
                             className="main-pt"
                             controls
                             autoPlay
@@ -308,7 +312,11 @@ export default function Portfolio({}: Props) {
               />
             ) : (
               <video
-                src={getFileUrl(selectedImage.file) ?? undefined}
+                src={
+                  selectedImage.url
+                    ? selectedImage.url
+                    : getFileUrl(selectedImage.file)
+                }
                 controls
                 autoPlay
                 playsInline

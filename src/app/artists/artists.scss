@@ -283,6 +283,11 @@
                   width: 100%;
                   object-fit: cover;
                   cursor: pointer;
+
+                  &.iframe {
+                    outline: none;
+                    border: none;
+                  }
                 }
 
                 &:hover,

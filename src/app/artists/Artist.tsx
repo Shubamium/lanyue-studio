@@ -367,34 +367,64 @@ function MemberDisplayer({
         {memberData.portfolio &&
           memberData.portfolio.map((p: any, index: number) => {
             console.log(p);
-            return p._type === "art" ? (
-              <img
-                src={urlFor(p)?.format("webp").height(720).url()}
-                alt=""
-                onTouchStart={() => {}}
-                onClick={() => {
-                  showFs(false, urlFor(p)?.format("webp").height(1080).url());
-                }}
-                key={memberData.id + "pf" + index}
-                className="p-img"
-              />
-            ) : (
-              <video
-                src={getFileUrl(p) ?? undefined}
-                className="p-img"
-                autoPlay
-                muted
-                playsInline
-                onClick={() => {
-                  showFs(true, getFileUrl(p) ?? undefined);
-                }}
-                controls
-                key={memberData.id + "pf" + index}
-                loop
-                disablePictureInPicture
-                disableRemotePlayback
-              ></video>
-            );
+
+            switch (p._type) {
+              case "art":
+                return (
+                  <img
+                    src={urlFor(p)?.format("webp").height(720).url()}
+                    alt=""
+                    onTouchStart={() => {}}
+                    onClick={() => {
+                      showFs(
+                        false,
+                        urlFor(p)?.format("webp").height(1080).url()
+                      );
+                    }}
+                    key={memberData.id + "pf" + index}
+                    className="p-img"
+                  />
+                );
+                break;
+              case "video":
+                return (
+                  <video
+                    src={getFileUrl(p) ?? undefined}
+                    className="p-img"
+                    autoPlay
+                    muted
+                    playsInline
+                    onClick={() => {
+                      showFs(true, getFileUrl(p) ?? undefined);
+                    }}
+                    controls
+                    key={memberData.id + "pf" + index}
+                    loop
+                    disablePictureInPicture
+                    disableRemotePlayback
+                  ></video>
+                );
+                break;
+              case "embed":
+                return (
+                  <video
+                    src={p.url ?? undefined}
+                    className="p-img"
+                    autoPlay
+                    muted
+                    playsInline
+                    onClick={() => {
+                      showFs(true, p.url ?? undefined);
+                    }}
+                    controls
+                    key={memberData.id + "pf" + index}
+                    loop
+                    disablePictureInPicture
+                    disableRemotePlayback
+                  ></video>
+                );
+                break;
+            }
           })}
       </div>
     </div>

@@ -57,12 +57,18 @@
       top: 120%;
       bottom: 0%;
       left: 0%;
+      z-index: -10;
+      @media screen and (max-width: 1024px) {
+        display: none;
+      }
     }
     aside {
       height: 100%;
+
       article {
         position: sticky;
         top: 15%;
+
         .de-splat {
           position: absolute;
           z-index: -1;
@@ -78,6 +84,8 @@
       display: flex;
       flex-direction: column;
       gap: 1em;
+      position: relative;
+      z-index: 1;
       .terms {
         background: #e0f1fa;
         // padding: 2em;
@@ -89,10 +97,14 @@
             }
           }
           .content {
-            max-height: 1000px;
+            max-height: 1100px;
             transition:
               all 1500ms var(--mainEase),
               padding 0ms;
+
+            @media screen and (max-width: 550px) {
+              max-height: 2000px;
+            }
           }
         }
         &.closed {
