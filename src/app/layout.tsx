@@ -85,13 +85,13 @@ export default function RootLayout({
         className={`${open_sans.variable} ${osc_b.variable} ${osc_r.variable} ${osc_sb.variable}`}
       >
         <ReactLenis root>
-          {/* <PreventRightClick> */}
-          <Header />
-          <Chatbox />
-          <div className="minh">{children}</div>
-          <Tooltip />
-          <Footer />
-          {/* </PreventRightClick> */}
+          <PreventRightClick>
+            <Header />
+            <Chatbox />
+            <div className="minh">{children}</div>
+            <Tooltip />
+            <Footer />
+          </PreventRightClick>
         </ReactLenis>
       </body>
     </html>
