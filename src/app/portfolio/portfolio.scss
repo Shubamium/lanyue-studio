@@ -218,6 +218,9 @@
         overflow-x: auto;
         gap: 1.5em;
         padding-right: 50vh;
+        @media screen and (max-width: 768px) {
+          padding-right: 10vh;
+        }
         .row {
           flex-shrink: 0;
           display: flex;
