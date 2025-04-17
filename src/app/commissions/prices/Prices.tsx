@@ -152,7 +152,7 @@ export function MainPricing({ data }: any) {
 
         <div className="confine group">
           {data &&
-            data.categories((d: any, index: number) => {
+            data.categories.map((d: any, index: number) => {
               return (
                 <PriceList
                   name="listing"
