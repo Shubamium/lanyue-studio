@@ -151,8 +151,18 @@ export function MainPricing({ data }: any) {
         </div>
 
         <div className="confine group">
-          <PriceList name="left" info={data.categories[0]}></PriceList>
-          <PriceList name="right" info={data.categories[1]}></PriceList>
+          {data &&
+            data.categories((d: any, index: number) => {
+              return (
+                <PriceList
+                  name="listing"
+                  info={d}
+                  key={"data-price-" + index}
+                />
+              );
+            })}
+          {/* <PriceList name="left" info={data.categories[0]}></PriceList> */}
+          {/* <PriceList name="right" info={data.categories[1]}></PriceList> */}
           {/* <div className="right price-list">
 						<h3 className="h">VTUBER MODEL ART</h3>
 						<div className="main-prices">
