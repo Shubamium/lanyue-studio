@@ -37,7 +37,9 @@ export default async function PagePrice({}: Props) {
   const formatted: { [key: string]: any } = {};
 
   allList.forEach((d) => {
-    formatted[d.slug] = d;
+    if (d) {
+      formatted[d.slug] = d;
+    }
   });
   return (
     <main id="page_price">

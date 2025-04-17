@@ -18,6 +18,7 @@ export default function Prices({ data, t, gd, nl, nr }: any) {
     data ? data[param.get("c") || Object.keys(data)[0]] : null
   );
 
+  console.log(data);
   return (
     <>
       {/* Gotta change it to url not # */}
