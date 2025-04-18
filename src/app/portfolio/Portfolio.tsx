@@ -44,6 +44,14 @@ export default function Portfolio({}: Props) {
       }
     };
     loadCat();
+    return () => {
+      const tipshowEvent = new CustomEvent("tipshow", {
+        detail: {
+          tip: "",
+        },
+      });
+      document.dispatchEvent(tipshowEvent);
+    };
   }, []);
   useEffect(() => {
     const loadPort = async () => {
@@ -76,32 +84,28 @@ export default function Portfolio({}: Props) {
   const renderVideo = (src: any) => {
     if (src.url) {
       return (
-        <div
-          className="main-pt"
-          onMouseEnter={(e) => {
-            const tipshowEvent = new CustomEvent("tipshow", {
-              detail: {
-                tip: src.artist,
-              },
-            });
-            console.log("dispatched");
-            document.dispatchEvent(tipshowEvent);
-          }}
-          onMouseLeave={(e) => {
-            const tipshowEvent = new CustomEvent("tipshow", {
-              detail: {
-                tip: "",
-              },
-            });
-
-            document.dispatchEvent(tipshowEvent);
-          }}
-        >
+        <div className="main-pt">
           <iframe
             src={`${src.url}?autoplay=true&loop=true&muted=true&preload=true&responsive=true`}
             loading="lazy"
             allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
             allowFullScreen
+            onMouseEnter={() => {
+              const tipshowEvent = new CustomEvent("tipshow", {
+                detail: {
+                  tip: src.artist,
+                },
+              });
+              document.dispatchEvent(tipshowEvent);
+            }}
+            onMouseLeave={() => {
+              const tipshowEvent = new CustomEvent("tipshow", {
+                detail: {
+                  tip: "",
+                },
+              });
+              document.dispatchEvent(tipshowEvent);
+            }}
           ></iframe>
         </div>
       );
@@ -239,7 +243,28 @@ export default function Portfolio({}: Props) {
                     className="row"
                     key={"pfrow" + activeCat + index}
                   >
-                    <div className="pitems inner-shadow-l">
+                    <div
+                      className="pitems inner-shadow-l"
+                      // onMouseOverCapture={(e) => {
+                      //   const tipshowEvent = new CustomEvent("tipshow", {
+                      //     detail: {
+                      //       tip: row[0].artist,
+                      //     },
+                      //   });
+                      //   console.log("called");
+                      //   document.dispatchEvent(tipshowEvent);
+                      // }}
+                      // onMouseOut={(e) => {
+                      //   const tipshowEvent = new CustomEvent("tipshow", {
+                      //     detail: {
+                      //       tip: "",
+                      //     },
+                      //   });
+
+                      //   document.dispatchEvent(tipshowEvent);
+                      // }}
+                      data-tip={row[0].artist}
+                    >
                       {row[0]._type === "imaged" ? (
                         <img
                           src={urlFor(row[0].image)

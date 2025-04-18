@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./tooltip.scss";
 import { useMotionValue, motion, useSpring } from "motion/react";
 import { FaPaintbrush } from "react-icons/fa6";
@@ -10,6 +10,7 @@ export function Tooltip({}: Props) {
   const ymouse = useMotionValue(0);
 
   const [a, setA] = useState("");
+  const manual = useRef(false);
   const x = useSpring(xmouse, {
     stiffness: 100,
     damping: 20,
@@ -28,11 +29,14 @@ export function Tooltip({}: Props) {
     //     setA(text);
     //   });
     // }
-    document.addEventListener("mousemove", (e) => {
-      if (a !== "") {
+    // console.log(manual, a);
+    const mouseDetect = (e: any) => {
+      if (manual.current || a !== "") {
         x.set(e.clientX);
         y.set(e.clientY);
       }
+
+      if (manual.current) return;
       const target = e.target as Element;
       if (e.target && target.matches && target.matches("[data-tip]")) {
         console.log("Hovered over:", e.target, target.getAttribute("data-tip"));
@@ -41,13 +45,21 @@ export function Tooltip({}: Props) {
       } else {
         setA("");
       }
-    });
+    };
+    document.addEventListener("mousemove", mouseDetect);
 
-    // For manual showing
-    document.addEventListener("tipshow", (e: any) => {
+    const manualFunc = (e: any) => {
       console.log("event triggered", e.detail.tip);
+      manual.current = e.detail.tip === "" ? false : true;
       setA(e.detail.tip);
-    });
+    };
+    // For manual showing
+    document.addEventListener("tipshow", manualFunc);
+
+    return () => {
+      document.removeEventListener("tipshow", manualFunc);
+      document.removeEventListener("mousemove", mouseDetect);
+    };
   }, [a]);
 
   return (

@@ -193,22 +193,20 @@ export default function FeaturedProjects({ fps }: Props) {
                     return (
                       <div
                         className="main-pt"
-                        onMouseOverCapture={(e) => {
+                        onMouseEnter={() => {
                           const tipshowEvent = new CustomEvent("tipshow", {
                             detail: {
                               tip: p.artist,
                             },
                           });
-                          console.log("dispatched");
                           document.dispatchEvent(tipshowEvent);
                         }}
-                        onMouseLeave={(e) => {
+                        onMouseLeave={() => {
                           const tipshowEvent = new CustomEvent("tipshow", {
                             detail: {
                               tip: "",
                             },
                           });
-
                           document.dispatchEvent(tipshowEvent);
                         }}
                       >
