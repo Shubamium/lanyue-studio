@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FaArrowLeft, FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import getPortfolio, {
   getCategoryList,
   getPortfolioText,
@@ -20,7 +20,7 @@ export default function Portfolio({}: Props) {
   const params = useSearchParams();
   const startingCat = params.get("c");
 
-  const [activeCat, setActiveCat] = useState(startingCat ?? null);
+  const [activeCat, setActiveCat] = useState<string | null>(null);
   const [category, setCategory] = useState<any[]>([]);
   const [portfolioList, setPortfolioList] = useState<any[]>([]);
 
@@ -38,6 +38,8 @@ export default function Portfolio({}: Props) {
       console.log(portCat);
       if (!startingCat) {
         setActiveCat(portCat[0].slug);
+      } else {
+        setActiveCat(startingCat);
       }
     };
     loadCat();
@@ -69,6 +71,7 @@ export default function Portfolio({}: Props) {
     animateStagger(animate, stagger);
   });
 
+  const route = useRouter();
   const renderVideo = (src: any) => {
     if (src.url) {
       return (
@@ -147,12 +150,12 @@ export default function Portfolio({}: Props) {
               href={"/"}
               className="btn back-btn stagger"
               onClick={(e) => {
-                // e.preventDefault();
+                e.preventDefault();
                 // const refer = document.referrer;
                 // const baseUrl = window.location.origin;
                 // console.warn(baseUrl, refer);
                 // if (refer.startsWith(baseUrl)) {
-                //   router.push("/");
+                route.back();
                 // } else {
                 //   router.back();
                 // }
@@ -177,6 +180,9 @@ export default function Portfolio({}: Props) {
                   className={`btn btn-cat ${activeCat === cat.slug ? "selected" : ""} `}
                   onClick={() => {
                     setActiveCat(cat.slug);
+                    const url = new URL(window.location.href);
+                    url.searchParams.set("c", cat.slug);
+                    window.history.pushState({}, "", url);
                   }}
                   key={cat.slug}
                 >
