@@ -38,7 +38,7 @@ export default async function PagePrice({}: Props) {
 
   allList.forEach((d) => {
     if (d) {
-      formatted[d.slug] = d;
+      formatted[d.slug.toLowerCase()] = d;
     }
   });
   return (

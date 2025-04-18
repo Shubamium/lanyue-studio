@@ -40,7 +40,7 @@ export default function Portfolio({}: Props) {
       if (!startingCat) {
         setActiveCat(portCat[0].slug);
       } else {
-        setActiveCat(startingCat);
+        setActiveCat(startingCat.toLowerCase());
       }
     };
     loadCat();
@@ -182,7 +182,7 @@ export default function Portfolio({}: Props) {
             category.map((cat) => {
               return (
                 <button
-                  className={`btn btn-cat ${activeCat === cat.slug ? "selected" : ""} `}
+                  className={`btn btn-cat ${activeCat?.toLowerCase() === cat.slug.toLowerCase() ? "selected" : ""} `}
                   onClick={() => {
                     setActiveCat(cat.slug);
                     const url = new URL(window.location.href);

@@ -15,7 +15,7 @@ type Props = {};
 export default function Prices({ data, t, gd, nl, nr }: any) {
   const param = useSearchParams();
   const [activeCat, setActiveCat] = useState<any>(
-    data ? data[param.get("c") || Object.keys(data)[0]] : null
+    data ? data[param.get("c")?.toLowerCase() || Object.keys(data)[0]] : null
   );
 
   console.log(data);
@@ -32,7 +32,7 @@ export default function Prices({ data, t, gd, nl, nr }: any) {
                 // href={}
                 // onLCi
                 key={b.slug + i}
-                className={`btn btn-main ${activeCat && activeCat.slug === b.slug ? " " : "outline "} btn-pricenav `}
+                className={`btn btn-main ${activeCat && activeCat.slug.toLowerCase() === b.slug.toLowerCase() ? " " : "outline "} btn-pricenav `}
                 onClick={(e) => {
                   e.preventDefault();
                   setActiveCat(b);
@@ -58,30 +58,32 @@ export default function Prices({ data, t, gd, nl, nr }: any) {
         <img src="/de/branch-white.png" alt="" className="branch-top ni" />
 
         <AnimatePresence mode="popLayout">
-          <motion.div
-            key={activeCat.slug ?? "top-pricing"}
-            initial={{
-              // x: 1000,
-              clipPath: "inset(0% 100% 0% 0%)",
-              opacity: 0,
-            }}
-            animate={{
-              clipPath: "inset(0% 0% 0% 0%)",
-              // x: 0,
-              opacity: 1,
-            }}
-            exit={{
-              // x: 1000,
-              clipPath: "inset(0% 0% 0% 100%)",
-              opacity: 0,
-            }}
-            transition={{
-              duration: 0.8,
-              ease: "easeInOut",
-            }}
-          >
-            <MainPricing data={activeCat} />
-          </motion.div>
+          {activeCat && (
+            <motion.div
+              key={activeCat.slug ?? "top-pricing"}
+              initial={{
+                // x: 1000,
+                clipPath: "inset(0% 100% 0% 0%)",
+                opacity: 0,
+              }}
+              animate={{
+                clipPath: "inset(0% 0% 0% 0%)",
+                // x: 0,
+                opacity: 1,
+              }}
+              exit={{
+                // x: 1000,
+                clipPath: "inset(0% 0% 0% 100%)",
+                opacity: 0,
+              }}
+              transition={{
+                duration: 0.8,
+                ease: "easeInOut",
+              }}
+            >
+              <MainPricing data={activeCat} />
+            </motion.div>
+          )}
         </AnimatePresence>
         {/* {plist &&
           plist.map((p: any) => {

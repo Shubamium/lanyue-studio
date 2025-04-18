@@ -4,7 +4,7 @@ import { fetchData } from "./sanity";
 
 export default async function getPortfolio(category: string): Promise<any[]> {
   const folio = await fetchData<any>(` 
-		*[_type == 'portfolio' && slug.current == '${category}']{
+		*[_type == 'portfolio' && lower(slug.current) == lower('${category}')]{
 		...
 		}[0]
 	`);
