@@ -19,6 +19,7 @@ export default function Portfolio({}: Props) {
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const params = useSearchParams();
   const startingCat = params.get("c");
+  const ref = params.get("ref");
 
   const [activeCat, setActiveCat] = useState<string | null>(null);
   const [category, setCategory] = useState<any[]>([]);
@@ -68,7 +69,7 @@ export default function Portfolio({}: Props) {
   }
 
   const [scope, animate] = useIV(async () => {
-    animateStagger(animate, stagger);
+    animateStagger(animate, stagger, 1, 0.2);
   });
 
   const route = useRouter();
@@ -147,15 +148,15 @@ export default function Portfolio({}: Props) {
           <div className="side-action">
             <img src="/gfx/logo-glow.png" alt="" className="logo ni stagger" />
             <Link
-              href={"/"}
+              href={`/${ref ?? ""}`}
               className="btn back-btn stagger"
               onClick={(e) => {
-                e.preventDefault();
+                // e.preventDefault();
                 // const refer = document.referrer;
                 // const baseUrl = window.location.origin;
                 // console.warn(baseUrl, refer);
                 // if (refer.startsWith(baseUrl)) {
-                route.back();
+                // route.back();
                 // } else {
                 //   router.back();
                 // }

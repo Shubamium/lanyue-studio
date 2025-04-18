@@ -132,7 +132,7 @@ export function MainPricing({ data }: any) {
             </div>
 
             <Link
-              href={`/portfolio?c=${data.slug}`}
+              href={`/portfolio?c=${data.slug}&ref=commissions/prices?c=${data.slug}`}
               className="btn btn-examples"
             >
               <span>

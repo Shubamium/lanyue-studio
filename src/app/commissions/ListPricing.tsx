@@ -78,7 +78,7 @@ export default function ListPricing({ p }: Props) {
           <div className="action">
             {p.nslug && (
               <Link
-                href={`/portfolio?c=${p.nslug}`}
+                href={`/portfolio?c=${p.nslug}&ref=commissions/prices`}
                 className="btn btn-examples"
               >
                 <span>
