@@ -5,7 +5,7 @@ import Link from "next/link";
 import { BiMenu } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import { stagger, useAnimate } from "motion/react";
-import { getMemberType } from "@/app/db/artist";
+import { getMemberType } from "@/app/(frontend)/db/artist";
 
 export default function Header() {
   const [visible, setVisible] = useState(false);

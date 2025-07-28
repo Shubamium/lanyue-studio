@@ -3,8 +3,11 @@ import { stagger, useAnimate, useInView } from "motion/react";
 import React, { useEffect, useRef } from "react";
 import { urlFor } from "../db/sanity";
 import { PortableText } from "next-sanity";
+import { Home, Media } from "@/payload-types";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 
-type Props = { welcome: any };
+type Props = { welcome: Home["welcome"] };
 
 export default function Welcome({ welcome: w }: Props) {
   const head = useRef(null);
@@ -117,22 +120,29 @@ export default function Welcome({ welcome: w }: Props) {
     }
   }, [iv]);
 
+  const il = {
+    asa: w?.asa as Media,
+    asb: w?.asb as Media,
+    aa: w?.aa as Media,
+    ab: w?.ab as Media,
+  };
   return (
     <section id="welcome" ref={scope}>
       <div className="iv" ref={head}>
         <div id="intro-text">
           <h2>
-            {w.hn} <span>{w.hb}</span>
+            {w?.hn} <span>{w?.hb}</span>
           </h2>
         </div>
         <div id="about">
           <div className="artside art-l">
             <img
-              src={
-                urlFor(w.asa.image)?.format("webp").height(900).url() ??
-                "/gfx/placeholder.png"
-              }
-              data-tip={w.asa.artist}
+              // src={
+              //   urlFor(w.asa.image)?.format("webp").height(900).url() ??
+              //   "/gfx/placeholder.png"
+              // }
+              src={il.asa?.sizes?.Large?.url ?? il?.aa?.url ?? ""}
+              data-tip={il.asa?.artist}
               alt=""
             />
             <div className="clip ctr"></div>
@@ -146,24 +156,27 @@ export default function Welcome({ welcome: w }: Props) {
             />
             <div className="top-art">
               <img
-                src={urlFor(w.aa.image)?.format("webp").height(400).url()}
+                // src={urlFor(w.aa.image)?.format("webp").height(400).url()}
+                src={il.aa?.sizes?.Small?.url ?? il?.aa?.url ?? ""}
                 alt=""
-                data-tip={w.aa.artist}
+                data-tip={il.aa?.artist}
                 className="stagger"
               />
               <img
-                src={urlFor(w.ab.image)?.format("webp").height(400).url()}
+                // src={urlFor(w.ab.image)?.format("webp").height(400).url()}
+                src={il.ab?.sizes?.Small?.url ?? il?.ab?.url ?? ""}
                 alt=""
-                data-tip={w.ab.artist}
+                data-tip={il?.ab?.artist}
                 className="stagger"
               />
             </div>
             <div className="about-text">
               <div className="text">
                 <div className="left">
-                  <h3 className="sh stagger">{w.sh}</h3>
+                  <h3 className="sh stagger">{w?.sh}</h3>
                   <div className="p stagger">
-                    <PortableText value={w.pa} />
+                    <RichText data={w?.pa as SerializedEditorState}></RichText>
+                    {/* <PortableText value={w.pa} /> */}
                     {/* <strong>Lan'Yue Studio</strong> is inspired by the rare and
                     unique blue moon. Our goal is to curate the{" "}
                     <strong>one-of-a-kind beauty </strong>
@@ -172,7 +185,8 @@ export default function Welcome({ welcome: w }: Props) {
                   </div>
                 </div>
                 <div className="right stagger">
-                  <PortableText value={w.pb} />
+                  <RichText data={w?.pb as SerializedEditorState}></RichText>
+                  {/* <PortableText value={w.pb} /> */}
 
                   {/* <p className="p">
                     Lan’Yue is committed to satisfying every client with the
@@ -195,8 +209,9 @@ export default function Welcome({ welcome: w }: Props) {
             }}
           >
             <img
-              src={urlFor(w.asb.image)?.format("webp").height(900).url()}
-              data-tip={w.asb.artist}
+              // src={urlFor(w.asb.image)?.format("webp").height(900).url()}
+              src={il.asb?.sizes?.Large?.url ?? il?.ab?.url ?? ""}
+              data-tip={il.asb?.artist}
               alt=""
             />
             <div className="clip ctl"></div>

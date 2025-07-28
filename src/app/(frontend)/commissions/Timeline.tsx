@@ -3,8 +3,11 @@ import React from "react";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion";
 import { PortableText } from "next-sanity";
+import { Commission } from "@/payload-types";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 
-type Props = { t: any };
+type Props = { t: Commission["timeline"] };
 
 export default function Timeline({ t }: Props) {
   const [scope, animate] = useIV(async () => {
@@ -51,6 +54,7 @@ export default function Timeline({ t }: Props) {
       }
     );
   });
+
   return (
     <section id="timeline" ref={scope}>
       <div id="timeline-heading">
@@ -77,15 +81,15 @@ export default function Timeline({ t }: Props) {
               alt=""
               className="de-moon stagger hovering"
             />
-            <p className="sh stagger">{t.sh}</p>
-            <h2 className="h stagger">{t.h}</h2>
+            <p className="sh stagger">{t?.sh}</p>
+            <h2 className="h stagger">{t?.h}</h2>
             <div className="p stagger">
-              <PortableText value={t.p} />
+              <RichText data={t?.p as SerializedEditorState} />
             </div>
           </article>
         </div>
       </div>
-      <StepsTimeline tm={t.steps} />
+      <StepsTimeline tm={t?.steps} />
     </section>
   );
 }
@@ -95,7 +99,7 @@ function StepsTimeline({ tm }: { tm: any[] }) {
     <div id="steps-timeline">
       {tm &&
         tm.map((tms) => {
-          return <StepEl t={tms.title} st={tms.si} key={tms._key} />;
+          return <StepEl t={tms.title} st={tms.si} key={tms.id} />;
         })}
       {/* <StepEl /> */}
       {/* <StepEl /> */}
@@ -226,10 +230,10 @@ function StepEl({ t, st }: { t: string; st: any[] }) {
           {st &&
             st.map((step: any) => {
               return (
-                <div className="detail" key={step._key}>
+                <div className="detail" key={step.id}>
                   <h3 className="h">{step.title}</h3>
                   <div className="p">
-                    <PortableText value={step.p} />
+                    <RichText data={step.p} />
                   </div>
                 </div>
               );

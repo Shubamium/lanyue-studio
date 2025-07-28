@@ -4,11 +4,11 @@ import { useRef } from "react";
 import { nt, useParallax } from "./util/util";
 import { useMediaQuery } from "react-responsive";
 import Link from "next/link";
-import { PortableText } from "next-sanity";
-import { urlFor } from "./db/sanity";
-type Props = { hs: any };
+type Props = { hs: Home["heroSection"] };
 import React from "react";
-
+import { Home, Media } from "@/payload-types";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 export function HeroSection({ hs }: Props) {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -25,6 +25,12 @@ export function HeroSection({ hs }: Props) {
   const iv = useInView(targetRef, {
     once: true,
   });
+  console.log(hs);
+
+  const il = {
+    leftArt: hs.leftArt as Media,
+    rightArt: hs.rightArt as Media,
+  };
 
   return (
     <section id="hero-section" ref={targetRef}>
@@ -50,11 +56,12 @@ export function HeroSection({ hs }: Props) {
           }}
         >
           <div className="head">
-            <p className="sh">{hs.sh}</p>
-            <h2 className="hm">{hs.h}</h2>
+            <p className="sh">{hs?.sh}</p>
+            <h2 className="hm">{hs?.h}</h2>
           </div>
           <div className="p">
-            <PortableText value={hs.p} />
+            <RichText data={hs?.p as SerializedEditorState} />
+
             {/* <strong>Lan’Yue Studio</strong> is here for you. We pride ourselves
             on our <strong>ethics and quality standards</strong> – nothing but
             the best for our artists and clients. Whether your needs are big or
@@ -65,21 +72,21 @@ export function HeroSection({ hs }: Props) {
 
           <div className="action">
             <Link
-              href={hs.ba.path}
-              target={nt(hs.ba.path)}
+              href={hs?.ba?.path ?? ""}
+              target={nt(hs?.ba?.path)}
               className="btn btn-main"
             >
               {" "}
               {/* COMMISSIONS */}
-              {hs.ba.text}
+              {hs?.ba?.text}
             </Link>
             <Link
-              href={hs.bb.path}
-              target={nt(hs.bb.path)}
+              href={hs?.bb?.path ?? ""}
+              target={nt(hs?.bb?.path)}
               className="btn btn-main outline"
             >
               {/* INQUIRIES */}
-              {hs.bb.text}
+              {hs?.bb?.text}
             </Link>
           </div>
         </motion.div>
@@ -97,7 +104,7 @@ export function HeroSection({ hs }: Props) {
                 }
               : {}
           }
-          data-tip={hs.left_art.artist}
+          data-tip={il?.leftArt?.artist}
           transition={{
             delay: 1.3,
             duration: 1,
@@ -106,7 +113,8 @@ export function HeroSection({ hs }: Props) {
           className="image-part inner-shadow-l"
         >
           <motion.img
-            src={urlFor(hs.left_art.image)?.format("webp").height(600).url()}
+            // src={urlFor(hs?.left_art?.image)?.format("webp").height(600).url()}
+            src={il.leftArt.sizes?.Medium?.url ?? il.leftArt.url ?? undefined}
             alt=""
             className="clip-border l main-img"
             style={{ objectPosition: l }}
@@ -138,9 +146,10 @@ export function HeroSection({ hs }: Props) {
       >
         <motion.img
           style={{ objectPosition: r }}
-          src={urlFor(hs.right_art.image)?.format("webp").height(1500).url()}
-          alt=""
-          data-tip={hs.right_art.artist}
+          // src={urlFor(hs.right_art.image)?.format("webp").height(1500).url()}
+          src={il.rightArt?.sizes?.Max?.url ?? il.rightArt?.url ?? undefined}
+          alt={""}
+          data-tip={il.rightArt?.artist}
           className=" main-img clip-border l "
         />
         <div className="overlay inner-shadow ni"></div>

@@ -1,6 +1,8 @@
 "use client";
-import { urlFor } from "@/app/db/sanity";
-import { animateStagger, useIV } from "@/app/util/useIV";
+import { urlFor } from "@/app/(frontend)/db/sanity";
+import { animateStagger, useIV } from "@/app/(frontend)/util/useIV";
+import { Media } from "@/payload-types";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 import { stagger } from "motion";
 import { PortableText } from "next-sanity";
 import React, { useEffect } from "react";
@@ -15,6 +17,8 @@ export default function PriceHeading({ t }: Props) {
     animateStagger(animate, stagger);
     // }
   }, []);
+
+  const headerImage = t.img as Media;
   return (
     <div id="prices-heading" ref={scope}>
       <img src="/de/header-cloud.png" alt="" className="cloud l" />
@@ -23,7 +27,10 @@ export default function PriceHeading({ t }: Props) {
         <figure data-tip={t.img.artist}>
           <img src="/de/blue-splat1.png" alt="" className="splat " />
           <img
-            src={urlFor(t.img.image)?.format("webp").height(400).url()}
+            // src={urlFor(t.img.image)?.format("webp").height(400).url()}
+            src={
+              headerImage?.sizes?.Small?.url ?? headerImage?.url ?? undefined
+            }
             alt=""
             className=" stagger"
           />
@@ -42,7 +49,7 @@ export default function PriceHeading({ t }: Props) {
           <p className="sh stagger">{t.sh}</p>
           <h2 className="h stagger">{t.h}</h2>
           <div className="p stagger">
-            <PortableText value={t.p} />
+            <RichText data={t.p} />
           </div>
         </article>
       </div>

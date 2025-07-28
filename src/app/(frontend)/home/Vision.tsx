@@ -8,8 +8,11 @@ import { FaPaintBrush } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa6";
 import { urlFor } from "../db/sanity";
 import { nt } from "../util/util";
+import { Home, Media } from "@/payload-types";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 
-type Props = { vs: any };
+type Props = { vs: Home["vision"] };
 
 export default function Vision({ vs }: Props) {
   const [scope, animate] = useAnimate();
@@ -61,12 +64,14 @@ export default function Vision({ vs }: Props) {
     }
   }, [vision_iv]);
 
+  const bg = vs?.background as Media;
   return (
     <section
       id="vision"
       style={
         {
-          "--bg": `url('${urlFor(vs.background)?.format("webp").height(900).url()}')`,
+          // "--bg": `url('${urlFor(vs.background)?.format("webp").height(900).url()}')`,
+          "--bg": `url('${bg?.sizes?.Medium?.url ?? bg?.url ?? undefined}')`,
         } as CSSProperties
       }
       ref={scope}
@@ -77,22 +82,23 @@ export default function Vision({ vs }: Props) {
         <div className="left">
           <img src="/gfx/icon-white.png" alt="" className="icon stagger" />
           <h2 className="h s stagger">
-            {vs.heading}
+            {vs?.heading}
             {/* <strong>DREAMS COME TRUE!</strong> */}
           </h2>
           <div className="p stagger">
-            <PortableText value={vs.paragraph} />
+            <RichText data={vs?.paragraph as SerializedEditorState}></RichText>
+            {/* <PortableText value={vs.paragraph} /> */}
             {/* Our vision is to create <strong>consistency</strong> that clients
             can expect across the board and eliminate any stress that comes with
             the business side of art. */}
           </div>
           <Link
-            href={vs.button.path}
-            target={nt(vs.button.path)}
+            href={vs?.button?.path ?? undefined}
+            target={nt(vs?.button?.path ?? undefined)}
             className="btn btn-main outline btn-commision stagger"
           >
             {/* COMMISSIONS */}
-            {vs.button.text}
+            {vs?.button?.text}
           </Link>
         </div>
       </article>

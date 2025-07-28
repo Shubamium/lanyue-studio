@@ -10,6 +10,9 @@ import { stagger } from "motion";
 import { PortableText } from "next-sanity";
 import { AnimatePresence, motion } from "motion/react";
 import { useSearchParams } from "next/navigation";
+import { ArtistText, Media, Member } from "@/payload-types";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 
 type Props = {};
 export default function Artist({}: Props) {
@@ -18,8 +21,8 @@ export default function Artist({}: Props) {
   const sp = useSearchParams();
   const initCat = sp.get("t");
   const [activeCat, setActiveCat] = useState<null | string>(null);
-  const [members, setMembers] = useState<any[]>([]);
-  const [text, setText] = useState<any>([]);
+  const [members, setMembers] = useState<Member[]>([]);
+  const [text, setText] = useState<ArtistText | null>();
 
   const [af, setAf] = useState("");
   useEffect(() => {
@@ -41,7 +44,7 @@ export default function Artist({}: Props) {
       console.log(activeCat);
       if (activeCat) {
         const loaded = await getMember(activeCat);
-        setMembers(loaded);
+        setMembers(loaded.docs);
       }
     };
     loadData();
@@ -120,7 +123,13 @@ export default function Artist({}: Props) {
         <div className="confine">
           <figure>
             <img
-              src={urlFor(text.i)?.format("webp").height(650).url()}
+              // src={urlFor(text.)?.format("webp").height(650).url()}
+              src={
+                (text?.i as Media)?.sizes?.Medium?.url ??
+                (text?.i as Media)?.url ??
+                undefined
+              }
+              // src={urlFor(text.i)?.format("webp").height(650).url()}
               alt=""
               className="r stagger"
             />
@@ -129,10 +138,10 @@ export default function Artist({}: Props) {
           </figure>
 
           <article>
-            <p className="sh stagger">{text.sh}</p>
-            <h2 className="h stagger">{text.h}</h2>
+            <p className="sh stagger">{text?.sh}</p>
+            <h2 className="h stagger">{text?.h}</h2>
             <div className="p stagger">
-              <PortableText value={text.p} />
+              <RichText data={text?.p as SerializedEditorState} />
             </div>
           </article>
         </div>
@@ -189,7 +198,7 @@ export default function Artist({}: Props) {
                   <MemberDisplayer
                     memberData={memberData}
                     index={index}
-                    key={memberData._id}
+                    key={memberData.id}
                     showFs={showFs}
                   />
                 );
@@ -368,44 +377,49 @@ function MemberDisplayer({
           memberData.portfolio.map((p: any, index: number) => {
             console.log(p);
 
-            switch (p._type) {
-              case "art":
+            const pImg = p.artwork as Media;
+            switch (p.type) {
+              case "Image":
+                const imgS = pImg.sizes?.Medium?.url ?? pImg?.url ?? undefined;
+                const imgM = pImg.sizes?.Max?.url ?? pImg?.url ?? undefined;
+
                 return (
                   <img
-                    src={urlFor(p)?.format("webp").height(720).url()}
+                    // src={urlFor(p)?.format("webp").height(720).url()}
+                    src={imgS}
                     alt=""
                     onTouchStart={() => {}}
                     onClick={() => {
                       showFs(
                         false,
-                        urlFor(p)?.format("webp").height(1080).url()
+                        imgM
+                        // urlFor(p)?.format("webp").height(1080).url()
                       );
                     }}
                     key={memberData.id + "pf" + index}
                     className="p-img"
                   />
                 );
-                break;
-              case "video":
-                return (
-                  <video
-                    src={getFileUrl(p) ?? undefined}
-                    className="p-img"
-                    autoPlay
-                    muted
-                    playsInline
-                    onClick={() => {
-                      showFs(true, getFileUrl(p) ?? undefined);
-                    }}
-                    controls
-                    key={memberData.id + "pf" + index}
-                    loop
-                    disablePictureInPicture
-                    disableRemotePlayback
-                  ></video>
-                );
-                break;
-              case "embed":
+              // case "video":
+              //   return (
+              //     <video
+              //       src={getFileUrl(p) ?? undefined}
+              //       className="p-img"
+              //       autoPlay
+              //       muted
+              //       playsInline
+              //       onClick={() => {
+              //         showFs(true, getFileUrl(p) ?? undefined);
+              //       }}
+              //       controls
+              //       key={memberData.id + "pf" + index}
+              //       loop
+              //       disablePictureInPicture
+              //       disableRemotePlayback
+              //     ></video>
+              //   );
+              //   break;
+              case "Video (Embed)":
                 return (
                   // <video
                   //   // src={p.url ?? undefined}
@@ -434,7 +448,6 @@ function MemberDisplayer({
                     ></iframe>
                   </div>
                 );
-                break;
             }
           })}
       </div>
@@ -443,7 +456,10 @@ function MemberDisplayer({
   const figure = (
     <figure>
       <img
-        src={urlFor(memberData.pfp)?.format("webp").height(1080).url()}
+        // src={urlFor(memberData.pfp)?.format("webp").height(1080).url()}
+        src={
+          memberData.pfp?.sizes?.Max?.url ?? memberData.pfp?.url ?? undefined
+        }
         alt=""
         className="at-img"
       />

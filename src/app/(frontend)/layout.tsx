@@ -28,6 +28,7 @@ const osc_b = localFont({
 // });
 import Lenis from "lenis";
 import ReactLenis from "lenis/react";
+import Loading from "./Loading";
 const open_sans = Open_Sans({
   weight: ["300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],

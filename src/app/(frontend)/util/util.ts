@@ -6,7 +6,8 @@ export function useParallax(value: MotionValue<number>, distance: number) {
 }
 
 // Open in new tab if starts with '/'
-export function nt(url: string) {
+export function nt(url: string | null | undefined) {
+  if (!url) return "";
   if (url[0] !== "/") {
     return "_blank";
   } else {

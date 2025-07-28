@@ -7,8 +7,9 @@ import { stagger } from "motion";
 import Link from "next/link";
 import { urlFor } from "../db/sanity";
 import { nt } from "../util/util";
+import { Home, Media } from "@/payload-types";
 
-type Props = { is: any };
+type Props = { is: Home["invitation"] };
 
 export function Invitation({ is }: Props) {
   const [scope, animate] = useAnimate();
@@ -47,13 +48,22 @@ export function Invitation({ is }: Props) {
       animateInvitation();
     }
   }, [iv]);
+
+  const il = {
+    ia: is?.ia as Media,
+    ib: is?.ib as Media,
+    background: is?.bg as Media,
+    ic: is?.ic as Media,
+    imd: is?.imd as Media,
+  };
   return (
     <section id="invitation" ref={scope}>
       <div
         className="bg stagger"
         style={
           {
-            "--bg": `url('${urlFor(is.bg)?.height(800).url()}')`,
+            // "--bg": `url('${urlFor/(is.bg)?.height(800).url()}')`,
+            "--bg": `url('${il.background?.sizes?.Medium?.url ?? il.background?.url ?? undefined}')`,
           } as CSSProperties
         }
       >
@@ -64,26 +74,26 @@ export function Invitation({ is }: Props) {
       <div className="confine">
         <article>
           <h2 className="h stagger">
-            {is.hb}
-            <span>{is.hn}</span>
+            {is?.hb}
+            <span>{is?.hn}</span>
           </h2>
           <div className="action">
             {" "}
             <Link
-              href={is.ba.path}
-              target={nt(is.ba.path)}
+              href={is?.ba?.path ?? undefined}
+              target={nt(is?.ba?.path ?? undefined)}
               className="btn btn-main stagger"
             >
               {/* {" "} */}
               {/* CONTACT FORM{" "} */}
-              {is.ba.text}
+              {is?.ba?.text}
             </Link>
             <Link
-              href={is.bb.path}
-              target={nt(is.bb.path)}
+              href={is?.bb?.path ?? undefined}
+              target={nt(is?.bb?.path)}
               className="btn btn-main outline stagger"
             >
-              {is.bb.text}
+              {is?.bb?.text}
             </Link>
           </div>
         </article>
@@ -92,29 +102,31 @@ export function Invitation({ is }: Props) {
           <div className="diamonds">
             <div className="diamond">
               <img
-                src={urlFor(is.ia.image)?.format("webp").height(400).url()}
-                data-tip={is.ia.artist}
+                // src={urlFor(is.ia.image)?.format("webp").height(400).url()}
+                // data-tip={is.ia.artist}
+                data-tip={il.ia?.artist}
+                src={il.ia?.sizes?.Small?.url ?? il.ia?.url ?? undefined}
                 alt=""
               />
             </div>
             <div className="diamond">
               <img
-                src={urlFor(is.ib.image)?.format("webp").height(400).url()}
-                data-tip={is.ib.artist}
+                data-tip={il.ib?.artist}
+                src={il.ib?.sizes?.Small?.url ?? il.ib?.url ?? undefined}
                 alt=""
               />
             </div>
             <div className="diamond">
               <img
-                src={urlFor(is.ic.image)?.format("webp").height(400).url()}
-                data-tip={is.ic.artist}
+                src={il.ic?.sizes?.Small?.url ?? il.ic?.url ?? undefined}
+                data-tip={il.ic?.artist}
                 alt=""
               />
             </div>
             <div className="diamond">
               <img
-                src={urlFor(is.id.image)?.format("webp").height(400).url()}
-                data-tip={is.id.artist}
+                src={il.imd?.sizes?.Small?.url ?? il.imd?.url ?? undefined}
+                data-tip={il.imd?.artist}
                 alt=""
               />
             </div>

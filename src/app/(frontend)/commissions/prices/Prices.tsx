@@ -5,10 +5,12 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import { PortableText } from "next-sanity";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
-import { urlFor } from "@/app/db/sanity";
+import { urlFor } from "@/app/(frontend)/db/sanity";
 import PriceList from "../PriceList";
 import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
+import { Media } from "@/payload-types";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 
 type Props = {};
 
@@ -95,10 +97,10 @@ export default function Prices({ data, t, gd, nl, nr }: any) {
             <h2>NOTES:</h2>
             <div className="text">
               <div className="left">
-                <PortableText value={nl} />
+                <RichText data={nl} />
               </div>
               <div className="right">
-                <PortableText value={nr} />
+                <RichText data={nr} />
               </div>
               {/* <p className="p">
 									Live2D and Graphics services include a streaming license with
@@ -120,6 +122,7 @@ export default function Prices({ data, t, gd, nl, nr }: any) {
   );
 }
 export function MainPricing({ data }: any) {
+  const im = data.image as Media;
   return (
     data && (
       <motion.div
@@ -146,7 +149,8 @@ export function MainPricing({ data }: any) {
         <div
           className="banner"
           style={{
-            backgroundImage: `url(${urlFor(data.image)?.format("webp").height(1400).url()})`,
+            // backgroundImage: `url(${urlFor(data.image)?.format("webp").height(1400).url()})`,
+            backgroundImage: `url(${im.sizes?.Large?.url ?? im?.url ?? undefineddefineddefined})`,
           }}
         >
           <img src="/de/com-splat.png" alt="" className="splat" />

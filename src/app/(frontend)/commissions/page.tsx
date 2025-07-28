@@ -6,27 +6,42 @@ import Timeline from "./Timeline";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa6";
 import Link from "next/link";
+import { getPayload } from "payload";
+import payloadConfig from "@/payload.config";
 type Props = {};
 
 export default async function Commissions({}: Props) {
-  const comText = await fetchData<any>(`
-			*[_type == 'commission_text' && preset == 'active']{
-				service,
-				timeline,
-			}[0]
-		`);
-  const gd = await fetchData<any>(
-    `*[_type == 'general' && preset == 'active'][0]{
-			cf
-		}`
-  );
+  // const comText = await fetchData<any>(`
+  // 		*[_type == 'commission_text' && preset == 'active']{
+  // 			service,
+  // 			timeline,
+  // 		}[0]
+  // 	`);
+  // const gd = await fetchData<any>(
+  //   `*[_type == 'general' && preset == 'active'][0]{
+  // 		cf
+
+  // 	}`
+  // );
+  const config = await payloadConfig;
+  const payload = await getPayload({
+    config,
+  });
+
+  const comTextP = await payload.findGlobal({
+    slug: "commission",
+  });
+  const gd = await payload.findGlobal({
+    slug: "general",
+  });
 
   return (
     <main id="page_commissions">
-      <a href={gd.cf} target="_blank" className="btn btn-over ">
+      <a href={gd?.cf ?? ""} target="_blank" className="btn btn-over ">
         COMMISSIONS FORM <FaExternalLinkAlt />
       </a>
-      <MainService ss={comText.service} />
+      <MainService ss={comTextP.service} />
+
       <div className="vid-container">
         <iframe
           className="video-trailer"
@@ -37,7 +52,8 @@ export default async function Commissions({}: Props) {
           View Prices <FaArrowRight />
         </Link>
       </div>
-      <Timeline t={comText.timeline} />
+
+      <Timeline t={comTextP.timeline} />
     </main>
   );
 }

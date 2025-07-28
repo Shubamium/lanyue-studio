@@ -11,7 +11,7 @@ import { urlFor } from "../db/sanity";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 
-type Props = { ss: any };
+type Props = { ss: Commission["service"] };
 
 const ParticleFog = dynamic(() => import("./ParticleFog"));
 
@@ -103,10 +103,15 @@ const animateService = async (animate: any, scope: any) => {
   );
 };
 
+import { Commission, Media } from "@/payload-types";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+
 export default function MainService({ ss }: Props) {
   const [scope, animate] = useIV(async () => {
     animateService(animate, scope);
   });
+  console.log(ss);
 
   return (
     <section id="main-service" ref={scope} style={{ opacity: 0 }}>
@@ -122,24 +127,24 @@ export default function MainService({ ss }: Props) {
       ></video>
       <BorderLax />
       <div className="confine header">
-        <p className="sh">{ss.sh}</p>
-        <h2 className="h">{ss.h}</h2>
+        <p className="sh">{ss?.sh}</p>
+        <h2 className="h">{ss?.h}</h2>
       </div>
       <div className="steps">
         <div className="step"></div>
 
         <div className="confine">
-          {ss.steps &&
-            ss.steps.map((step: any) => {
+          {ss?.steps &&
+            ss?.steps.map((step, index) => {
               return (
-                <div className="step" key={step._key}>
+                <div className="step" key={(step.id as string) + index}>
                   <h3>{step.title}</h3>
                   {/* <p>
                   Check out our artists and services! Review this page
                   thoroughly and make sure you understand our{" "}
                   <strong>TOS</strong> before proceeding.
                 </p> */}
-                  <PortableText value={step.p} />
+                  <RichText data={step.p as SerializedEditorState} />
                   <img src="/de/blue-flower.png" alt="" className="de-flower" />
                   <div className="clip cbr"></div>
                   <div className="clip ctr"></div>
@@ -189,7 +194,7 @@ export default function MainService({ ss }: Props) {
         </div>
       </div>
 
-      <CategoryList cat={ss.cat} />
+      <CategoryList cat={ss?.cat} />
 
       <div className="confine terms-cta">
         <p className="p">
@@ -225,7 +230,7 @@ function CategoryList({ cat }: { cat: any }) {
               description={c.p}
               name={c.title}
               list={c.subcat}
-              key={c._key}
+              key={c.id}
             />
           );
         })}
@@ -251,28 +256,39 @@ type CatProps = {
 };
 function Categories({ art, description, name, list, slug }: CatProps) {
   const router = useRouter();
+  const im = art as Media;
+
   return (
     <div
       className="category "
       onClick={() => {
-        router.push("/commissions/prices" + (slug ? `#${slug.current}` : ""));
+        router.push("/commissions/prices" + (slug ? `#${slug}` : ""));
       }}
     >
       <div className="left">
         <h2>{name}</h2>
-        <p className="view">
-          View Prices <FaArrowRight />
-        </p>
+        {slug && (
+          <p className="view">
+            View Prices <FaArrowRight />
+          </p>
+        )}
         <div className="desc">
-          {description && <PortableText value={description} />}
+          {description && (
+            <RichText data={description as SerializedEditorState} />
+          )}
         </div>
-        <img src={urlFor(art)?.height(600).url()} alt="" className="bg-img" />
+        {/* <img src={urlFor(art)?.height(600).url()} alt="" className="bg-img" /> */}
+        <img
+          src={im.sizes?.Medium?.url ?? im?.url ?? undefined}
+          alt=""
+          className="bg-img"
+        />
       </div>
       <div className="list">
         {list &&
-          list.map((i) => {
+          list.map((i: any, index) => {
             return (
-              <div className="item" key={i}>
+              <div className="item" key={i ?? index}>
                 <p>{i} </p>
                 <p>◈</p>
               </div>
