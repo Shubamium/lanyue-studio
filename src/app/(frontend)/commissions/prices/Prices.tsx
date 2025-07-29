@@ -11,6 +11,7 @@ import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { Media } from "@/payload-types";
 import { RichText } from "@payloadcms/richtext-lexical/react";
+import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 
 type Props = {};
 
@@ -133,7 +134,7 @@ export function MainPricing({ data }: any) {
           <div className="sizing">
             <h2 className="h">{data.name}</h2>
             <div className="p">
-              <PortableText value={data.description} />
+              <RichText data={data.description as SerializedEditorState} />
             </div>
 
             <Link
@@ -150,7 +151,7 @@ export function MainPricing({ data }: any) {
           className="banner"
           style={{
             // backgroundImage: `url(${urlFor(data.image)?.format("webp").height(1400).url()})`,
-            backgroundImage: `url(${im.sizes?.Large?.url ?? im?.url ?? undefineddefineddefined})`,
+            backgroundImage: `url(${im.sizes?.Large?.url ?? im?.url ?? undefined})`,
           }}
         >
           <img src="/de/com-splat.png" alt="" className="splat" />

@@ -6,6 +6,9 @@ import { FaArrowRight } from "react-icons/fa6";
 import { urlFor } from "../db/sanity";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion/react";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+import { Media } from "@/payload-types";
 
 type Props = {
   p: any;
@@ -36,6 +39,7 @@ export default function ListPricing({ p }: Props) {
     animateStagger(animate, stagger, 1, 0.6);
   });
 
+  const im = p.image as Media;
   return (
     <div className="list-pricing l" ref={scope}>
       <img src="/de/branch-white.png" alt="" className="branch ni" />
@@ -46,7 +50,7 @@ export default function ListPricing({ p }: Props) {
           <div className="confine price-heading" id={p.slug}>
             <h2 className="h stagger">{p.name}</h2>
             <div className="p stagger">
-              <PortableText value={p.description} />
+              <RichText data={p.description as SerializedEditorState} />
             </div>
           </div>
           {p.categories &&
@@ -65,7 +69,8 @@ export default function ListPricing({ p }: Props) {
           </div>
           <div className="art inner-shadow">
             <img
-              src={urlFor(p.image)?.auto("format").height(900).url()}
+              // src={urlFor(p.image)?.auto("format").height(900).url()}
+              src={im?.sizes?.Large?.url ?? im?.url ?? undefined}
               className="main-img"
             />
             <div className="clip ctr"></div>

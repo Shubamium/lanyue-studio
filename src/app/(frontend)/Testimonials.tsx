@@ -713,7 +713,7 @@ export default function Testimonials({ ts }: Props) {
             <p className="sh stagger">{ts.sh}</p>
             <h2 className="h stagger">{ts.h}</h2>
             <div className="p stagger">
-              <PortableText value={ts.p} />
+              {/* <PortableText value={ts.p} /> */}
             </div>
           </div>
         </article>

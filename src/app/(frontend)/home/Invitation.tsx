@@ -80,8 +80,8 @@ export function Invitation({ is }: Props) {
           <div className="action">
             {" "}
             <Link
-              href={is?.ba?.path ?? undefined}
-              target={nt(is?.ba?.path ?? undefined)}
+              href={is?.ba?.path ?? ""}
+              target={nt(is?.ba?.path ?? "")}
               className="btn btn-main stagger"
             >
               {/* {" "} */}
@@ -89,7 +89,7 @@ export function Invitation({ is }: Props) {
               {is?.ba?.text}
             </Link>
             <Link
-              href={is?.bb?.path ?? undefined}
+              href={is?.bb?.path ?? ""}
               target={nt(is?.bb?.path)}
               className="btn btn-main outline stagger"
             >

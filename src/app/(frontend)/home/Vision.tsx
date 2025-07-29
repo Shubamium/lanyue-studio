@@ -93,7 +93,7 @@ export default function Vision({ vs }: Props) {
             the business side of art. */}
           </div>
           <Link
-            href={vs?.button?.path ?? undefined}
+            href={vs?.button?.path ?? ""}
             target={nt(vs?.button?.path ?? undefined)}
             className="btn btn-main outline btn-commision stagger"
           >
