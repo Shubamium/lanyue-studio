@@ -4,7 +4,7 @@ import { animateStagger, useIV } from "@/app/(frontend)/util/useIV";
 import { Media } from "@/payload-types";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import { stagger } from "motion";
-import { PortableText } from "next-sanity";
+
 import React, { useEffect } from "react";
 
 type Props = { t: any };

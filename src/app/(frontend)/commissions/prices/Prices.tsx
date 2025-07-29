@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import PriceHeading from "./PriceHeading";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { PortableText } from "next-sanity";
+
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
 import { urlFor } from "@/app/(frontend)/db/sanity";

@@ -1,7 +1,7 @@
 "use client";
 import { stagger } from "motion";
 import { useAnimate, useInView } from "motion/react";
-import { PortableText } from "next-sanity";
+
 import Link from "next/link";
 import React, { CSSProperties, useEffect, useRef } from "react";
 import { FaPaintBrush } from "react-icons/fa";

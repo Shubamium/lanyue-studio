@@ -2,7 +2,7 @@
 import { stagger, useAnimate, useInView } from "motion/react";
 import React, { useEffect, useRef } from "react";
 import { urlFor } from "../db/sanity";
-import { PortableText } from "next-sanity";
+
 import { Home, Media } from "@/payload-types";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";

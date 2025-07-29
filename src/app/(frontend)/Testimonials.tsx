@@ -4,8 +4,6 @@ import React, { useEffect } from "react";
 import useMeasure from "react-use-measure";
 import { useIV } from "./util/useIV";
 import { stagger } from "motion";
-import { PortableText } from "next-sanity";
-import { urlFor } from "./db/sanity";
 type Props = { ts: any };
 
 export default function Testimonials({ ts }: Props) {
@@ -146,7 +144,8 @@ export default function Testimonials({ ts }: Props) {
                         </svg>
 
                         <div className="word">
-                          <PortableText value={t.testimony} />
+                          {/* rich stext */}
+                          {/* <PortableText value={t.testimony} /> */}
                         </div>
                       </div>
                       <div className="infos">
@@ -157,7 +156,7 @@ export default function Testimonials({ ts }: Props) {
 
                     <div className="pfp ">
                       <img
-                        src={urlFor(t.pfp)?.auto("format").url()}
+                        // src={urlFor(t.pfp)?.auto("format").url()}
                         alt=""
                         className=""
                       />

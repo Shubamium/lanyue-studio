@@ -6,7 +6,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import BorderLax from "./BorderLax";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion/react";
-import { PortableText } from "next-sanity";
+
 import { urlFor } from "../db/sanity";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";

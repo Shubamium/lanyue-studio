@@ -7,13 +7,12 @@ import getPortfolio, {
   getCategoryList,
   getPortfolioText,
 } from "../db/portfolio";
-import { getFileUrl, urlFor } from "../db/sanity";
 import { animateStagger, useIV } from "../util/useIV";
 type Props = {};
 
 import { AnimatePresence, motion } from "motion/react";
 import { stagger } from "motion";
-import { PortableText } from "next-sanity";
+
 import { Media, PortfolioList, PortfolioText } from "@/payload-types";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";

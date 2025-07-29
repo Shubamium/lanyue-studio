@@ -9,8 +9,7 @@ import {
 } from "motion/react";
 import React, { CSSProperties, useEffect } from "react";
 import useMeasure from "react-use-measure";
-import { getFileUrl, urlFor } from "./db/sanity";
-import { PortableText } from "next-sanity";
+
 import { useMediaQuery } from "react-responsive";
 import { Home, Media } from "@/payload-types";
 import { RichText } from "@payloadcms/richtext-lexical/react";

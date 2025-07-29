@@ -1,7 +1,7 @@
 "use client";
 import { stagger } from "motion";
 import { useAnimate, useInView } from "motion/react";
-import { PortableText } from "next-sanity";
+
 import React, { useEffect } from "react";
 import { urlFor } from "../db/sanity";
 import { animateStagger, useIV } from "../util/useIV";

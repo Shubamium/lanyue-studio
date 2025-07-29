@@ -2,7 +2,7 @@
 import React from "react";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion";
-import { PortableText } from "next-sanity";
+
 import { Commission } from "@/payload-types";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";

@@ -6,7 +6,6 @@ import { FaArrowRight } from "react-icons/fa6";
 import { urlFor } from "../db/sanity";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion/react";
-import { PortableText } from "next-sanity";
 
 type Props = {
   p: any;

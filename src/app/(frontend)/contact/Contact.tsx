@@ -12,7 +12,6 @@ import { SendMail } from "../util/mail";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion";
 import { CgMail } from "react-icons/cg";
-import { PortableText } from "next-sanity";
 
 import { BiEdit } from "react-icons/bi";
 
