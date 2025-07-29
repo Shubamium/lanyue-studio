@@ -38,6 +38,7 @@ export default async function Home() {
       )} */}
       {/* <script type="text/javascript"></script> */}
       <Invitation is={homeP.invitation} />
+      <></>
     </main>
   );
 }
