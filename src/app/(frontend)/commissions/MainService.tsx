@@ -7,7 +7,6 @@ import BorderLax from "./BorderLax";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion/react";
 
-import { urlFor } from "../db/sanity";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 

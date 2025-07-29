@@ -1,5 +1,4 @@
 "use client";
-import { urlFor } from "@/app/(frontend)/db/sanity";
 import { animateStagger, useIV } from "@/app/(frontend)/util/useIV";
 import { Media } from "@/payload-types";
 import { RichText } from "@payloadcms/richtext-lexical/react";
