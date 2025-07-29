@@ -4,8 +4,9 @@ import "./terms.scss";
 import TermsList from "./TermsList";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion";
-import { PortableText } from "next-sanity";
-import { urlFor } from "../db/sanity";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+import { Media } from "@/payload-types";
 type Props = { t: any };
 
 export default function Terms({ t }: Props) {
@@ -33,12 +34,14 @@ export default function Terms({ t }: Props) {
 
     animateStagger(animate, stagger);
   });
+  const im = t.banner as Media;
   return (
     <main id="page_terms" ref={scope}>
       <section
         id="terms-banner"
         style={{
-          backgroundImage: `url('${urlFor(t.banner.image)?.format("webp").height(800).url()}')`,
+          // backgroundImage: `url('${urlFor(t.banner.image)?.format("webp").height(800).url()}')`,
+          backgroundImage: `url('${im.sizes?.Medium?.url ?? im?.url ?? ""}')`,
         }}
         data-tip={t.banner.artist}
       >
@@ -53,7 +56,7 @@ export default function Terms({ t }: Props) {
             <p className="sh stagger">{t.sh}</p>
             <h2 className="h stagger">{t.h}</h2>
             <div className="p stagger">
-              <PortableText value={t.p} />
+              <RichText data={t.p as SerializedEditorState} />
             </div>
 
             <img src="/de/flower-tos.png" alt="" className="de-flower" />

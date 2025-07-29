@@ -1,6 +1,5 @@
 import React from "react";
 import "./commissions.scss";
-import { fetchData, urlFor } from "../db/sanity";
 import MainService from "./MainService";
 import Timeline from "./Timeline";
 import { FaExternalLinkAlt } from "react-icons/fa";

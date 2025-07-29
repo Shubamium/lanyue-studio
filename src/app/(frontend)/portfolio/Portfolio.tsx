@@ -14,6 +14,14 @@ type Props = {};
 import { AnimatePresence, motion } from "motion/react";
 import { stagger } from "motion";
 import { PortableText } from "next-sanity";
+import { Media, PortfolioList, PortfolioText } from "@/payload-types";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+
+type UnpackArray<T> = T extends (infer U)[] ? U : T;
+type ExtractObject<T> = T extends object ? T : never;
+type ExtractedMediaItem = ExtractObject<PortfolioList["mediaItems"]>;
+type MediaItem = UnpackArray<ExtractedMediaItem>;
 
 export default function Portfolio({}: Props) {
   const sliderRef = useRef<HTMLDivElement | null>(null);
@@ -22,25 +30,27 @@ export default function Portfolio({}: Props) {
   const ref = params.get("ref");
 
   const [activeCat, setActiveCat] = useState<string | null>(null);
-  const [category, setCategory] = useState<any[]>([]);
-  const [portfolioList, setPortfolioList] = useState<any[]>([]);
+  const [category, setCategory] = useState<PortfolioText["order"]>([]);
+  const [portfolioList, setPortfolioList] =
+    useState<PortfolioList["mediaItems"]>();
 
   const [sidebar, setSidebar] = useState(false);
   const [selectedImage, setSelectedImage] = useState<any | null>(null);
 
-  const [t, setT] = useState<any>(null);
+  const [t, setT] = useState<PortfolioText | null>(null);
   useEffect(() => {
     const loadCat = async () => {
       let text = await getPortfolioText();
       setT(text);
-      let portCat = await getCategoryList();
+      let portCat = (await getCategoryList()) as PortfolioText["order"];
       setCategory(portCat);
 
       console.log(portCat);
-      if (!startingCat) {
-        setActiveCat(portCat[0].slug);
+      if (!startingCat && portCat) {
+        const pCatTyped = portCat as PortfolioList[];
+        setActiveCat(pCatTyped[0]?.slug ?? null);
       } else {
-        setActiveCat(startingCat.toLowerCase());
+        setActiveCat(startingCat?.toLowerCase() ?? null);
       }
     };
     loadCat();
@@ -70,63 +80,16 @@ export default function Portfolio({}: Props) {
     loadPort();
   }, [activeCat]);
 
-  const chopped = [...portfolioList];
+  const chopped = [...(portfolioList ?? [])];
   const toRender = [];
   while (chopped.length > 0) {
     toRender.push(chopped.splice(0, 2));
   }
-
   const [scope, animate] = useIV(async () => {
     animateStagger(animate, stagger, 1, 0.2);
   });
 
-  const route = useRouter();
-  const renderVideo = (src: any) => {
-    if (src.url) {
-      return (
-        <div className="main-pt">
-          <iframe
-            src={`${src.url}?autoplay=true&loop=true&muted=true&preload=true&responsive=true`}
-            loading="lazy"
-            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
-            allowFullScreen
-            onMouseEnter={() => {
-              const tipshowEvent = new CustomEvent("tipshow", {
-                detail: {
-                  tip: src.artist,
-                },
-              });
-              document.dispatchEvent(tipshowEvent);
-            }}
-            onMouseLeave={() => {
-              const tipshowEvent = new CustomEvent("tipshow", {
-                detail: {
-                  tip: "",
-                },
-              });
-              document.dispatchEvent(tipshowEvent);
-            }}
-          ></iframe>
-        </div>
-      );
-    } else {
-      return (
-        <video
-          src={src.url ? src.url : getFileUrl(src.file)}
-          controls
-          autoPlay
-          loop
-          playsInline
-          data-tip={src.artist}
-          muted
-          onClick={() => {
-            setSelectedImage(src);
-          }}
-          className="main-pt"
-        />
-      );
-    }
-  };
+  console.log(toRender);
   return (
     <section id="portfolio-display" ref={scope}>
       <aside
@@ -173,13 +136,13 @@ export default function Portfolio({}: Props) {
             <p className="sh">{t?.sh}</p>
             <h2 className="h">{t?.h}</h2>
             <div className="p">
-              <PortableText value={t?.p} />
+              <RichText data={t?.p as SerializedEditorState} />
             </div>
           </div>
         </div>
         <div className="categories stagger">
           {category &&
-            category.map((cat) => {
+            category.map((cat: any) => {
               return (
                 <button
                   className={`btn btn-cat ${activeCat?.toLowerCase() === cat.slug.toLowerCase() ? "selected" : ""} `}
@@ -217,7 +180,7 @@ export default function Portfolio({}: Props) {
         <div className="lists" ref={sliderRef}>
           <AnimatePresence mode="wait">
             {toRender &&
-              toRender.map((row: any[], index) => {
+              toRender.map((row: ExtractedMediaItem, index) => {
                 return (
                   <motion.div
                     initial={{
@@ -243,50 +206,19 @@ export default function Portfolio({}: Props) {
                     className="row"
                     key={"pfrow" + activeCat + index}
                   >
-                    <div
-                      className="pitems inner-shadow-l"
-                      // onMouseOverCapture={(e) => {
-                      //   const tipshowEvent = new CustomEvent("tipshow", {
-                      //     detail: {
-                      //       tip: row[0].artist,
-                      //     },
-                      //   });
-                      //   console.log("called");
-                      //   document.dispatchEvent(tipshowEvent);
-                      // }}
-                      // onMouseOut={(e) => {
-                      //   const tipshowEvent = new CustomEvent("tipshow", {
-                      //     detail: {
-                      //       tip: "",
-                      //     },
-                      //   });
-
-                      //   document.dispatchEvent(tipshowEvent);
-                      // }}
-                      data-tip={row[0].artist}
-                    >
-                      {row[0]._type === "imaged" ? (
-                        <img
-                          src={urlFor(row[0].image)
-                            ?.format("webp")
-                            .height(900)
-
-                            .url()}
-                          alt=""
-                          data-tip={row[0].artist}
-                          className="main-pt"
-                          onClick={() => {
-                            setSelectedImage(row[0]);
-                          }}
-                          style={{
-                            objectPosition: `0% ${row[0].y ?? 40}%`,
-                          }}
-                        />
-                      ) : (
-                        renderVideo(row[0])
-                      )}
-                    </div>
-                    {row[1] && (
+                    <MediaRender
+                      media={row[0]}
+                      onGallery={(src) => {
+                        setSelectedImage(src);
+                      }}
+                    />
+                    <MediaRender
+                      media={row[1]}
+                      onGallery={(src) => {
+                        setSelectedImage(src);
+                      }}
+                    />
+                    {/* {row[1] && (
                       <div className="pitems inner-shadow-l">
                         {row[1]._type === "imaged" ? (
                           <img
@@ -309,7 +241,7 @@ export default function Portfolio({}: Props) {
                           renderVideo(row[1])
                         )}
                       </div>
-                    )}
+                    )} */}
                   </motion.div>
                 );
               })}
@@ -382,5 +314,111 @@ export default function Portfolio({}: Props) {
         )}
       </div>
     </section>
+  );
+}
+
+function MediaRender({
+  media,
+  onGallery,
+}: {
+  // media?: UnpackArray<PortfolioList["mediaItems"]>;
+  media?: MediaItem;
+  onGallery: (src: string) => void;
+}) {
+  if (!media) return <></>;
+
+  const renderVideo = (src: any) => {
+    if (src.url) {
+      return (
+        <div className="main-pt">
+          <iframe
+            src={`${src.url}?autoplay=true&loop=true&muted=true&preload=true&responsive=true`}
+            loading="lazy"
+            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+            allowFullScreen
+            onMouseEnter={() => {
+              const tipshowEvent = new CustomEvent("tipshow", {
+                detail: {
+                  tip: src.artist,
+                },
+              });
+              document.dispatchEvent(tipshowEvent);
+            }}
+            onMouseLeave={() => {
+              const tipshowEvent = new CustomEvent("tipshow", {
+                detail: {
+                  tip: "",
+                },
+              });
+              document.dispatchEvent(tipshowEvent);
+            }}
+          ></iframe>
+        </div>
+      );
+    } else {
+      return (
+        <video
+          src={src.url ? src.url : getFileUrl(src.file)}
+          controls
+          autoPlay
+          loop
+          playsInline
+          data-tip={src.artist}
+          muted
+          onClick={() => {
+            onGallery(src);
+          }}
+          className="main-pt"
+        />
+      );
+    }
+  };
+  const im = media.artwork as Media;
+
+  return (
+    <div
+      className="pitems inner-shadow-l"
+      // onMouseOverCapture={(e) => {
+      //   const tipshowEvent = new CustomEvent("tipshow", {
+      //     detail: {
+      //       tip: row[0].artist,
+      //     },
+      //   });
+      //   console.log("called");
+      //   document.dispatchEvent(tipshowEvent);
+      // }}
+      // onMouseOut={(e) => {
+      //   const tipshowEvent = new CustomEvent("tipshow", {
+      //     detail: {
+      //       tip: "",
+      //     },
+      //   });
+
+      //   document.dispatchEvent(tipshowEvent);
+      // }}
+      data-tip={media}
+    >
+      {media.type === "Image" ? (
+        <img
+          // src={urlFor(media,)
+          //   ?.format("webp")
+          //   .height(900)
+
+          //   .url()}
+          src={im.sizes?.Large?.url ?? im?.url ?? undefined}
+          alt=""
+          data-tip={im.artist}
+          className="main-pt"
+          onClick={() => {
+            onGallery(im?.sizes?.Large?.url ?? im?.url ?? "");
+          }}
+          style={{
+            objectPosition: `0% ${im?.y ?? 40}%`,
+          }}
+        />
+      ) : (
+        renderVideo(media)
+      )}
+    </div>
   );
 }

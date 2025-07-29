@@ -5,18 +5,26 @@ import { BiSolidArrowToTop } from "react-icons/bi";
 import { FaDiscord, FaXTwitter } from "react-icons/fa6";
 import { CgMail } from "react-icons/cg";
 import { fetchData } from "@/app/(frontend)/db/sanity";
+import payloadConfig from "@/payload.config";
+import { getPayload } from "payload";
 type Props = {};
 
 export default async function Footer({}: Props) {
-  const general = await fetchData<any>(`
-		*[_type == 'general' && preset == 'active']{
-			footer,
-			mail,
-			x,
-			discord
-		}[0]
-	`);
-  console.log(general);
+  // const general = await fetchData<any>(`
+  // 	*[_type == 'general' && preset == 'active']{
+  // 		footer,
+  // 		mail,
+  // 		x,
+  // 		discord
+  // 	}[0]
+  // `);
+  const config = await payloadConfig;
+  const payload = await getPayload({
+    config: config,
+  });
+  const general = await payload.findGlobal({
+    slug: "general",
+  });
   return (
     <footer id="footer">
       <img src="/de/gold-branch.png" alt="" className="gold-branch l ni" />
@@ -47,29 +55,39 @@ export default async function Footer({}: Props) {
           </p>
 
           <div className="contacts">
-            <a href={general.x} target="_blank" className="btn footer-contact">
-              <span>
-                <FaXTwitter />
-              </span>
-            </a>
-            <a
-              href={general.discord}
-              target="_blank"
-              className="btn footer-contact"
-            >
-              <span>
-                <FaDiscord />
-              </span>
-            </a>
-            <a
-              href={`mailto:${general.mail}`}
-              target="_blank"
-              className="btn footer-contact"
-            >
-              <span>
-                <CgMail />
-              </span>
-            </a>
+            {general.x && (
+              <a
+                href={general.x}
+                target="_blank"
+                className="btn footer-contact"
+              >
+                <span>
+                  <FaXTwitter />
+                </span>
+              </a>
+            )}
+            {general.discord && (
+              <a
+                href={general.discord}
+                target="_blank"
+                className="btn footer-contact"
+              >
+                <span>
+                  <FaDiscord />
+                </span>
+              </a>
+            )}
+            {general.mail && (
+              <a
+                href={`mailto:${general.mail}`}
+                target="_blank"
+                className="btn footer-contact"
+              >
+                <span>
+                  <CgMail />
+                </span>
+              </a>
+            )}
           </div>
         </div>
         <div className="right">

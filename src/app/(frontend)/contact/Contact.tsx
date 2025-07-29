@@ -18,10 +18,20 @@ import { BiEdit } from "react-icons/bi";
 
 import { BsArrowLeftCircle } from "react-icons/bs";
 import dynamic from "next/dynamic";
-type Props = { c: any };
+import { Contact as ContactText, General } from "@/payload-types";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+type Props = {
+  c: ContactText;
+  g: General;
+  f: {
+    af?: string;
+    cf?: string;
+  };
+};
 
 const ParticleFog = dynamic(() => import("../commissions/ParticleFog"));
-export default function Contact({ c }: Props) {
+export default function Contact({ c, g, f }: Props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [handle, setHandle] = useState("");
@@ -56,22 +66,22 @@ export default function Contact({ c }: Props) {
               alt=""
               className="de-moon stagger hovering"
             />
-            <p className="sh stagger">{c.sh}</p>
-            <h2 className="h stagger">{c.h}</h2>
+            <p className="sh stagger">{c?.sh}</p>
+            <h2 className="h stagger">{c?.h}</h2>
           </div>
           <div className="p stagger">
-            <PortableText value={c.p} />
+            <RichText data={c.p as SerializedEditorState} />
           </div>
-          <a href={`mailto:${c.em}`} className="email stagger">
+          <a href={`mailto:${g?.mail}`} className="email stagger">
             {"➜ "}
-            {c.em}
+            {g?.mail}
           </a>
 
           <div className="infos">
             {c.il &&
               c.il.map((i: any) => {
                 return !i.isLink ? (
-                  <div className="info stagger" key={i._key}>
+                  <div className="info stagger" key={i.id}>
                     <h2>{i.title}</h2>
                     <p>{i.info}</p>
                   </div>
@@ -106,21 +116,27 @@ export default function Contact({ c }: Props) {
           </div>
 
           <div className="contacts stagger">
-            <a href={c.x} target="_blank" className="btn btn-contact">
-              <span>
-                <FaXTwitter />
-              </span>
-            </a>
-            <a href={c.discord} target="_blank" className="btn btn-contact">
-              <span>
-                <FaDiscord />
-              </span>
-            </a>
-            <a href={`mailto:${c.mail}`} className="btn btn-contact">
-              <span>
-                <CgMail />
-              </span>
-            </a>
+            {g.x && (
+              <a href={g.x} target="_blank" className="btn btn-contact">
+                <span>
+                  <FaXTwitter />
+                </span>
+              </a>
+            )}
+            {g.discord && (
+              <a href={g.discord} target="_blank" className="btn btn-contact">
+                <span>
+                  <FaDiscord />
+                </span>
+              </a>
+            )}
+            {g.mail && (
+              <a href={`mailto:${g.mail}`} className="btn btn-contact">
+                <span>
+                  <CgMail />
+                </span>
+              </a>
+            )}
           </div>
           <p className="alt-text stagger">{c.m}</p>
 
@@ -134,10 +150,10 @@ export default function Contact({ c }: Props) {
               <FaArrowLeft />
               <span>{c.hb.text}</span>
             </Link> */}
-            {c.fm && (
+            {f && (
               <>
                 <Link
-                  href={c.fm.cf}
+                  href={f.cf ?? ""}
                   target={"_blank"}
                   className="btn btn-main outline stagger "
                   style={{
@@ -148,7 +164,7 @@ export default function Contact({ c }: Props) {
                   <span>COMMISSION FORM</span>
                 </Link>
                 <Link
-                  href={c.fm.af}
+                  href={f.af ?? ""}
                   target={"_blank"}
                   className="btn btn-main outline  stagger"
                   style={{
@@ -238,7 +254,7 @@ export default function Contact({ c }: Props) {
               {/* We'll respond to your inquiries as soon as possible. By */}
               {/* commissioning our services, you formally accept the{" "} */}
               {/* <Link href={"/terms"}>terms and conditions</Link>. */}
-              <PortableText value={c.st} />
+              <RichText data={c?.st as SerializedEditorState} />
             </div>
 
             <button className="btn btn-main outline" type="submit">

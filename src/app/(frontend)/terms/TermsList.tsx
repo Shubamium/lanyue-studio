@@ -1,10 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
-import useMeasure from "react-use-measure";
 import { useIV } from "../util/useIV";
 import { stagger } from "motion/react";
-import { PortableText } from "next-sanity";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 
 type Props = { tl: any };
 
@@ -42,7 +41,7 @@ export default function TermsList({ tl }: Props) {
       {tl.map((l: any) => {
         return (
           <TermsDropdown title={l.title} key={l._key}>
-            <PortableText value={l.text} />
+            <RichText data={l.text} />
           </TermsDropdown>
         );
       })}
