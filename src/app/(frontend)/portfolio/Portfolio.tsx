@@ -326,52 +326,53 @@ function MediaRender({
 }) {
   if (!media) return <></>;
 
-  const renderVideo = (src: any) => {
-    if (src.url) {
-      return (
-        <div className="main-pt">
-          <iframe
-            src={`${src.url}?autoplay=true&loop=true&muted=true&preload=true&responsive=true`}
-            loading="lazy"
-            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
-            allowFullScreen
-            onMouseEnter={() => {
-              const tipshowEvent = new CustomEvent("tipshow", {
-                detail: {
-                  tip: src.artist,
-                },
-              });
-              document.dispatchEvent(tipshowEvent);
-            }}
-            onMouseLeave={() => {
-              const tipshowEvent = new CustomEvent("tipshow", {
-                detail: {
-                  tip: "",
-                },
-              });
-              document.dispatchEvent(tipshowEvent);
-            }}
-          ></iframe>
-        </div>
-      );
-    } else {
-      return (
-        <video
-          // src={src.url ? src.url : getFileUrl(src.file)}
-          controls
-          autoPlay
-          loop
-          playsInline
-          data-tip={src.artist}
-          muted
-          onClick={() => {
-            onGallery(media);
+  const renderVideo = (src: MediaItem["Video"]) => {
+    if (!src) return <></>;
+    return (
+      <div className="main-pt">
+        <iframe
+          src={`${src.url}?autoplay=true&loop=true&muted=true&preload=true&responsive=true`}
+          loading="lazy"
+          allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+          allowFullScreen
+          onMouseEnter={() => {
+            const tipshowEvent = new CustomEvent("tipshow", {
+              detail: {
+                tip: src.artist,
+              },
+            });
+            document.dispatchEvent(tipshowEvent);
           }}
-          className="main-pt"
-        />
-      );
-    }
+          onMouseLeave={() => {
+            const tipshowEvent = new CustomEvent("tipshow", {
+              detail: {
+                tip: "",
+              },
+            });
+            document.dispatchEvent(tipshowEvent);
+          }}
+        ></iframe>
+      </div>
+    );
   };
+  // else {
+  //   return (
+  //     <video
+  //       // src={src.url ? src.url : getFileUrl(src.file)}
+  //       controls
+  //       autoPlay
+  //       loop
+  //       playsInline
+  //       data-tip={src?.artist}
+  //       muted
+  //       onClick={() => {
+  //         onGallery(media);
+  //       }}
+  //       className="main-pt"
+  //     />
+  //   );
+  // }
+  // };
   const im = media.artwork as Media;
 
   return (
@@ -417,7 +418,7 @@ function MediaRender({
           }}
         />
       ) : (
-        renderVideo(media)
+        renderVideo(media.Video ?? {})
       )}
     </div>
   );
