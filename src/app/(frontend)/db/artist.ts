@@ -39,7 +39,11 @@ export async function getText(): Promise<ArtistText> {
   });
   return text;
 }
-export async function getCategory(): Promise<ArtistText["order"]> {
+
+type ExtractType<T> = T extends object ? T : never;
+
+type ArtistTextOrder = ExtractType<ArtistType>;
+export async function getCategory(): Promise<ArtistType[]> {
   // const text = await fetchData<any>(`
   // 		*[_type == 'artistText' && preset == 'active'][0] {
   // 			'order': order[] -> {
@@ -53,7 +57,7 @@ export async function getCategory(): Promise<ArtistText["order"]> {
     slug: "artist-text",
   });
 
-  return text.order ?? [];
+  return text.order as ArtistType[];
 }
 
 export async function getAf(): Promise<string> {

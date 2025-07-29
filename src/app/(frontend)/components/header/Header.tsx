@@ -95,7 +95,7 @@ export default function Header() {
                 [...memberType].reverse().map((mt: any, i: number) => {
                   return (
                     <Link
-                      href={"/artists?t=" + mt.slug.current}
+                      href={"/artists?t=" + mt.slug}
                       key={"dropdown-mt-artst" + i}
                       className="btn btn-drop"
                     >

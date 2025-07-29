@@ -1062,7 +1062,7 @@ export interface ArtistText {
     };
     [k: string]: unknown;
   } | null;
-  order?: (string | ArtistType)[] | null;
+  order: (string | ArtistType)[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }

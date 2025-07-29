@@ -31,6 +31,7 @@ const ArtistText: GlobalConfig = {
       label: "Category Order",
       type: "relationship",
       relationTo: "artist-type",
+      required: true,
       hasMany: true,
     },
   ],

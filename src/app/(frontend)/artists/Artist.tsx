@@ -32,8 +32,7 @@ export default function Artist({}: Props) {
       setText(text);
       const category = await getCategory();
       setCat(category);
-      setActiveCat(initCat || category[0].slug);
-      console.log(category);
+      setActiveCat(initCat || category[0]?.slug);
     };
     loadData();
   }, []);
