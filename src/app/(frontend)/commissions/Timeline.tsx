@@ -89,7 +89,7 @@ export default function Timeline({ t }: Props) {
           </article>
         </div>
       </div>
-      <StepsTimeline tm={t?.steps} />
+      <StepsTimeline tm={t?.steps as any} />
     </section>
   );
 }
