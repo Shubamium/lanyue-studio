@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import Terms from "./Terms";
-import { fetchData } from "../db/sanity";
 import payloadConfig from "@/payload.config";
 import { getPayload } from "payload";
 import Loading from "../Loading";

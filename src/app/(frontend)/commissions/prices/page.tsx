@@ -1,4 +1,3 @@
-import { fetchData, urlFor } from "@/app/(frontend)/db/sanity";
 import React, { Suspense } from "react";
 import "./prices.scss";
 import Prices from "./Prices";
@@ -32,11 +31,14 @@ export default async function PagePrice({}: Props) {
   const comText = await payload.findGlobal({
     slug: "commission",
   });
-  const gd = await fetchData<any>(
-    `*[_type == 'general' && preset == 'active'][0]{
-			cf
-		}`
-  );
+  // const gd = await fetchData<any>(
+  //   `*[_type == 'general' && preset == 'active'][0]{
+  // 		cf
+  // 	}`
+  // );
+  const gd = await payload.findGlobal({
+    slug: "general",
+  });
   // const pinned = comText.pinned_pricing;
   const plist = comText.pricing?.pricing_list ?? [];
   const t = comText.pricing?.Prices;
