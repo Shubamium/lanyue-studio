@@ -3,7 +3,6 @@ import React from "react";
 import PriceList from "./PriceList";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
-import { urlFor } from "../db/sanity";
 import { animateStagger, useIV } from "../util/useIV";
 import { stagger } from "motion/react";
 import { RichText } from "@payloadcms/richtext-lexical/react";

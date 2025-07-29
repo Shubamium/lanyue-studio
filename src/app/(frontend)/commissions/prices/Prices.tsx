@@ -5,7 +5,6 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
-import { urlFor } from "@/app/(frontend)/db/sanity";
 import PriceList from "../PriceList";
 import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";

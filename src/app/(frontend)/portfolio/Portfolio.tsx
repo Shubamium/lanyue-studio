@@ -34,7 +34,7 @@ export default function Portfolio({}: Props) {
     useState<PortfolioList["mediaItems"]>();
 
   const [sidebar, setSidebar] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<any | null>(null);
+  const [selectedImage, setSelectedImage] = useState<MediaItem | null>(null);
 
   const [t, setT] = useState<PortfolioText | null>(null);
   useEffect(() => {
@@ -285,23 +285,23 @@ export default function Portfolio({}: Props) {
       >
         {selectedImage && (
           <div className="art-part">
-            {selectedImage._type === "imaged" ? (
+            {selectedImage.type === "Image" ? (
               <img
-                src={urlFor(selectedImage.image)
-                  ?.format("webp")
-                  .height(1080)
+                // src={urlFor(selectedImage.image)
+                //   ?.format("webp")
+                //   .height(1080)
 
-                  .url()}
-                alt=""
+                //   .url()}
+                src={
+                  (selectedImage.artwork as Media).sizes?.Large?.url ??
+                  (selectedImage.artwork as Media)?.url ??
+                  ""
+                }
                 className="main-pt"
               />
             ) : (
               <video
-                src={
-                  selectedImage.url
-                    ? selectedImage.url
-                    : getFileUrl(selectedImage.file)
-                }
+                src={selectedImage.Video?.url ?? ""}
                 controls
                 autoPlay
                 playsInline
@@ -322,7 +322,7 @@ function MediaRender({
 }: {
   // media?: UnpackArray<PortfolioList["mediaItems"]>;
   media?: MediaItem;
-  onGallery: (src: string) => void;
+  onGallery: (src: MediaItem) => void;
 }) {
   if (!media) return <></>;
 
@@ -357,7 +357,7 @@ function MediaRender({
     } else {
       return (
         <video
-          src={src.url ? src.url : getFileUrl(src.file)}
+          // src={src.url ? src.url : getFileUrl(src.file)}
           controls
           autoPlay
           loop
@@ -365,7 +365,7 @@ function MediaRender({
           data-tip={src.artist}
           muted
           onClick={() => {
-            onGallery(src);
+            onGallery(media);
           }}
           className="main-pt"
         />
@@ -409,7 +409,8 @@ function MediaRender({
           data-tip={im.artist}
           className="main-pt"
           onClick={() => {
-            onGallery(im?.sizes?.Large?.url ?? im?.url ?? "");
+            // onGallery(im?.sizes?.Large?.url ?? im?.url ?? "");
+            onGallery(media);
           }}
           style={{
             objectPosition: `0% ${im?.y ?? 40}%`,

@@ -1,7 +1,6 @@
 "use client";
 import { stagger, useAnimate, useInView } from "motion/react";
 import React, { useEffect, useRef } from "react";
-import { urlFor } from "../db/sanity";
 
 import { Home, Media } from "@/payload-types";
 import { RichText } from "@payloadcms/richtext-lexical/react";

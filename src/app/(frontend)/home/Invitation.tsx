@@ -5,7 +5,6 @@ import React, { CSSProperties, useEffect, useState } from "react";
 import { animateStagger } from "../util/useIV";
 import { stagger } from "motion";
 import Link from "next/link";
-import { urlFor } from "../db/sanity";
 import { nt } from "../util/util";
 import { Home, Media } from "@/payload-types";
 

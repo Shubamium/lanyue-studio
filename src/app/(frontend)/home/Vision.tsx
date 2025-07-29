@@ -4,9 +4,7 @@ import { useAnimate, useInView } from "motion/react";
 
 import Link from "next/link";
 import React, { CSSProperties, useEffect, useRef } from "react";
-import { FaPaintBrush } from "react-icons/fa";
-import { FaArrowRight } from "react-icons/fa6";
-import { urlFor } from "../db/sanity";
+
 import { nt } from "../util/util";
 import { Home, Media } from "@/payload-types";
 import { RichText } from "@payloadcms/richtext-lexical/react";

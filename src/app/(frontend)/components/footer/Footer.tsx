@@ -4,7 +4,6 @@ import Link from "next/link";
 import { BiSolidArrowToTop } from "react-icons/bi";
 import { FaDiscord, FaXTwitter } from "react-icons/fa6";
 import { CgMail } from "react-icons/cg";
-import { fetchData } from "@/app/(frontend)/db/sanity";
 import payloadConfig from "@/payload.config";
 import { getPayload } from "payload";
 type Props = {};

@@ -11,30 +11,30 @@
 
 // const builder = imageUrlBuilder(client);
 
-export function urlFor(source: any) {
-  return;
-  if (source) {
-    // return builder.image(source);
-  } else {
-    return null;
-  }
-}
+// export function urlFor(source: any) {
+//   return;
+//   if (source) {
+//     // return builder.image(source);
+//   } else {
+//     return null;
+//   }
+// }
 
-export function getFileUrl(source: any) {
-  return;
-  if (source) {
-    const data = source.asset._ref.split("-");
-    const baseUrl = `https://cdn.sanity.io/files/o5vhscyp/production/${data[1]}.${data[2]}`;
-    return baseUrl;
-  }
-  // console.log(data);
-}
+// export function getFileUrl(source: any) {
+//   return;
+//   if (source) {
+//     const data = source.asset._ref.split("-");
+//     const baseUrl = `https://cdn.sanity.io/files/o5vhscyp/production/${data[1]}.${data[2]}`;
+//     return baseUrl;
+//   }
+//   // console.log(data);
+// }
 
-const config = {
-  next: {
-    revalidate: 5,
-  },
-};
-export function fetchData<T>(grocQuery: string) {
-  // return client.fetch<T>(grocQuery, {}, { ...config });
-}
+// const config = {
+//   next: {
+//     revalidate: 5,
+//   },
+// };
+// export function fetchData<T>(grocQuery: string) {
+//   // return client.fetch<T>(grocQuery, {}, { ...config });
+// }
