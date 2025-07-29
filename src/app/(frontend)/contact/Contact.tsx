@@ -266,6 +266,7 @@ export default function Contact({ c, g, f }: Props) {
       <div className="particle-container">
         <ParticleFog />
       </div>
+      <></>
     </main>
   );
 }
