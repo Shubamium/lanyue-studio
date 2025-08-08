@@ -1,5 +1,11 @@
-import type { CollectionConfig } from "payload";
+import type { CollectionConfig, ImageUploadFormatOptions } from "payload";
 
+const formatOptions: ImageUploadFormatOptions = {
+  format: "webp",
+  options: {
+    quality: 80,
+  },
+};
 export const Media: CollectionConfig = {
   slug: "media",
   access: {
@@ -32,18 +38,34 @@ export const Media: CollectionConfig = {
       {
         name: "Small",
         height: 400,
+        width: 624,
+        fit: "inside",
+        withoutEnlargement: true,
+        formatOptions,
       },
       {
         name: "Medium",
         height: 800,
+        width: 1280,
+        fit: "inside",
+        withoutEnlargement: true,
+        formatOptions,
       },
       {
         name: "Large",
+        width: 1920,
         height: 1080,
+        fit: "inside",
+        withoutEnlargement: true,
+        formatOptions,
       },
       {
         name: "Max",
         height: 1920,
+        width: 2560,
+        fit: "inside",
+        withoutEnlargement: true,
+        formatOptions,
       },
     ],
   },
