@@ -40,6 +40,7 @@ export default async function Home() {
       <Invitation is={homeP.invitation} />
       <></>
       <></>
+      <></>
     </main>
   );
 }
