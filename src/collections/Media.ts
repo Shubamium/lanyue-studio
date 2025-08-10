@@ -11,6 +11,7 @@ export const Media: CollectionConfig = {
   access: {
     read: () => true,
   },
+
   fields: [
     {
       name: "artist",
@@ -27,6 +28,7 @@ export const Media: CollectionConfig = {
       type: "number",
     },
   ],
+
   upload: {
     formatOptions: {
       format: "webp",
@@ -34,6 +36,7 @@ export const Media: CollectionConfig = {
         quality: 80,
       },
     },
+
     imageSizes: [
       {
         name: "Small",

@@ -10,7 +10,7 @@ export const GET = async (request: Request) => {
     slug: "home",
   });
   return Response.json({
-    message: "This is an example of a custom route.",
+    message: "V1.01 Aug 10 2025",
     data: data,
   });
 };
