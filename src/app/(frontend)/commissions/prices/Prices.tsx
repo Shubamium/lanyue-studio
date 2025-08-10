@@ -150,7 +150,7 @@ export function MainPricing({ data }: any) {
           className="banner"
           style={{
             // backgroundImage: `url(${urlFor(data.image)?.format("webp").height(1400).url()})`,
-            backgroundImage: `url(${im.sizes?.Large?.url ?? im?.url ?? undefined})`,
+            backgroundImage: `url(${im?.url ?? undefined})`,
           }}
         >
           <img src="/de/com-splat.png" alt="" className="splat" />

@@ -23,6 +23,7 @@ import PortfolioText from "./collections/PortfolioText";
 import Contact from "./collections/Contact";
 import Terms from "./collections/Terms";
 import General from "./collections/General";
+import { s3Storage } from "@payloadcms/storage-s3";
 
 export default buildConfig({
   admin: {
@@ -50,10 +51,24 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || "",
   }),
-
   sharp,
   plugins: [
     payloadCloudPlugin(),
     // storage-adapter-placeholder
+    s3Storage({
+      bucket: "main",
+      collections: {
+        media: true,
+      },
+      config: {
+        endpoint: process.env.MINIO_U ?? "",
+        region: "us-east-1",
+        credentials: {
+          accessKeyId: process.env.MINIO_AK ?? "",
+          secretAccessKey: process.env.MINIO_SK ?? "",
+        },
+        forcePathStyle: true,
+      },
+    }),
   ],
 });
