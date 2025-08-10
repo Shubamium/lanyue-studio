@@ -45,7 +45,7 @@ export default function PriceHeading({ t }: Props) {
             alt=""
             className="de-moon stagger hovering"
           />
-          <p className="sh stagger">{t.sh}</p>
+          <p className="sh stagger">{t.sh} </p>
           <h2 className="h stagger">{t.h}</h2>
           <div className="p stagger">
             <RichText data={t.p} />
