@@ -24,6 +24,7 @@ export default async function getMember(
         equals: role,
       },
     },
+    sort: ["order", "asc"],
   });
   return memberList;
 }
