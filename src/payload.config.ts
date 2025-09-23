@@ -57,9 +57,13 @@ export default buildConfig({
     // storage-adapter-placeholder
     s3Storage({
       bucket: "main",
+
       collections: {
-        media: true,
+        media: {
+          disablePayloadAccessControl: true,
+        },
       },
+
       config: {
         endpoint: process.env.MINIO_U ?? "",
         region: "us-east-1",
@@ -67,6 +71,7 @@ export default buildConfig({
           accessKeyId: process.env.MINIO_AK ?? "",
           secretAccessKey: process.env.MINIO_SK ?? "",
         },
+
         forcePathStyle: true,
       },
     }),
