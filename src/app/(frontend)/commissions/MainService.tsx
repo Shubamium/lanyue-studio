@@ -261,7 +261,7 @@ function Categories({ art, description, name, list, slug }: CatProps) {
     <div
       className="category "
       onClick={() => {
-        router.push("/commissions/prices" + (slug ? `#${slug}` : ""));
+        router.push("/commissions/prices?c=" + (slug ? `${slug}` : ""));
       }}
     >
       <div className="left">

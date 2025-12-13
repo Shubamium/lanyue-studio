@@ -195,7 +195,7 @@ export default function Artist({}: Props) {
                   <MemberDisplayer
                     memberData={memberData}
                     index={index}
-                    key={memberData.id}
+                    key={memberData.id + index}
                     showFs={showFs}
                   />
                 );
@@ -436,9 +436,9 @@ function MemberDisplayer({
                   //   disablePictureInPicture
                   //   disableRemotePlayback
                   // ></video>
-                  <div className="p-img">
+                  <div className="p-img video">
                     <iframe
-                      src={`${p.url}?autoplay=true&loop=true&muted=true&preload=true&responsive=true`}
+                      src={`${p.Video.url}?autoplay=true&loop=true&muted=true&preload=true&responsive=true`}
                       loading="lazy"
                       allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
                       allowFullScreen

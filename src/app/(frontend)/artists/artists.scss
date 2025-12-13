@@ -318,6 +318,14 @@
                   width: 100%;
                   object-fit: cover;
                   height: 200px;
+                  &.video {
+                    aspect-ratio: 16 /9;
+                    width: 100%;
+                    height: auto;
+                  }
+                }
+                &:has(.p-img.video) {
+                  display: flex;
                 }
               }
 
