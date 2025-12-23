@@ -23,6 +23,13 @@ export default async function getMember(
       "role.slug": {
         equals: role,
       },
+      and: [
+        {
+          Hide: {
+            not_equals: true,
+          },
+        },
+      ],
     },
     sort: ["order", "asc"],
   });

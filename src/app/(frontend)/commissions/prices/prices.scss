@@ -419,7 +419,13 @@
     gap: 1em;
     flex-wrap: wrap;
     margin: 5em auto;
-    max-width: 90%;
+    max-width: min(1000px, 90%);
+
+    @media screen and (min-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      max-width: min(1000px, 80%);
+    }
     .btn-main {
       min-width: 0;
       // padding-right: 1em;

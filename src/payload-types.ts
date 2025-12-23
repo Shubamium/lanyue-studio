@@ -161,6 +161,7 @@ export interface Member {
    */
   order?: number | null;
   role?: (string | null) | ArtistType;
+  Hide?: boolean | null;
   bio?: string | null;
   pfp?: (string | null) | Media;
   portfolio?:
@@ -437,6 +438,7 @@ export interface MembersSelect<T extends boolean = true> {
   title?: T;
   order?: T;
   role?: T;
+  Hide?: T;
   bio?: T;
   pfp?: T;
   portfolio?:

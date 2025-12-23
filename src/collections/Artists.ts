@@ -34,6 +34,10 @@ const Members: CollectionConfig = {
       relationTo: "artist-type",
     },
     {
+      name: "Hide",
+      type: "checkbox",
+    },
+    {
       name: "bio",
       type: "textarea",
     },
